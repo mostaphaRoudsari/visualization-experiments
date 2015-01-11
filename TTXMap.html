@@ -17,10 +17,6 @@
         stroke-width: .1em;
       }
 
-    .graphs {
-      "background-color: "red";
-    }
-
     .new_users {
       fill: #636363; /*#80b1d3;*/
       clip-path: url(#clip);
@@ -36,6 +32,7 @@
         stroke: black;
         stroke-width: .15em;
         fill: none;
+        clip-path: url(#clip);
       }
 
     .usage_circles {
@@ -75,46 +72,55 @@
                   color : red;
                 }
 
-    /* This classes are for page layout*/
-          html,
-          body {
-            margin:0;
-            padding:0;
-            height:68%;
-          }
+    /* This part of css is for page layout*/
+    #wrapper {
+      height: 100%;
+    }
 
-          .wrapper {
-                min-height:100%;
-                position:relative
-              }
+    #header{
+      height:10%;
+    }
 
-          .map {
-                /* padding-bottom:.2em;   /* Height of the footer element */
-                font-family : Courier New;
-                font-size: 3em;
-                text-align:center; /* Center Horrizontally */
-                position: absolute; /* Center Vertically */
-                  top: 50%;
-                  left: 50%;
-                  margin-right: -50%;
-                  transform: translate(-50%, -50%);
-                  transition: font-size 1s;
-              }
-              
-          .graphs {
-              width:100%;
-              height:.5em; /* Height of the footer element */
-              position:absolute;
-              bottom:0; 
-              /*left:0;
-              font: normal 11px Arial;*/
-              }
+    #map-text-wrapper{
+      height:45%;
+      overflow: hidden;
+      margin:auto;
+    }
+
+    #map-container {
+      width:70%;
+      height:100%;
+      float: left;
+      margin:auto;
+    }
+
+    #side-bar {
+      width:30%;
+      height:100%;
+      float: right;
+      /* background-color: white; */
+      margin:auto;
+    }
+
+    #transactions-graph,
+    #users-graph {
+      height:20%;
+      margin:auto;
+    }
+
+    #brush-area {
+      height:10%;
+      margin:auto;
+      text-align:center;
+    }
 </style>
+
 
 <body>
 
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v0.min.js"></script>
+    <div id = "header"><br></div>
     <script>
 
 
@@ -146,23 +152,36 @@
         {"name":"Washington","location":{"latitude":38.8951,"longitude":-77.0456373}},
         {"name":"Dubai","location":{"latitude":24.9500,"longitude": 55.333}}]
 
-    var updatedLocationData = []
 
-    var widthInset = 50,
-        totalHeight =420,
+    var widthInset = 20,
+        heightInset = 5,
+        totalHeight = window.innerHeight - heightInset,
         totalWidth = window.innerWidth - widthInset;
 
-    var margin = {top: .5 * totalHeight, right: 10, bottom: totalHeight/5, left: 40},
-        margin2 = {top: .9 * totalHeight, right: 10, bottom:0.04* totalHeight, left: 40},
-        width = totalWidth - margin.left - margin.right,
-        height = totalHeight - margin.top - margin.bottom,      // height for focus area
-        height2 = totalHeight - margin2.top - margin2.bottom;   // height for brushing area
+
+    var margin = {top: 35, right: 25, bottom: 25, left: 25}, // margin for graphs
+        margin2 = {top: 25, right: 25, bottom: 25, left: 25}; // margin for brush
+
+    // a little bit of math here to find size of each graph
+    // div for user and transaction graphs are set to %20 of total height
+    // div for brush graph 
+
+    var width = totalWidth - margin.left - margin.right, // width is straight forward
+        height = .18 * totalHeight - margin.top - margin.bottom,      // height for focus area
+        height2 = .09 * totalHeight - margin2.top - margin2.bottom;   // height for brushing area
+
+    console.log("totalHeight:" + totalHeight);
+    console.log("totalWidth:" + totalWidth);
+
+    console.log("Graph Heights:" + height);
+    console.log("Brush Height:" + height2);
 
     // code related to world map data
     var projection = d3.geo.mercator()
-        .center([-0, -25])
-        .scale(250)
-        .rotate([-5,0]);
+        .center([10, 65])
+        .scale(200)
+        .rotate([-5,0])
+        .translate([.5* totalWidth, .09 * totalHeight]);
 
 
     var world_path = d3.geo.path()
@@ -298,32 +317,64 @@
           .style("visibility", "hidden")
           .text("loading...");
 
+
     // add div and svg for world map
-    var mapsvg = d3.select("body")
+    var wrapperdiv =  d3.select("body")
         .append("div")
-          .attr("class", "wrapper")
-        .append("div")
-          .attr("class", "map")
-        .append("svg")
-          .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom);
+          .attr("id", "wrapper");
+
+    var mapsvg = wrapperdiv.append("div")
+          .attr("id", "map-text-wrapper")
+            .append("div")
+              .attr("id", "map-container")
+              .attr("class", "map")
+              .append("svg")
+                .attr("width", .7 * totalWidth)
+                .attr("height", .45 * totalHeight)
+                .attr("width", width + margin.left + margin.right);
 
 
-    // add svg for graph to the btm of the page - This doesn't really work as expected
-    // if I change the zoom of the page it goes crazy. I should double check style properties
-    var graphsvg = d3.select("body .wrapper")
+    // add div for side bar - I'm not sure if I need a svf for this one but why not!
+    var sidebarsvg = d3.select("body #map-text-wrapper")
         .append("div")
+          .attr("id", "side-bar")
+          .attr("class", "side")
+          .append("text")
+            .text("This will be replaced by some meaningful text.");
+          //.append("svg")
+          //  .attr("width", .3 * totalWidth)
+          //  .attr("height", .45 * totalHeight);    
+
+    var brushsvg = wrapperdiv.append("div")
+          .attr("id", "brush-area")
           .attr("class", "graphs")
-        .append("svg")
+                .append("svg")
+                .attr("width", width + margin2.left + margin2.right)
+                .attr("height", height2 + margin2.top + margin2.bottom);
+
+    var stackedgraphsvg = wrapperdiv.append("div")
+          .attr("id", "transactions-graph")
+          .attr("class", "graphs")
+                .append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom);
-        /*
-        .append("defs").append("clipPath") //clipping the svg chart which I have absolutly no idea how it works!
-          .attr("id", "clip")
-        .append("rect")
-          .attr("width", width)
-          .attr("height", height);
-          */
+                  
+    // add svg for graph to the btm of the page - This doesn't really work as expected
+    // if I change the zoom of the page it goes crazy. I should double check style properties
+    var usergraphsvg = wrapperdiv.append("div")
+          .attr("id", "users-graph")
+          .attr("class", "graphs")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom);
+        
+    usergraphsvg.append("defs")
+          .append("clipPath")
+            .attr("id", "clip")
+              .append("rect")
+                .attr("width", width)
+                .attr("height", height);
+
     /*
 
     let's create the groups for worldmap, circles, and both graphs 
@@ -331,25 +382,30 @@
     graphsvg
 
     */
+
     var mapgroup = mapsvg.append("g")
         .attr("class", "worldmap")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        .attr("transform", "translate(" + margin.left + ",0)");
 
     var circlegroup = mapsvg.append("g")
         .attr("class", "usage_circles")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        .attr("transform", "translate(" + margin.left + ",0)");
 
-    var focus = graphsvg.append("g")
+    var stackedgraphgroup = stackedgraphsvg.append("g")
         .attr("class", "focus")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); // move it based on margins from the top left corner
 
-    var datalinegroup = graphsvg.append("g")
+    var usergraphgroup = usergraphsvg.append("g")
+        .attr("class", "focus")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); // move it based on margins from the top left corner
+
+    var brushgroup = brushsvg.append("g")
+        .attr("class", "brush")
+        .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")"); // move it based on margins from the top left corner
+    
+    var datalinegroup = usergraphsvg.append("g")
         .attr("class", "focusdataline")
         .style("display", "none");
-
-    var context = graphsvg.append("g")
-        .attr("class", "context")
-        .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
     /*
 
 
@@ -358,9 +414,8 @@
     */
 
     // draw world map first
-    // d3.json("https://dl.dropboxusercontent.com/u/16228160/world-110m2.json", function(error, topology) {
-    d3.json("./map_source_data/data/world-110m2.json", function(error, topology) {
-                 
+    d3.json("https://dl.dropboxusercontent.com/u/16228160/world-110m2.json", function(error, topology) {
+    //d3.json("./map_source_data/data/world-110m2.json", function(error, topology) {
               mapgroup.selectAll("path")
                     .data(topojson.object(topology, topology.objects.countries).geometries)
                     .enter()
@@ -373,8 +428,8 @@
 
     // draw the graphs and also add circles
 
-    //d3.json("https://dl.dropboxusercontent.com/u/16228160/ttx_data.json", function(error, data) {
-    d3.json("./map_source_data/data/ttx_data.json", function(error, data) {
+    d3.json("https://dl.dropboxusercontent.com/u/16228160/ttx_data.json", function(error, data) {
+    //d3.json("./map_source_data/data/ttx_data.json", function(error, data) {
                 
                 // iterate over data and parse date data to d3 format
                 data.forEach(function(d) {
@@ -443,18 +498,18 @@
                 // add objects to focus area
 
                 // 01 - add area path for returning users
-                focus.append("path")
+                usergraphgroup.append("path")
                     .datum(data)
                     .attr("class", "existing_users")
                     .attr("d", new_and_returning_users_focus_area);
               	
                 // 02 - add area path for new users
-                focus.append("path")
+                usergraphgroup.append("path")
                     .datum(data)
                     .attr("class", "new_users")
                     .attr("d", new_users_focus_area);
 
-                focus.append("path")
+                usergraphgroup.append("path")
                     .datum(data)
                     .attr("class", "dark_line")
                     .attr("d", line);
@@ -478,19 +533,19 @@
                       .attr("y3", "50");
                 */
 
-                focus.append("text") // just for now until I get damn divs fixed, then I will put them under datalineGroup
+                usergraphgroup.append("text") // just for now until I get damn divs fixed, then I will put them under datalineGroup
                       .attr("class", "data_text")
                       .attr("y", -18) // text show up a little bit above chart area
                       .attr("dy", ".35em")
                       .attr("fill", "red");
 
-                focus.append("line")
+                usergraphgroup.append("line")
                       .attr("class", "data_line")
                       .attr("stroke-width", ".1em")
                       .attr("stroke", "red")
                       .attr("shape-rendering", "crispEdges");
                 
-                focus.append("rect")
+                usergraphgroup.append("rect")
                     .attr("class", "overlay")
                     .attr("width", width)
                     .attr("height", height)
@@ -504,11 +559,11 @@
                           d1 = data[i],
                           d = xLocation - d0.date > d1.date - xLocation ? d1 : d0;
                        
-                       focus.select(".data_text")
+                       usergraphgroup.select(".data_text")
                           .text(d.date.toDateString() + ": #new users " + d.new_users + ", #returning users: " + d.existing_users)
                           .attr("x", d3.mouse(this)[0] + 2);
 
-                       focus.select(".data_line")
+                       usergraphgroup.select(".data_line")
                           .attr("x1", d3.mouse(this)[0])
                           .attr("x2", d3.mouse(this)[0])
                           .attr("y1", -20)
@@ -518,39 +573,39 @@
 
 
                 // 03 - x axix for focus area
-                focus.append("g")
+                usergraphgroup.append("g")
                     .attr("class", "x axis")
                     .attr("transform", "translate(0," + height + ")")
                     .call(xAxis);
 
                 // 04 - y axix for focus area
-                focus.append("g")
+                usergraphgroup.append("g")
                     .attr("class", "y axis")
                     .call(yAxis);
 
-                focus.append("g")
+                usergraphgroup.append("g")
                       .attr("class", "focus text")
                       .append("text")
                         .attr("y", -5)
                         .text("Number of new and returning users.");
 
                 // Do the same for the small chart and also add the brush here
-                context.append("path")
+                brushgroup.append("path")
                     .datum(data)
                     .attr("class", "existing_users")
                     .attr("d", new_and_returning_users_brush_area);
 
-                context.append("path")
+                brushgroup.append("path")
                     .datum(data)
                     .attr("class", "new_users")
                     .attr("d", new_users_brush_area);
 
-                context.append("g")
+                brushgroup.append("g")
                     .attr("class", "x axis")
                     .attr("transform", "translate(0," + height2 + ")")
                     .call(xAxis2);
 
-                context.append("g")
+                brushgroup.append("g")
                     .attr("class", "x brush")
                     .call(brush)
                   .selectAll("rect")
@@ -559,7 +614,7 @@
 
                 // add a rectangle to have a border
                 // and text to let visitors know what this thing is
-                context.append("g")
+                brushgroup.append("g")
                     .attr("class", "context_border")
                       .append("rect")
                         .attr("x", 0)
@@ -567,7 +622,7 @@
                         .attr("width", width)
                         .attr("height", height2 + 7)
                 
-                context.append("g")
+                brushgroup.append("g")
                       .attr("class", "context text")
                       .append("text")
                         .attr("y", -10)
@@ -598,10 +653,10 @@
     // brushed event functions
     function brushed() {
         x.domain(brush.empty() ? x2.domain() : brush.extent());
-        focus.select(".dark_line").attr("d", line);
-        focus.select(".new_users").attr("d", new_users_focus_area);
-        focus.select(".existing_users").attr("d", new_and_returning_users_focus_area);
-        focus.select(".x.axis").call(xAxis);
+        usergraphgroup.select(".dark_line").attr("d", line);
+        usergraphgroup.select(".new_users").attr("d", new_users_focus_area);
+        usergraphgroup.select(".existing_users").attr("d", new_and_returning_users_focus_area);
+        usergraphgroup.select(".x.axis").call(xAxis);
         update_usage_circle();
     }
 
