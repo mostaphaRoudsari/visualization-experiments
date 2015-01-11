@@ -5,7 +5,7 @@
     path  {
           stroke: black;
           stroke-width: 0.5px;
-          fill: #cccccc;
+          fill: #969696;
         }
 
     svg {
@@ -291,7 +291,7 @@
         };
 
     // create a scale for circles so I can control the maximum radius size
-    var max_radius = 25; 
+    var max_radius = 50; 
     var rScale = d3.scale.linear().range([0, max_radius]);
     var opacityScale = d3.scale.linear().range([1, 0.7]); // change the opacity based on radius .4-.75
     opacityScale.domain([0, max_radius]);
@@ -311,11 +311,11 @@
     // a simple tool-tip for now
     var tooltip = d3.select("body")
           .append("div")
-          .style("position", "absolute")
-          .style("z-index", "10")
-          .style("font-size", "1.2em")
-          .style("visibility", "hidden")
-          .text("loading...");
+            .style("position", "absolute")
+            .style("z-index", "10")
+            .style("font-size", "1.2em")
+            .style("visibility", "hidden")
+            .text("loading...");
 
 
     // add div and svg for world map
@@ -405,10 +405,11 @@
     
     var datalinegroup = usergraphsvg.append("g")
         .attr("class", "focusdataline")
-        .style("display", "none");
-    /*
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-
+    var locationdatalinegroup = stackedgraphsvg.append("g")
+        .attr("class", "focusdataline")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     /*
     we are set with the structure [or actually I hope that's the case] so let's draw the graphs
     */
@@ -458,6 +459,10 @@
                 // set the domain for raduis scale so the maximum number of total usage will be
                 // set to maximum radius
                 rScale.domain([0, d3.max(locationData.map(function(d) { return d.usage; }))]);
+
+                // sort location data based on usage so the city with most usage will be drawn first
+                // it is important so all the cities can be selected by user
+                locationData.sort(function(a, b) { return b.usage - a.usage; });
 
                 // bind location data to circles under circle group
                 // the group is inside mapsvg
@@ -513,64 +518,6 @@
                     .datum(data)
                     .attr("class", "dark_line")
                     .attr("d", line);
-                
-                /*
-                datalinegroup.append("text")
-                      .attr("class", "data_text")
-                      .attr("x", 0)
-                      .attr("y", -15) // text show up a little bit above chart area
-                      .attr("dy", ".35em")
-                      .attr("color", "red");
-
-                datalinegroup.append("rect")
-                    .attr("height", "20")
-                    .attr("width", 26);
-
-                datalinegroup.append("line")
-                      .attr("x1", "0")
-                      .attr("y1", "0")
-                      .attr("x2", "50")
-                      .attr("y3", "50");
-                */
-
-                usergraphgroup.append("text") // just for now until I get damn divs fixed, then I will put them under datalineGroup
-                      .attr("class", "data_text")
-                      .attr("y", -18) // text show up a little bit above chart area
-                      .attr("dy", ".35em")
-                      .attr("fill", "red");
-
-                usergraphgroup.append("line")
-                      .attr("class", "data_line")
-                      .attr("stroke-width", ".1em")
-                      .attr("stroke", "red")
-                      .attr("shape-rendering", "crispEdges");
-                
-                usergraphgroup.append("rect")
-                    .attr("class", "overlay")
-                    .attr("width", width)
-                    .attr("height", height)
-                    .on("mouseover", function() {datalinegroup.style("display", null); })
-                    .on("mouseout", function() {datalinegroup.style("display", "none"); })
-                    .on("mousemove", function(){
-                       // find  x value for mouse inside the rectangle
-                       var xLocation = x.invert(d3.mouse(this)[0]), // mouse x relative to this rectangle
-                           i = bisectDate(data, xLocation, 1), // find the index for the date
-                          d0 = data[i - 1], // find the closest date available
-                          d1 = data[i],
-                          d = xLocation - d0.date > d1.date - xLocation ? d1 : d0;
-                       
-                       usergraphgroup.select(".data_text")
-                          .text(d.date.toDateString() + ": #new users " + d.new_users + ", #returning users: " + d.existing_users)
-                          .attr("x", d3.mouse(this)[0] + 2);
-
-                       usergraphgroup.select(".data_line")
-                          .attr("x1", d3.mouse(this)[0])
-                          .attr("x2", d3.mouse(this)[0])
-                          .attr("y1", -20)
-                          .attr("y2", height + 6);
-                        
-                        });
-
 
                 // 03 - x axix for focus area
                 usergraphgroup.append("g")
@@ -588,6 +535,13 @@
                       .append("text")
                         .attr("y", -5)
                         .text("Number of new and returning users.");
+                
+                // stacked graph for transcations
+                stackedgraphgroup.append("g")
+                      .attr("class", "focus text")
+                      .append("text")
+                        .attr("y", -5)
+                        .text("Number of transcations per office.");
 
                 // Do the same for the small chart and also add the brush here
                 brushgroup.append("path")
@@ -627,19 +581,103 @@
                       .append("text")
                         .attr("y", -10)
                         .text("Brush inside the rectangle below to select the time range.");
-        });
 
-  /*  
+                // add date lines so once the user hover mouse on focus graphs s/he can read the data for that point of time
+
+                locationdatalinegroup.append("text")
+                      .attr("class", "data_text")
+                      .attr("y", height + 18) // text show up a little bit above chart area
+                      .attr("dy", ".35em")
+                      .attr("fill", "red");
+
+                locationdatalinegroup.append("line")
+                      .attr("class", "data_line")
+                      .attr("stroke-width", ".1em")
+                      .attr("stroke", "red")
+                      .attr("shape-rendering", "crispEdges");
+                
+                usergraphgroup.append("rect")
+                    .attr("class", "overlay")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .on("mouseover", datalinemouseover)
+                    .on("mouseout", datalinemouseout)
+                    .on("mousemove", datalinemousemove);
+
+
+                datalinegroup.append("text")
+                      .attr("class", "data_text")
+                      .attr("y", -18) // text show up a little bit above chart area
+                      .attr("dy", ".35em")
+                      .attr("fill", "red");
+
+                datalinegroup.append("line")
+                      .attr("class", "data_line")
+                      .attr("stroke-width", ".1em")
+                      .attr("stroke", "red")
+                      .attr("shape-rendering", "crispEdges");
+                
+                stackedgraphgroup.append("rect")
+                    .attr("class", "overlay")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .on("mouseover", datalinemouseover)
+                    .on("mouseout", datalinemouseout)
+                    .on("mousemove", datalinemousemove);
+              
+        });
+    
+    function datalinemouseover() {
+        datalinegroup.style("visibility", "visible");
+        locationdatalinegroup.style("visibility", "visible");
+      }
+
+    function datalinemouseout() {
+        datalinegroup.style("visibility", "hidden");
+        locationdatalinegroup.style("visibility", "hidden");
+      }
+
     // return data for that point of time
-    function focuslinemousemove() {
-        var x0 = x.invert(d3.mouse(this)[0]),
-            i = bisectDate(data, x0, 1),
-            d0 = data[i - 1],
-            d1 = data[i],
-            d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-        focus.attr("transform", "translate(" + x(d.date) + "," + y(d.close) + ")");
-        focus.select("text").text(formatCurrency(d.close));
-  */
+    function datalinemousemove() {
+     // find  x value for mouse inside the rectangle
+     var xLocation = x.invert(d3.mouse(this)[0]), // mouse x relative to this rectangle
+        i = bisectDate(initialData, xLocation, 1), // find the index for the date
+        d0 = initialData[i - 1], // find the closest date available
+        d1 = initialData[i],
+        d = xLocation - d0.date > d1.date - xLocation ? d1 : d0;
+     
+     
+     var transPerOfficeReport = "",
+         totalTransPerDay = 0,
+         cities = d3.keys(d.usage_data),
+         numOfTrans = d3.values(d.usage_data);
+
+     for (i=0; i< cities.length; i++)
+      {
+        transPerOfficeReport += cities[i] + ":" + numOfTrans[i] + "|";
+        totalTransPerDay += numOfTrans[i];
+      }
+
+     locationdatalinegroup.select(".data_text")
+        .text(totalTransPerDay + " transactions > " + transPerOfficeReport)
+        .attr("x", d3.mouse(this)[0] + 2);
+     
+     locationdatalinegroup.select(".data_line")
+        .attr("x1", d3.mouse(this)[0])
+        .attr("x2", d3.mouse(this)[0])
+        .attr("y1", 0)
+        .attr("y2", height + 25);
+
+     datalinegroup.select(".data_text")
+        .text(d.date.toDateString() + ": #new users " + d.new_users + ", #returning users: " + d.existing_users)
+        .attr("x", d3.mouse(this)[0] + 2);
+
+     datalinegroup.select(".data_line")
+        .attr("x1", d3.mouse(this)[0])
+        .attr("x2", d3.mouse(this)[0])
+        .attr("y1", -20)
+        .attr("y2", height + 6);
+                  };
   
     // zoom and pan for world map and circles
     var zoom = d3.behavior.zoom()
