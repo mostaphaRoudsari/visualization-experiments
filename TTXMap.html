@@ -17,6 +17,12 @@
         stroke-width: .1em;
       }
 
+    .area
+    {
+      clip-path: url(#clip);
+    }
+
+
     .new_users {
       fill: #636363; /*#80b1d3;*/
       clip-path: url(#clip);
@@ -69,8 +75,11 @@
     }
 
     .datalinegroup text {
-                  color : red;
+                  color : black;
                 }
+    .cities text {
+      text-anchor: end;
+    }
 
     /* This part of css is for page layout*/
     #wrapper {
@@ -88,17 +97,16 @@
     }
 
     #map-container {
-      width:70%;
+      width:80%;
       height:100%;
       float: left;
       margin:auto;
     }
 
     #side-bar {
-      width:30%;
+      width:15%;
       height:100%;
       float: right;
-      /* background-color: white; */
       margin:auto;
     }
 
@@ -111,7 +119,6 @@
     #brush-area {
       height:10%;
       margin:auto;
-      text-align:center;
     }
 </style>
 
@@ -120,10 +127,10 @@
 
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v0.min.js"></script>
+
     <div id = "header"><br></div>
-    <script>
 
-
+<script>
     var locationData = [
         {"name":"Abu Dhabi","location":{"latitude":24.466667,"longitude":54.36666700000001}},
         {"name":"Beijing","location":{"latitude":39.904211,"longitude":116.407395}},
@@ -159,8 +166,8 @@
         totalWidth = window.innerWidth - widthInset;
 
 
-    var margin = {top: 35, right: 25, bottom: 25, left: 25}, // margin for graphs
-        margin2 = {top: 25, right: 25, bottom: 25, left: 25}; // margin for brush
+    var margin = {top: 30, right: 25, bottom: 20, left: 25}, // margin for graphs
+        margin2 = {top: 25, right: 25, bottom: 20, left: 25}; // margin for brush
 
     // a little bit of math here to find size of each graph
     // div for user and transaction graphs are set to %20 of total height
@@ -169,6 +176,11 @@
     var width = totalWidth - margin.left - margin.right, // width is straight forward
         height = .18 * totalHeight - margin.top - margin.bottom,      // height for focus area
         height2 = .09 * totalHeight - margin2.top - margin2.bottom;   // height for brushing area
+
+    var worldmapwidth = .78 *totalWidth - margin.left,
+        worldmapheight = .43 * totalHeight - margin.top,
+        sidebarwidth = .18 *totalWidth - margin.right,
+        sidebarheight = .43 * totalHeight - margin.top - margin.bottom;
 
     console.log("totalHeight:" + totalHeight);
     console.log("totalWidth:" + totalWidth);
@@ -192,19 +204,31 @@
     var parseDate = d3.time.format("%Y-%m-%d").parse,      // parse date based on input structure. In this example the structure is January 2010
         bisectDate = d3.bisector(function(d) { return d.date; }).left; // bisect data based on date
 
+    var color = d3.scale.category20();                  // color set for area charts
+
+    // I should clean this later - for now I just calculate the areas for
+    // the most active cities
+    // var cities = ["Chicago", "New York", "London"];
+    
+    var cities = [];
+    locationData.forEach(function(d){cities.push(d.name);});
+    color.domain(cities);
+
+
     var x = d3.time.scale().range([0, width]),          // x axis is time and this function scales it based on the width
         x2 = d3.time.scale().range([0, width]),         // similar to x
         y = d3.scale.linear().range([height, 0]),       // create scale for y axis
-        y2 = d3.scale.linear().range([height2, 0]);
+        y2 = d3.scale.linear().range([height2, 0]),
+        y3 = d3.scale.linear().range([height, 0]); // scale for transactions
 
     var xAxis = d3.svg.axis().scale(x).orient("bottom"),
         xAxis2 = d3.svg.axis().ticks(25).scale(x2).orient("bottom"),
-        yAxis = d3.svg.axis().scale(y).tickSize(-width).orient("left"); // YAxis for focus area
+        yAxis = d3.svg.axis().scale(y).tickSize(-width).orient("left"), // YAxis for focus area
+        yAxis3 = d3.svg.axis().scale(y3).tickSize(-width).orient("left"); // YAxis3 for stacked data
 
     var brush = d3.svg.brush()
         .x(x2)
         .on("brush", brushed); // when brush happens run brushed function - here all the interactive magic happens
-
 
     var new_users_focus_area = d3.svg.area() // new users
         .interpolate("step")
@@ -238,19 +262,117 @@
         .x(function(d) { return x(d.date); })
         .y(function(d) { return y(d.existing_users + d.new_users); });
 
+    //stacked area charts - I should replace the other two diagrams with this one
+    var area = d3.svg.area()
+        .interpolate("step")
+        .x(function(d) { return x(d.date); })
+        .y0(function(d) { return y3(d.y0); })
+        .y1(function(d) { return y3(d.y0 + d.y); });
+
+    var stack = d3.layout.stack()
+        .values(function(d) { return d.values; });
+
+
+    // let's add a report of number of transactions
+    function generateTextReport(){
+          
+          x.domain(d3.extent(initialData.map(function(d) { return d.date; })));
+          
+          var lineHeight = sidebarheight / 29,
+              textIndent = 0.15 * sidebarwidth,
+              fontSize = .9 * lineHeight
+              lineCount = 0,
+              fontColor = "#8dd3c7";
+                
+          sidetextgroup.selectAll("text")
+              .data(locationData)
+              .enter()
+                .append("text")
+                .attr("class", "smalltext")
+                .attr("font-size", fontSize)
+                .attr("font", "sans sans-serif")
+                .attr("fill", "black")
+                //.attr("stroke", "black")
+                //.attr("stroke-width", ".03em")
+                .attr('x', textIndent)
+                .attr('y', function(d, i){return (i +1) * lineHeight;})
+                .text(function(d){return d.name + ": " + d.usage;});
+          
+          sidetextgroup.append("text")
+                .attr("class", "largetext")
+                .attr("font-size", 2 * fontSize)
+                .attr("font", "sans sans-serif")
+                .attr("fill", fontColor)
+                .attr("stroke", "black")
+                .attr("font-weight", "bold")
+                .attr('x', textIndent)
+                .attr('y', lineHeight * (locationData.length + 2))
+                .text("Total: " + totalUsage);
+
+          mapsvg.append("text")
+                .attr("class", "largetext")
+                .attr("font-size", 1.5 * fontSize)
+                .attr("font", "sans sans-serif")
+                .attr("fill", "black")
+                //.attr("stroke", "white")
+                .attr("font-weight", "bold")
+                //.attr("stroke-width", ".01em")
+                .attr('x', textIndent)
+                .attr('y', worldmapheight - 1.5 * fontSize)
+                .text(x.domain()[0].toDateString() + " - " + x.domain()[1].toDateString());
+
+      };
+
+    // let's add a report of number of transactions
+    function updateTextReport(){
+
+          var lineHeight = sidebarheight / 29,
+              fontSize = .8 * lineHeight
+              lineCount = 0;
+                
+          sidetextgroup.selectAll(".smalltext")
+              .data(locationData)
+              .text(function(d){return d.name + ": " + d.usage;});
+          
+          sidetextgroup.selectAll(".largetext")
+                .text("Total: " + totalUsage);
+          
+          mapsvg.selectAll(".largetext")
+                .text(x.domain()[0].toDateString() + " - " + x.domain()[1].toDateString());                
+      };
+
+
+    function getTotalUsageNumbers(){
+          // d is the latest selected data which has all the time steps
+
+          totalUsage = 0;
+          // calculate initial usage for each location and add a new key for usage
+          locationData.forEach(function(loc){
+              // number of usage in each office
+              var usage = 0;
+              // for each time-step add up the number of transactions
+              initialData.forEach(function(j)
+              {     
+                if(loc.name in j.usage_data) usage += j.usage_data[loc.name];
+              });
+
+              totalUsage += usage;
+              loc.usage = usage; // update usage number
+              return loc;
+              });
+
+          generateTextReport();
+        };
 
     function updateUsageNumbers(){
-          // d is the latest selected data which has all the time steps
-          //var startDate = x.domain()[0];
-          //var endDate = x.domain()[1];
 
           var startDate = x.domain()[0];
           var endDate = x.domain()[1];
 
           // filter initial data
-          var selectedData = initialData.filter(function(d){return d.date > startDate &&  d.date < endDate;});
-
-          debugger
+          var selectedData = initialData.filter(function(d){return d.date >= startDate &&  d.date <= endDate;});
+          
+          totalUsage = 0;
           // calculate initial usage for each location and add a new key for usage
           locationData.forEach(function(loc){
               // number of usage in each office
@@ -265,29 +387,12 @@
                     };
               });
 
+              totalUsage += usage;
               loc.usage = usage; // update usage number
               return loc;
               });
 
-        };
-
-    function getTotalUsageNumbers(){
-          // d is the latest selected data which has all the time steps
-
-          // calculate initial usage for each location and add a new key for usage
-          locationData.forEach(function(loc){
-              // number of usage in each office
-              var usage = 0;
-              // for each time-step add up the number of transactions
-              initialData.forEach(function(j)
-              {     
-                if(loc.name in j.usage_data) usage += j.usage_data[loc.name];
-              });
-
-              loc.usage = usage; // update usage number
-              return loc;
-              });
-
+        updateTextReport();
         };
 
     // create a scale for circles so I can control the maximum radius size
@@ -329,9 +434,9 @@
               .attr("id", "map-container")
               .attr("class", "map")
               .append("svg")
-                .attr("width", .7 * totalWidth)
-                .attr("height", .45 * totalHeight)
-                .attr("width", width + margin.left + margin.right);
+                //.attr("width", worldmapwidth + margin.left)
+                .attr("width", totalWidth)
+                .attr("height", worldmapheight);
 
 
     // add div for side bar - I'm not sure if I need a svf for this one but why not!
@@ -339,11 +444,9 @@
         .append("div")
           .attr("id", "side-bar")
           .attr("class", "side")
-          .append("text")
-            .text("This will be replaced by some meaningful text.");
-          //.append("svg")
-          //  .attr("width", .3 * totalWidth)
-          //  .attr("height", .45 * totalHeight);    
+          .append("svg")
+            .attr("width", sidebarwidth + margin.right)
+            .attr("height", sidebarheight + margin.top + margin.bottom);    
 
     var brushsvg = wrapperdiv.append("div")
           .attr("id", "brush-area")
@@ -358,7 +461,15 @@
                 .append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom);
-                  
+    
+
+    stackedgraphsvg.append("defs")
+          .append("clipPath")
+            .attr("id", "clip")
+              .append("rect")
+                .attr("width", width)
+                .attr("height", height);
+
     // add svg for graph to the btm of the page - This doesn't really work as expected
     // if I change the zoom of the page it goes crazy. I should double check style properties
     var usergraphsvg = wrapperdiv.append("div")
@@ -382,7 +493,6 @@
     graphsvg
 
     */
-
     var mapgroup = mapsvg.append("g")
         .attr("class", "worldmap")
         .attr("transform", "translate(" + margin.left + ",0)");
@@ -390,10 +500,21 @@
     var circlegroup = mapsvg.append("g")
         .attr("class", "usage_circles")
         .attr("transform", "translate(" + margin.left + ",0)");
+    
+    // add a background rectangle for text
+    var background_rct =  sidebarsvg.append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", "white")
+            .attr("opacity", ".5");
+
+    var sidetextgroup = sidebarsvg.append("g")
+              .attr("class", "sidebartext")
+              .attr("transform", "translate(0, " + margin.top/2 + ")");
 
     var stackedgraphgroup = stackedgraphsvg.append("g")
-        .attr("class", "focus")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); // move it based on margins from the top left corner
+                      .attr("class", "stack")
+                      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     var usergraphgroup = usergraphsvg.append("g")
         .attr("class", "focus")
@@ -422,8 +543,7 @@
                     .enter()
                       .append("path")
                       .attr("class","worldmap")
-                      .attr("d", world_path);
-              
+                      .attr("d", world_path);   
        });
 
 
@@ -475,9 +595,10 @@
                       .attr("r", function(d){return rScale(d.usage) + 2;}) // if usage is 0 it still draws a small circle
                       .attr("fill-opacity", opacityScale.range()[1])
                       .attr("stroke", "black")
+                      .attr("fill", function(d){return color(d.name)})
                       .on("mouseover", function(d){
                             var nodeSelection = d3.select(this)
-                              .attr('fill', 'orange')
+                              .attr('fill', 'white')
                               //.style('stroke-width', function(d){return 0.2 * rScale(d.usage);}) // change stroke width
                               .style('stroke-width', ".2em") // change stroke width
                             return tooltip
@@ -490,17 +611,29 @@
                       
                       .on("mouseout", function(){
                           var nodeSelection = d3.select(this)
-                              .attr('fill', '') // back to default
+                              .attr("fill", function(d){return color(d.name)})
                               .style('stroke-width', '') // remove width
                               return tooltip.style("visibility", "hidden");});
+
 
                 // update domains for scales
                 x.domain(d3.extent(data.map(function(d) { return d.date; })));
                 y.domain([0, d3.max(data.map(function(d) { return d.existing_users + d.new_users; }))]);
                 x2.domain(x.domain());
                 y2.domain(y.domain());
+                y3.domain([0, d3.max(data.map(function(d) {
+                        var dailyTrans = 0,
+                            num_of_trans = d3.values(d.usage_data);
+                            
+                            for (i=0; i< num_of_trans.length; i++) dailyTrans += num_of_trans[i];
+                            return dailyTrans;
+                            }))]);
 
                 // add objects to focus area
+                // 04 - y axix for focus area
+                usergraphgroup.append("g")
+                    .attr("class", "y axis")
+                    .call(yAxis);
 
                 // 01 - add area path for returning users
                 usergraphgroup.append("path")
@@ -525,25 +658,53 @@
                     .attr("transform", "translate(0," + height + ")")
                     .call(xAxis);
 
-                // 04 - y axix for focus area
-                usergraphgroup.append("g")
-                    .attr("class", "y axis")
-                    .call(yAxis);
 
                 usergraphgroup.append("g")
                       .attr("class", "focus text")
                       .append("text")
                         .attr("y", -5)
-                        .text("Number of new and returning users.");
+                        .text("Number of new and returning users. Hover the mouse on the graph to see data for each time-step.");
                 
                 // stacked graph for transcations
+                
+                // add title
+                stackedgraphgroup.append("text")
+                      .attr("y", -5)
+                      .text("Number of transcations per office. Hover the mouse on the graph to see data for each time-step.");
+                
+                // 04 - y axix for focus area
                 stackedgraphgroup.append("g")
-                      .attr("class", "focus text")
-                      .append("text")
-                        .attr("y", -5)
-                        .text("Number of transcations per office.");
+                    .attr("class", "y axis")
+                    .call(yAxis3);
 
-                // Do the same for the small chart and also add the brush here
+                // add rectangle for data line
+                //stackedgraphgroupcontrol
+                // create data for each city from data file
+                citiesdata = stack(color.domain().map(function(name)
+                {
+                  return {
+                    name: name,
+                    values: data.map(function(d) {
+                      if ( name in d.usage_data)
+                        {return {date: d.date, y: d.usage_data[name]};}
+                      else
+                        {return {date: d.date, y: 0};};
+                    })
+                  };
+                }));
+
+                // create area paths
+                stackedgraphgroup.selectAll(".area")
+                      .data(citiesdata)
+                      .enter()
+                        .append("path")
+                        .attr("class", "area")
+                        .attr("d", function(d) { return area(d.values); }) // here is the key line to update
+                        .style("fill", function(d) { return color(d.name); });
+
+
+
+                // Create brushing area
                 brushgroup.append("path")
                     .datum(data)
                     .attr("class", "existing_users")
@@ -580,20 +741,19 @@
                       .attr("class", "context text")
                       .append("text")
                         .attr("y", -10)
-                        .text("Brush inside the rectangle below to select the time range.");
+                        .text("Brush inside the rectangle below to select the time range. Click to reset the data.");
 
                 // add date lines so once the user hover mouse on focus graphs s/he can read the data for that point of time
 
                 locationdatalinegroup.append("text")
                       .attr("class", "data_text")
-                      .attr("y", height + 18) // text show up a little bit above chart area
-                      .attr("dy", ".35em")
-                      .attr("fill", "red");
+                      .attr("y", height + 10) // text show up a little bit above chart area
+                      .attr("dy", ".35em");
 
                 locationdatalinegroup.append("line")
                       .attr("class", "data_line")
                       .attr("stroke-width", ".1em")
-                      .attr("stroke", "red")
+                      .attr("stroke", "black")
                       .attr("shape-rendering", "crispEdges");
                 
                 usergraphgroup.append("rect")
@@ -604,19 +764,18 @@
                     .on("mouseout", datalinemouseout)
                     .on("mousemove", datalinemousemove);
 
-
                 datalinegroup.append("text")
                       .attr("class", "data_text")
                       .attr("y", -18) // text show up a little bit above chart area
-                      .attr("dy", ".35em")
-                      .attr("fill", "red");
+                      .attr("dy", ".35em");
 
                 datalinegroup.append("line")
                       .attr("class", "data_line")
                       .attr("stroke-width", ".1em")
-                      .attr("stroke", "red")
+                      .attr("stroke", "black")
                       .attr("shape-rendering", "crispEdges");
-                
+
+                // append an overlay for every single city area chart
                 stackedgraphgroup.append("rect")
                     .attr("class", "overlay")
                     .attr("width", width)
@@ -624,8 +783,8 @@
                     .on("mouseover", datalinemouseover)
                     .on("mouseout", datalinemouseout)
                     .on("mousemove", datalinemousemove);
-              
-        });
+   
+    });
     
     function datalinemouseover() {
         datalinegroup.style("visibility", "visible");
@@ -654,7 +813,7 @@
 
      for (i=0; i< cities.length; i++)
       {
-        transPerOfficeReport += cities[i] + ":" + numOfTrans[i] + "|";
+        transPerOfficeReport += cities[i] + ":" + numOfTrans[i] + " | ";
         totalTransPerDay += numOfTrans[i];
       }
 
@@ -666,7 +825,7 @@
         .attr("x1", d3.mouse(this)[0])
         .attr("x2", d3.mouse(this)[0])
         .attr("y1", 0)
-        .attr("y2", height + 25);
+        .attr("y2", height + 15);
 
      datalinegroup.select(".data_text")
         .text(d.date.toDateString() + ": #new users " + d.new_users + ", #returning users: " + d.existing_users)
@@ -690,12 +849,40 @@
 
     // brushed event functions
     function brushed() {
-        x.domain(brush.empty() ? x2.domain() : brush.extent());
+        x.domain(brush.empty() ? x2.domain() : brush.extent()); // refresh extent of x domain and boom everything will be updated in second run!
         usergraphgroup.select(".dark_line").attr("d", line);
         usergraphgroup.select(".new_users").attr("d", new_users_focus_area);
         usergraphgroup.select(".existing_users").attr("d", new_and_returning_users_focus_area);
+        stackedgraphgroup.selectAll(".area")
+                    .attr("d", function(d) { return area(d.values); });
         usergraphgroup.select(".x.axis").call(xAxis);
+        stackedgraphgroup.select(".x.axis").call(xAxis);
         update_usage_circle();
     }
 
+    // function to wrap text from here (http://bl.ocks.org/mbostock/7555321)
+    // I will use it later to get text fixed
+    function wrap(text, width) {
+      text.each(function() {
+        var text = d3.select(this),
+            words = text.text().split(/\s+/).reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.1, // ems
+            y = text.attr("y"),
+            dy = parseFloat(text.attr("dy")),
+            tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+        while (word = words.pop()) {
+          line.push(word);
+          tspan.text(line.join(" "));
+          if (tspan.node().getComputedTextLength() > width) {
+            line.pop();
+            tspan.text(line.join(" "));
+            line = [word];
+            tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+          }
+        }
+      });
+    }
 </script>
