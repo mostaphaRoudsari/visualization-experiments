@@ -400,7 +400,7 @@
           });
 
     // sort data based on date so I can bisect data later
-    data.sort(function(a, b) { return a.date - b.date; });
+    transactionData.sort(function(a, b) { return a.date - b.date; });
 
 
     // put all data in a global variable to I can access it when I draw
