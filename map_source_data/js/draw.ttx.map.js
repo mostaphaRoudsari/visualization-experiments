@@ -1,48 +1,3 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-
-<head>
-  <link rel="stylesheet" type="text/css" href="./map_source_data/css/ttxmap.css">
-</head>
-
-<body>
-
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="http://d3js.org/topojson.v0.min.js"></script>
-    <script src="./map_source_data/js/pace.min.js" ></script>
-
-    <div id = "header"><br></div>
-
-<script>
-
-  var locationData = [
-        {"name":"Abu Dhabi","location":{"latitude":24.466667,"longitude":54.36666700000001}},
-        {"name":"Beijing","location":{"latitude":39.904211,"longitude":116.407395}},
-        {"name":"Boston","location":{"latitude":42.3581,"longitude":-71.0636}},
-        {"name":"Chicago","location":{"latitude":41.8369,"longitude":-87.6847}},
-        {"name":"Christchurch","location":{"latitude":-43.5300739,"longitude":172.6389998}},
-        {"name":"Dallas","location":{"latitude":32.8665702,"longitude":-96.7683897}},
-        {"name":"Denver","location":{"latitude":39.7618,"longitude":-104.8811}},
-        {"name":"Fort Lauderdale","location":{"latitude":26.1333,"longitude":-80.1500}},
-        {"name":"Ho Chi Minh City","location":{"latitude":10.8230989,"longitude":106.6296638}},
-        {"name":"Hong Kong","location":{"latitude":22.2867465,"longitude":114.213349}},
-        {"name":"Irvine","location":{"latitude":33.6774642,"longitude":-117.8554483}},
-        {"name":"Kansas City","location":{"latitude":39.0997,"longitude":-94.5783}},
-        {"name":"London","location":{"latitude":50.6395473,"longitude":-3.3932782}},
-        {"name":"Los Angeles","location":{"latitude":34.0500,"longitude":-118.2500}},
-        {"name":"Moscow","location":{"latitude":55.8242728,"longitude":37.4327742}},
-        {"name":"Mumbai","location":{"latitude":19.0098653,"longitude":72.8355775}},
-        {"name":"New York","location":{"latitude":40.7431194,"longitude":-73.9860597}},
-        {"name":"Newark","location":{"latitude":40.7242,"longitude":-74.1726}},
-        {"name":"Philadelphia","location":{"latitude":39.9500,"longitude":-75.1667}},
-        {"name":"Portland","location":{"latitude":43.6667,"longitude":-70.2667}},
-        {"name":"San Diego","location":{"latitude":32.7506835,"longitude":-117.1720953}},
-        {"name":"San Francisco","location":{"latitude":37.3906114,"longitude":-122.0787303}},
-        {"name":"Shanghai","location":{"latitude":31.235646,"longitude":121.482571}},
-        {"name":"Sao Paulo","location":{"latitude":-23.5592401,"longitude":-46.6591607}},
-        {"name":"Washington","location":{"latitude":38.8951,"longitude":-77.0456373}},
-        {"name":"Dubai","location":{"latitude":24.9500,"longitude": 55.333}}];
-
     var widthInset = 20,
         heightInset = 5,
         totalHeight = window.innerHeight - heightInset,
@@ -432,242 +387,242 @@
 
     // draw the graphs and also add circles
 
-    d3.json("https://dl.dropboxusercontent.com/u/16228160/ttx_data.json", function(error, data) {
+    //d3.json("https://dl.dropboxusercontent.com/u/16228160/ttx_data.json", function(error, data) {
     //d3.json("./map_source_data/data/ttx_data.json", function(error, data) {
+
+    // iterate over data and parse date data to d3 format
+    transactionData.forEach(function(d) {
+          d.date = parseDate(d.date);
+          d.new_users = +d.new_users;
+          d.existing_users = +d.existing_users;
+
+          return d;
+          });
+
+    // sort data based on date so I can bisect data later
+    data.sort(function(a, b) { return a.date - b.date; });
+
+
+    // put all data in a global variable to I can access it when I draw
+    // usage circles. I'm not sure if this is the best way of doing this
+    // but since the data structure doesn't match locations I needed to
+    // do this so I can re-calculate usage data for each time step
+    initialData = transactionData;
+
+    // add usage circles. I feel this is so NOT D3 way of doing this
+    // making the data global and do it like this doesn't sound right to me!
+    // calculate usage for each office over the full period of time
+    getTotalUsageNumbers();
+
+    // set the domain for raduis scale so the maximum number of total usage will be
+    // set to maximum radius
+    rScale.domain([0, d3.max(locationData.map(function(d) { return d.usage; }))]);
+
+    // sort location data based on usage so the city with most usage will be drawn first
+    // it is important so all the cities can be selected by user
+    locationData.sort(function(a, b) { return b.usage - a.usage; });
+
+    // bind location data to circles under circle group
+    // the group is inside mapsvg
+    circlegroup.selectAll("circle")
+        .data(locationData)
+        .enter()
+          .append("circle")
+          .attr("cx", function(d) {return projection([d.location.longitude, d.location.latitude])[0];})
+          .attr("cy", function(d) {return projection([d.location.longitude, d.location.latitude])[1];})
+          .attr("r", function(d){return rScale(d.usage) + 2;}) // if usage is 0 it still draws a small circle
+          .attr("fill-opacity", opacityScale.range()[1])
+          .attr("stroke", "black")
+          .attr("fill", function(d){return color(d.name)})
+          .on("mouseover", function(d){
+                var nodeSelection = d3.select(this)
+                  .attr('fill', 'white')
+                  //.style('stroke-width', function(d){return 0.2 * rScale(d.usage);}) // change stroke width
+                  .style('stroke-width', ".2em") // change stroke width
+                return tooltip
+                       .text(d.name + ": " + d.usage)
+                       .style("visibility", "visible");}) // make tooltip visibale + change the color
+          .on("mousemove", function(){
+              return tooltip
+                     .style("top", (event.pageY - 20)+"px")
+                     .style("left",(event.pageX + 20)+"px");})
+          
+          .on("mouseout", function(){
+              var nodeSelection = d3.select(this)
+                  .attr("fill", function(d){return color(d.name)})
+                  .style('stroke-width', '') // remove width
+                  return tooltip.style("visibility", "hidden");});
+
+
+    // update domains for scales
+    x.domain(d3.extent(transactionData.map(function(d) { return d.date; })));
+    y.domain([0, d3.max(transactionData.map(function(d) { return d.existing_users + d.new_users; }))]);
+    x2.domain(x.domain());
+    y2.domain(y.domain());
+    y3.domain([0, d3.max(transactionData.map(function(d) {
+            var dailyTrans = 0,
+                num_of_trans = d3.values(d.usage_data);
                 
-                // iterate over data and parse date data to d3 format
-                data.forEach(function(d) {
-                      d.date = parseDate(d.date);
-                      d.new_users = +d.new_users;
-                      d.existing_users = +d.existing_users;
+                for (i=0; i< num_of_trans.length; i++) dailyTrans += num_of_trans[i];
+                return dailyTrans;
+                }))]);
 
-                      return d;
-                      });
+    // add objects to focus area
+    // 04 - y axix for focus area
+    usergraphgroup.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
 
-                // sort data based on date so I can bisect data later
-                data.sort(function(a, b) { return a.date - b.date; });
+    // 01 - add area path for returning users
+    usergraphgroup.append("path")
+        .datum(transactionData)
+        .attr("class", "existing_users")
+        .attr("d", new_and_returning_users_focus_area);
 
+    // 02 - add area path for new users
+    usergraphgroup.append("path")
+        .datum(transactionData)
+        .attr("class", "new_users")
+        .attr("d", new_users_focus_area);
 
-                // put all data in a global variable to I can access it when I draw
-                // usage circles. I'm not sure if this is the best way of doing this
-                // but since the data structure doesn't match locations I needed to
-                // do this so I can re-calculate usage data for each time step
-                initialData = data;
-                
-                // add usage circles. I feel this is so NOT D3 way of doing this
-                // making the data global and do it like this doesn't sound right to me!
-                // calculate usage for each office over the full period of time
-                getTotalUsageNumbers();
+    usergraphgroup.append("path")
+        .datum(transactionData)
+        .attr("class", "dark_line")
+        .attr("d", line);
 
-                // set the domain for raduis scale so the maximum number of total usage will be
-                // set to maximum radius
-                rScale.domain([0, d3.max(locationData.map(function(d) { return d.usage; }))]);
-
-                // sort location data based on usage so the city with most usage will be drawn first
-                // it is important so all the cities can be selected by user
-                locationData.sort(function(a, b) { return b.usage - a.usage; });
-
-                // bind location data to circles under circle group
-                // the group is inside mapsvg
-                circlegroup.selectAll("circle")
-                    .data(locationData)
-                    .enter()
-                      .append("circle")
-                      .attr("cx", function(d) {return projection([d.location.longitude, d.location.latitude])[0];})
-                      .attr("cy", function(d) {return projection([d.location.longitude, d.location.latitude])[1];})
-                      .attr("r", function(d){return rScale(d.usage) + 2;}) // if usage is 0 it still draws a small circle
-                      .attr("fill-opacity", opacityScale.range()[1])
-                      .attr("stroke", "black")
-                      .attr("fill", function(d){return color(d.name)})
-                      .on("mouseover", function(d){
-                            var nodeSelection = d3.select(this)
-                              .attr('fill', 'white')
-                              //.style('stroke-width', function(d){return 0.2 * rScale(d.usage);}) // change stroke width
-                              .style('stroke-width', ".2em") // change stroke width
-                            return tooltip
-                                   .text(d.name + ": " + d.usage)
-                                   .style("visibility", "visible");}) // make tooltip visibale + change the color
-                      .on("mousemove", function(){
-                          return tooltip
-                                 .style("top", (event.pageY - 20)+"px")
-                                 .style("left",(event.pageX + 20)+"px");})
-                      
-                      .on("mouseout", function(){
-                          var nodeSelection = d3.select(this)
-                              .attr("fill", function(d){return color(d.name)})
-                              .style('stroke-width', '') // remove width
-                              return tooltip.style("visibility", "hidden");});
+    // 03 - x axix for focus area
+    usergraphgroup.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
 
 
-                // update domains for scales
-                x.domain(d3.extent(data.map(function(d) { return d.date; })));
-                y.domain([0, d3.max(data.map(function(d) { return d.existing_users + d.new_users; }))]);
-                x2.domain(x.domain());
-                y2.domain(y.domain());
-                y3.domain([0, d3.max(data.map(function(d) {
-                        var dailyTrans = 0,
-                            num_of_trans = d3.values(d.usage_data);
-                            
-                            for (i=0; i< num_of_trans.length; i++) dailyTrans += num_of_trans[i];
-                            return dailyTrans;
-                            }))]);
+    usergraphgroup.append("g")
+          .attr("class", "focus text")
+          .append("text")
+            .attr("y", -5)
+            .text("Number of new and returning users. Hover the mouse on the graph to see data for each time-step.");
 
-                // add objects to focus area
-                // 04 - y axix for focus area
-                usergraphgroup.append("g")
-                    .attr("class", "y axis")
-                    .call(yAxis);
+    // stacked graph for transcations
 
-                // 01 - add area path for returning users
-                usergraphgroup.append("path")
-                    .datum(data)
-                    .attr("class", "existing_users")
-                    .attr("d", new_and_returning_users_focus_area);
-              	
-                // 02 - add area path for new users
-                usergraphgroup.append("path")
-                    .datum(data)
-                    .attr("class", "new_users")
-                    .attr("d", new_users_focus_area);
+    // add title
+    stackedgraphgroup.append("text")
+          .attr("y", -5)
+          .text("Number of transcations per office. Hover the mouse on the graph to see data for each time-step.");
 
-                usergraphgroup.append("path")
-                    .datum(data)
-                    .attr("class", "dark_line")
-                    .attr("d", line);
+    // 04 - y axix for focus area
+    stackedgraphgroup.append("g")
+        .attr("class", "y axis")
+        .call(yAxis3);
 
-                // 03 - x axix for focus area
-                usergraphgroup.append("g")
-                    .attr("class", "x axis")
-                    .attr("transform", "translate(0," + height + ")")
-                    .call(xAxis);
+    // add rectangle for data line
+    //stackedgraphgroupcontrol
+    // create data for each city from data file
+    citiesdata = stack(color.domain().map(function(name)
+    {
+      return {
+        name: name,
+        values: transactionData.map(function(d) {
+          if ( name in d.usage_data)
+            {return {date: d.date, y: d.usage_data[name]};}
+          else
+            {return {date: d.date, y: 0};};
+        })
+      };
+    }));
 
-
-                usergraphgroup.append("g")
-                      .attr("class", "focus text")
-                      .append("text")
-                        .attr("y", -5)
-                        .text("Number of new and returning users. Hover the mouse on the graph to see data for each time-step.");
-                
-                // stacked graph for transcations
-                
-                // add title
-                stackedgraphgroup.append("text")
-                      .attr("y", -5)
-                      .text("Number of transcations per office. Hover the mouse on the graph to see data for each time-step.");
-                
-                // 04 - y axix for focus area
-                stackedgraphgroup.append("g")
-                    .attr("class", "y axis")
-                    .call(yAxis3);
-
-                // add rectangle for data line
-                //stackedgraphgroupcontrol
-                // create data for each city from data file
-                citiesdata = stack(color.domain().map(function(name)
-                {
-                  return {
-                    name: name,
-                    values: data.map(function(d) {
-                      if ( name in d.usage_data)
-                        {return {date: d.date, y: d.usage_data[name]};}
-                      else
-                        {return {date: d.date, y: 0};};
-                    })
-                  };
-                }));
-
-                // create area paths
-                stackedgraphgroup.selectAll(".area")
-                      .data(citiesdata)
-                      .enter()
-                        .append("path")
-                        .attr("class", "area")
-                        .attr("d", function(d) { return area(d.values); }) // here is the key line to update
-                        .style("fill", function(d) { return color(d.name); });
+    // create area paths
+    stackedgraphgroup.selectAll(".area")
+          .data(citiesdata)
+          .enter()
+            .append("path")
+            .attr("class", "area")
+            .attr("d", function(d) { return area(d.values); }) // here is the key line to update
+            .style("fill", function(d) { return color(d.name); });
 
 
 
-                // Create brushing area
-                brushgroup.append("path")
-                    .datum(data)
-                    .attr("class", "existing_users")
-                    .attr("d", new_and_returning_users_brush_area);
+    // Create brushing area
+    brushgroup.append("path")
+        .datum(transactionData)
+        .attr("class", "existing_users")
+        .attr("d", new_and_returning_users_brush_area);
 
-                brushgroup.append("path")
-                    .datum(data)
-                    .attr("class", "new_users")
-                    .attr("d", new_users_brush_area);
+    brushgroup.append("path")
+        .datum(transactionData)
+        .attr("class", "new_users")
+        .attr("d", new_users_brush_area);
 
-                brushgroup.append("g")
-                    .attr("class", "x axis")
-                    .attr("transform", "translate(0," + height2 + ")")
-                    .call(xAxis2);
+    brushgroup.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height2 + ")")
+        .call(xAxis2);
 
-                brushgroup.append("g")
-                    .attr("class", "x brush")
-                    .call(brush)
-                  .selectAll("rect")
-                    .attr("y", -6)
-                    .attr("height", height2 + 7);
+    brushgroup.append("g")
+        .attr("class", "x brush")
+        .call(brush)
+      .selectAll("rect")
+        .attr("y", -6)
+        .attr("height", height2 + 7);
 
-                // add a rectangle to have a border
-                // and text to let visitors know what this thing is
-                brushgroup.append("g")
-                    .attr("class", "context_border")
-                      .append("rect")
-                        .attr("x", 0)
-                        .attr("y", -6)
-                        .attr("width", width)
-                        .attr("height", height2 + 7)
-                
-                brushgroup.append("g")
-                      .attr("class", "context text")
-                      .append("text")
-                        .attr("y", -10)
-                        .text("Brush inside the rectangle below to select the time range. Click to reset the data.");
+    // add a rectangle to have a border
+    // and text to let visitors know what this thing is
+    brushgroup.append("g")
+        .attr("class", "context_border")
+          .append("rect")
+            .attr("x", 0)
+            .attr("y", -6)
+            .attr("width", width)
+            .attr("height", height2 + 7)
 
-                // add date lines so once the user hover mouse on focus graphs s/he can read the data for that point of time
+    brushgroup.append("g")
+          .attr("class", "context text")
+          .append("text")
+            .attr("y", -10)
+            .text("Brush inside the rectangle below to select the time range. Click to reset the data.");
 
-                locationdatalinegroup.append("text")
-                      .attr("class", "data_text")
-                      .attr("y", height + 10) // text show up a little bit above chart area
-                      .attr("dy", ".35em");
+    // add date lines so once the user hover mouse on focus graphs s/he can read the data for that point of time
 
-                locationdatalinegroup.append("line")
-                      .attr("class", "data_line")
-                      .attr("stroke-width", ".1em")
-                      .attr("stroke", "black")
-                      .attr("shape-rendering", "crispEdges");
-                
-                usergraphgroup.append("rect")
-                    .attr("class", "overlay")
-                    .attr("width", width)
-                    .attr("height", height)
-                    .on("mouseover", datalinemouseover)
-                    .on("mouseout", datalinemouseout)
-                    .on("mousemove", datalinemousemove);
+    locationdatalinegroup.append("text")
+          .attr("class", "data_text")
+          .attr("y", height + 10) // text show up a little bit above chart area
+          .attr("dy", ".35em");
 
-                datalinegroup.append("text")
-                      .attr("class", "data_text")
-                      .attr("y", -18) // text show up a little bit above chart area
-                      .attr("dy", ".35em");
+    locationdatalinegroup.append("line")
+          .attr("class", "data_line")
+          .attr("stroke-width", ".1em")
+          .attr("stroke", "black")
+          .attr("shape-rendering", "crispEdges");
 
-                datalinegroup.append("line")
-                      .attr("class", "data_line")
-                      .attr("stroke-width", ".1em")
-                      .attr("stroke", "black")
-                      .attr("shape-rendering", "crispEdges");
+    usergraphgroup.append("rect")
+        .attr("class", "overlay")
+        .attr("width", width)
+        .attr("height", height)
+        .on("mouseover", datalinemouseover)
+        .on("mouseout", datalinemouseout)
+        .on("mousemove", datalinemousemove);
 
-                // append an overlay for every single city area chart
-                stackedgraphgroup.append("rect")
-                    .attr("class", "overlay")
-                    .attr("width", width)
-                    .attr("height", height)
-                    .on("mouseover", datalinemouseover)
-                    .on("mouseout", datalinemouseout)
-                    .on("mousemove", datalinemousemove);
+    datalinegroup.append("text")
+          .attr("class", "data_text")
+          .attr("y", -18) // text show up a little bit above chart area
+          .attr("dy", ".35em");
+
+    datalinegroup.append("line")
+          .attr("class", "data_line")
+          .attr("stroke-width", ".1em")
+          .attr("stroke", "black")
+          .attr("shape-rendering", "crispEdges");
+
+    // append an overlay for every single city area chart
+    stackedgraphgroup.append("rect")
+        .attr("class", "overlay")
+        .attr("width", width)
+        .attr("height", height)
+        .on("mouseover", datalinemouseover)
+        .on("mouseout", datalinemouseout)
+        .on("mousemove", datalinemousemove);
    
-    });
+    // });
     
     function datalinemouseover() {
         datalinegroup.style("visibility", "visible");
@@ -721,6 +676,9 @@
         .attr("y2", height + 6);
                   };
   
+    // done!
+
+
     // zoom and pan for world map and circles
     var zoom = d3.behavior.zoom()
         .on("zoom",function() {
@@ -768,4 +726,3 @@
         }
       });
     }
-</script>

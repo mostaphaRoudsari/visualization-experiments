@@ -1,0 +1,171 @@
+
+    path  {
+          stroke: black;
+          stroke-width: 0.5px;
+          fill: #969696;
+        }
+
+    svg {
+      font: 10px sans-serif;
+    }
+
+    .worldmap
+      {
+        stroke-width: .1em;
+      }
+
+    .area
+    {
+      clip-path: url(#clip);
+    }
+
+
+    .new_users {
+      fill: #636363; /*#80b1d3;*/
+      clip-path: url(#clip);
+    }
+
+    .existing_users {
+      fill: #969696; /*#fb8072;*/
+      clip-path: url(#clip);
+    }
+
+    .dark_line
+      {
+        stroke: black;
+        stroke-width: .15em;
+        fill: none;
+        clip-path: url(#clip);
+      }
+
+    .usage_circles {
+      fill: #8dd3c7;
+      stroke: black;
+      stroke-width: .12em;
+    }
+
+    .axis path,
+    .axis line {
+      fill: none;
+      opacity: .5;
+      stroke: #cccccc; /*#fff;*/
+      shape-rendering: crispEdges;
+    }
+
+    .context_border {
+      fill: none;
+      stroke: black;
+      stroke-width :.1em;
+      shape-rendering: crispEdges;
+    }
+    
+    .brush .extent {
+      stroke: black;
+      fill-opacity: .125;
+      shape-rendering: crispEdges;
+    }
+
+    /* overlay rectangle for focus area */
+    .overlay {
+      fill: none;
+      pointer-events: all;
+    }
+
+    .datalinegroup text {
+                  color : black;
+                }
+    .cities text {
+      text-anchor: end;
+    }
+
+    /* This part of css is for page layout*/
+    #wrapper {
+      height: 100%;
+    }
+
+    #header{
+      height:10%;
+    }
+
+    #map-text-wrapper{
+      height:45%;
+      overflow: hidden;
+      margin:auto;
+    }
+
+    #map-container {
+      width:80%;
+      height:100%;
+      float: left;
+      margin:auto;
+    }
+
+    #side-bar {
+      width:15%;
+      height:100%;
+      float: right;
+      margin:auto;
+    }
+
+    #transactions-graph,
+    #users-graph {
+      height:20%;
+      margin:auto;
+    }
+
+    #brush-area {
+      height:10%;
+      margin:auto;
+    }
+
+    .pace {
+      -webkit-pointer-events: none;
+      pointer-events: none;
+
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+
+      z-index: 2000;
+      position: fixed;
+      margin: auto;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 5px;
+      width: 200px;
+      background: #fff;
+      border: 1px solid #c0c0c0;
+
+      overflow: hidden;
+    }
+
+    .pace .pace-progress {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      -o-box-sizing: border-box;
+      box-sizing: border-box;
+
+      -webkit-transform: translate3d(0, 0, 0);
+      -moz-transform: translate3d(0, 0, 0);
+      -ms-transform: translate3d(0, 0, 0);
+      -o-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+
+      max-width: 200px;
+      position: fixed;
+      z-index: 2000;
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 100%;
+      height: 100%;
+      width: 100%;
+      background: #c0c0c0;
+    }
+
+    .pace.pace-inactive {
+      display: none;
+    }
