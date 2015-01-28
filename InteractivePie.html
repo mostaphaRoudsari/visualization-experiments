@@ -209,9 +209,8 @@
 		}
 
 		function getTextAnchor(d){
-			//var ra = (d.startAngle + d.endAngle) * 90 / Math.PI - 90;
 			var ra = d.startAngle + ((d.endAngle - d.startAngle)/2);
-			return ra > Math.PI ? "end" : "start";
+			return ra * 180/Math.PI >= 180 ? "end" : "start";
 		}
 
 
@@ -225,7 +224,7 @@
 		// add legend
 		var legend = d3.select("body").append("svg")
       		.attr("class", "legend")
-      		.attr("width", width)
+      		.attr("width", width/4)
       		.attr("height", height)
     		.selectAll("g")
       		.data(data)
@@ -272,19 +271,29 @@
 						// still buggy
 						total = d3.sum(pie(data), function(d){return d.value;});
 
-						console.log(total)
-						
+						innerTextValue.text(total.toFixed(2));
+
 						svg.selectAll("#labletext")
 							.data(pie(data))
               				.attr("transform", function(d){return "translate(" + arc.centroid(d) + ")rotate(" + getRotationAngle(d)  + ")";}) // move and rotate
-							.text(function(d){return d.data.value.toFixed(2);});
+              				.text(function(d){
+								if (d.data.enabled){
+									return d.data.value.toFixed(2);
+								}else{
+									return "";}
+								});
 
 						svg.selectAll("#pertext")
 							.data(pie(data))
               				.attr("transform", function(d){
 								return "translate(" + getTextLocation(d) + ")rotate(" + getRotationAngle(d) + ")";}) // move and rotate
-							//.text(function(d){ d.data.enabled ? (100*d.data.value/total).toFixed(2) + "%" : ""});						
-							.text(function(d){ return (100*d.data.value/total).toFixed(2) + "%";});						
+							.attr("text-anchor", function(d){return getTextAnchor(d);})
+							.text(function(d){
+								if (d.data.enabled){
+									return (100*d.data.value/total).toFixed(2) + "%";
+								}else{
+									return "";}
+								});						
 
   						});
 
