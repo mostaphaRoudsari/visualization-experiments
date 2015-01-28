@@ -57,7 +57,7 @@
 			d.enabled = true;
 		});
 
-		var width =500,
+		var width =600,
 			height = 500,
 			padding = 50,
 			outerRadius = Math.min(width, height) / 2 - padding,
@@ -275,6 +275,8 @@
 
 						svg.selectAll("#labletext")
 							.data(pie(data))
+							.transition()
+							.duration(750)
               				.attr("transform", function(d){return "translate(" + arc.centroid(d) + ")rotate(" + getRotationAngle(d)  + ")";}) // move and rotate
               				.text(function(d){
 								if (d.data.enabled){
@@ -285,6 +287,8 @@
 
 						svg.selectAll("#pertext")
 							.data(pie(data))
+							.transition()
+							.duration(750)
               				.attr("transform", function(d){
 								return "translate(" + getTextLocation(d) + ")rotate(" + getRotationAngle(d) + ")";}) // move and rotate
 							.attr("text-anchor", function(d){return getTextAnchor(d);})
