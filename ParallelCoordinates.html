@@ -55,13 +55,14 @@
 
 			// load data
 			// this file is manually edited. I need to add some mapping later to get the data from a clean file
-			d3.csv("https://dl.dropboxusercontent.com/u/16228160/carboncalculatorresults.csv", function(data){
+			d3.csv("https://dl.dropboxusercontent.com/u/16228160/equestResults.csv", function(data){
 
 				initialData = data;
 
 				// get parallel coordinates
 				graph = d3.parcoords()('#wrapper')
                 	.data(data)
+                		.margin({ top: 75, left: 75, bottom: 10, right: 0 })
                 		.alpha(0.4)
                 		.mode("queue")
                 		.rate(5)
