@@ -7,6 +7,7 @@
 			http://www.columbia.edu/~cme2126/datavisuals/bigdata_parallelcoordinates.html
 			https://syntagmatic.github.io/parallel-coordinates/
 
+		-->
 
 		<title>Parallel Coordinates</title>
 
@@ -26,6 +27,8 @@
 			   position: relative;
 			   float: left;
 			   top: 20px;
+			   font-family: sans-serif;
+			   font-size: 10px;
 			}
 			
 
@@ -34,12 +37,11 @@
 	
 	<body>
 		
-    	<div id="wrapper" class="parcoords" style="width:100%;height:340px">
-      	<div id="desc">
-      		<div id="title">
+		<div id="title">
       			<span class="large">Parallel Coordinates</span>
-      		</div>
-
+      	</div>
+    	<div id="gap" style="width:100%;height:40px">
+    	<div id="wrapper" class="parcoords" style="width:100%;height:340px">
 
 		<script>
 
@@ -48,12 +50,12 @@
 				initialData;
 
 			var color_set = d3.scale.linear()
-				.range(["#d7191c", "#2b83ba", "#fdae61", "#abdda4"]);
+				.range(["#3182bd", "#f33"]);
+				//.interpolate(d3.interpolateLab);
 
 			// load data
 			// this file is manually edited. I need to add some mapping later to get the data from a clean file
-			d3.csv("https://dl.dropboxusercontent.com/u/16228160/equestResults.csv", function(data){
-			//d3.csv("http://www.columbia.edu/~cme2126/datavisuals/_include/data/cars.csv", function(data){
+			d3.csv("https://dl.dropboxusercontent.com/u/16228160/carboncalculatorresults.csv", function(data){
 
 				initialData = data;
 
@@ -69,7 +71,7 @@
 
                 
                 // set the initial coloring
-                update_colors("Cooling");
+                update_colors(d3.keys(data[0])[2]);
 
                  // click label to activate coloring
 				graph.svg.selectAll(".dimension")
@@ -80,7 +82,7 @@
 			});
 
 
-			// update color and font weight of chart based on selection
+			// update color and font weight of chart based on axis selection
             // modified from here: https://syntagmatic.github.io/parallel-coordinates/
             function update_colors(dimension) { 
 				// change the fonts to bold
@@ -90,27 +92,12 @@
 						.style("font-weight", "bold");
 
 				// change color of lines
-				graph.color(graph.data(),dimension).render();
-			};
-
-			
-			// return color function based on plot and dimension
-			// modified from here: https://syntagmatic.github.io/parallel-coordinates/
-			function zcolor(col, dimension) {
-			  	// get z score for each number based on values under dimension (e.g. Heating)
-			  	var z = zscore(_(col).pluck(dimension).map(parseFloat));
-			  	
-			  	return function(d) { return color_set(z(d[dimension]));}
-			};
-
-
-			// color by zscore
-			// modified from here: https://syntagmatic.github.io/parallel-coordinates/
-			function zscore(col) {
-			  	var n = col.length,
-			      	mean = _(col).mean(),
-			      	sigma = _(col).stdDeviation();
-			  	return function(d) {return (d-mean)/sigma;};
+				// set domain of color scale
+				var values = graph.data().map(function(d){return parseFloat(d[dimension])}); 
+				color_set.domain([d3.min(values), d3.max(values)]);
+				
+				// change colors for each line
+				graph.color(function(d){return color_set([d[dimension]])}).render();
 			};
 
 		</script>
