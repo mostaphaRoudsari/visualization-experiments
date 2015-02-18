@@ -21,8 +21,6 @@
     	<script src="./pc_source_files/d3/d3.divgrid.js"></script> <!-- D3 table grid -->
 
     	<style>
-			
-			
 			#wrapper {
 			   position: relative;
 			   float: left;
@@ -31,6 +29,23 @@
 			   font-size: 10px;
 			}
 			
+			/* data table styles */
+			#grid {
+				font-family: sans-serif;
+				height: 198px;
+				color:black;
+				clear: both; 
+				position:relative;
+				top: 60px;
+				left: 75px;
+				right: 20px;
+				}
+			.row, .header { clear: left; font-size: 14px; line-height: 18px; height: 20px; margin: 5px; width:85% }
+			.row:hover { font-weight: bold;  color: orange;}
+			.row:nth-child(odd) { background: rgba(0,0,0,0.05); }
+			.header { font-weight: bold;}
+			.cell { float: left; overflow: hidden; white-space: nowrap; width: 120px; height: 22px; }
+			.col-0 { width: 200px; }
 
     	</style>
 	</head>
@@ -40,8 +55,9 @@
 		<div id="title">
       			<span class="large">Parallel Coordinates</span>
       	</div>
-    	<div id="gap" style="width:100%;height:40px">
-    	<div id="wrapper" class="parcoords" style="width:100%;height:340px">
+    	<div id="gap" style="width:100%;height:40px"></div>
+    	<div id="wrapper" class="parcoords" style="width:100%;height:340px"></div>
+    	<div id="grid" class="parcoords" style="width:100%;height:340px"></div>
 
 		<script>
 
@@ -63,7 +79,7 @@
 				graph = d3.parcoords()('#wrapper')
                 	.data(data)
                 		.margin({ top: 75, left: 75, bottom: 10, right: 0 })
-                		.alpha(0.4)
+                		.alpha(0.6)
                 		.mode("queue")
                 		.rate(5)
                 		.render()
@@ -79,6 +95,30 @@
 				    .on("click", update_colors)
 				    .selectAll(".label")
 				    	.style("font-size", "14px"); // change font sizes of selected lable
+
+				// add table
+				var grid = d3.divgrid();
+
+      			d3.select("#grid")
+          			.datum(data)
+          			.call(grid)
+          			.selectAll(".row")
+          			.on({
+            			"mouseover": function(d) { graph.highlight([d]) },
+            			"mouseout": graph.unhighlight
+          				});
+
+          		// update grid on brush event
+          		graph.on("brush", function(d) {
+        			d3.select("#grid")
+          				.datum(d)
+          				.call(grid)
+          				.selectAll(".row")
+          				.on({
+            				"mouseover": function(d) { graph.highlight([d])},
+            				"mouseout": graph.unhighlight
+          					});
+          		});
 
 			});
 
