@@ -7,13 +7,13 @@
 <style>
 	.legend text {
 		font-family: sans-serif;
-		font-size: 10px;
+		font-size: 12px;
     	font-weight: bold;
 		}
 
 	.arc_segments text {
 		font-family: sans-serif;
-		font-size: 10px;
+		font-size: 12px;
 		}
 
 	.dountTitleText {
@@ -26,7 +26,7 @@
     	fill: #444;
     	font-family: 'Segoe UI';
     	font-weight: bold;
-    	font-size: 25px;
+    	font-size: 28px;
     	}
 
     rect {
@@ -43,26 +43,12 @@
 <body>
 	<script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
 	<script>
-		var inputData = {" Ambient Lights(kBtu)": 931503.296,
-					" DHW(kBtu)": 1367000,
-					" Exterior Lights(kBtu)": 19735.007,
-					" Heat Pumps(kBtu)": 28128.528,
-					" Heat Rejection(kBtu)": 0,
-					" Misc. Equip(kBtu)": 1589050.288,
-					" Pumps&Aux(kBtu)": 44895.096,
-					" Space Cooling(kBtu)": 206327.052,
-					" Space Heating(kBtu)": 452339.076,
-					" Ventilation Fans(kBtu)": 511202.89};
-
-
-		// map input data
-		var data = d3.keys(inputData).map(function(d){
-			var dd = {};
-			dd.name = d;
-			dd.value = +inputData[d];
-			dd.enabled = true;
-			return dd;
-			});
+		var data = [
+					{"name":"HEATING", "value":395.2},
+					{"name":"COOLING", "value":310.4},
+					{"name":"LIGHTING", "value":230.1},
+					{"name":"OTHER", "value":23.12}
+					];
 
 		// add enable key to data so I can enable and disable
 		// them later
@@ -71,8 +57,8 @@
 			d.enabled = true;
 		});
 
-		var width =500,
-			height = 400,
+		var width =600,
+			height = 500,
 			padding = 50,
 			outerRadius = Math.min(width, height) / 2 - padding,
 			innerRadius = .6 * outerRadius,
@@ -104,9 +90,9 @@
 
 
 		// use d3 10 colors
-		var colorset = d3.scale.category10();
-		//var colorset = d3.scale.ordinal()
-		//	.range(["#d7191c", "#2b83ba", "#fdae61", "#abdda4"]);
+		// var colorset = d3.scale.category10();
+		var colorset = d3.scale.ordinal()
+			.range(["#d7191c", "#2b83ba", "#fdae61", "#abdda4"]);
 
 		// create svg element
 		var svg = d3.select("body").append("svg")
@@ -120,7 +106,7 @@
 			.enter().append("circle")
 			.attr("r", function(d,i){return circleRads[i];})
 			.attr("fill", "none")
-			//.attr("stroke-width", .05)
+			.attr("stroke-width", .2)
 			.attr("stroke", "black")
 			.attr("transform", "translate(" + width/2 + "," + (height/2) + ")");
 
