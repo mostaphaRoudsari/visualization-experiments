@@ -5,24 +5,37 @@
 <meta charset="utf-8">
 <style>
 
-  body {
-    font: 10px sans-serif;
-  }
+	body {
+	    font: 10px sans-serif;
+	}
 
-  .axis path,
-  .axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-  }
+	.axis path,
+	.axis line {
+	    fill: none;
+	    stroke: #000;
+	    shape-rendering: crispEdges;
+	}
 
-  .bar {
-    fill: steelblue;
-  }
+	.bar {
+	    fill: steelblue;
+	}
 
-  .x.axis path {
-    display: none;
-  }
+	.x.axis path {
+	    display: none;
+	}
+
+ 	rect {
+		stroke: black;
+		stroke-width: 1;
+	}	
+ 	
+ 	.legend rect {
+		cursor: pointer;
+	}
+
+	rect.disabled {
+			fill: transparent !important;
+	}
 
 </style>
 
@@ -41,9 +54,11 @@
   var y = d3.scale.linear()
       .rangeRound([height, 0]);
 
-  var color = d3.scale.ordinal()
-      .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-
+  //var color = d3.scale.ordinal()
+  //    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+  
+  var color = d3.scale.category10();
+  
   var xAxis = d3.svg.axis()
       .scale(x)
       .orient("bottom");
@@ -63,14 +78,16 @@
     color.domain(d3.keys(data[0]).filter(function(key) { return key !== "Case Description"; }));
 
     data.forEach(function(d) {
+      //set to active for now
+      //copy the initial value as current
       var y0 = 0;
-      d.ages = color.domain().map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
-      d.total = d.ages[d.ages.length - 1].y1;
+      d.values = color.domain().map(function(name) { return {enabled : true, name: name, y0: y0, y1: y0 += +d[name]}; });
+      d.total = d.values[d.values.length - 1].y1;
     });
 
     data.sort(function(a, b) { return b.total - a.total; });
 
-    x.domain(data.map(function(d) { return d.Description; }));
+    x.domain(data.map(function(d) { return d["Case Description"]; }));
     y.domain([0, d3.max(data, function(d) { return d.total; })]);
 
     svg.append("g")
@@ -86,17 +103,20 @@
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("Population");
+        .text("kBtu");
 
-    var state = svg.selectAll(".state")
+    state = svg.selectAll(".state")
         .data(data)
       .enter().append("g")
         .attr("class", "g")
-        .attr("transform", function(d) { return "translate(" + x(d.Description) + ",0)"; });
+        .attr("transform", function(d) { return "translate(" + x(d["Case Description"]) + ",0)"; });
 
+    // draw rectangles
     state.selectAll("rect")
-        .data(function(d) { return d.ages; })
+        .data(function(d) { return d.values; })
       .enter().append("rect")
+      	.attr("rx" , "1")
+      	.attr("ry" , "1")
         .attr("width", x.rangeBand())
         .attr("y", function(d) { return y(d.y1); })
         .attr("height", function(d) { return y(d.y0) - y(d.y1); })
@@ -112,7 +132,31 @@
         .attr("x", width - 18)
         .attr("width", 18)
         .attr("height", 18)
-        .style("fill", color);
+        .style("fill", color)
+        .on('click', function(d) {
+  						var rect = d3.select(this);
+  						var name = d;
+  						var enabled = true;
+  						if (rect.attr('class') === 'disabled')
+  							{
+  								rect.attr('class', '');
+  							}
+  						else
+  							{
+   								rect.attr('class', 'disabled');
+    							enabled = false;
+  							};
+
+			  			// update values in pie and set value for disable one to 0
+						state.data().forEach(function(d) {
+							d.values.forEach(function(f) {
+								if (f.name === name) f.enabled = enabled;
+							})
+						});
+
+						updateBarChart();
+
+  						});
 
     legend.append("text")
         .attr("x", width - 24)
@@ -123,4 +167,26 @@
 
 });
 
-</script>
+
+function updateBarChart(){
+	
+	state.data().forEach(function(d) {
+      		var y0 = 0;
+     		d.values.forEach(function(f){
+      			f.y0 = y0;
+      			(f.enabled)? f.y1 = y0 += +d[f.name] : f.y1 = y0;
+      		});
+      		
+      		d.total = d.values[d.values.length - 1].y1;
+
+    	});
+
+	state.selectAll("rect")
+	    .data(function(d) { return d.values; })
+	    .transition()
+	    //.delay(function(d, i) { return i * 50})
+	    .attr("y", function(d) {return y(d.y1);})
+	    .attr("height", function(d) { return y(d.y0) - y(d.y1); });
+};
+
+ </script>
