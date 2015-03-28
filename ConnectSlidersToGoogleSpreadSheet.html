@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<link rel="stylesheet" href="./rangeslider_files/css/normalize.css" />
+    <link rel="stylesheet" href="./rangeslider_files/css/ion.rangeSlider.css" />
+    <!-- <link rel="stylesheet" href="./rangeslider_files/css/ion.rangeSlider.skinFlat.css" /> -->
+	<link rel="stylesheet" href="./rangeslider_files/css/ion.rangeSlider.skinNice.css"/>
+
+	<script type="text/javascript" src="https://ajax.cloudflare.com/cdn-cgi/nexp/dok3v=919620257c/cloudflare.min.js"></script>
+	<script src="./rangeslider_files/js/jquery-1.11.1.min.js"></script>
+	<script src="./rangeslider_files/js/ion.rangeSlider.js"></script>
+</head>
+
+<body>
+	
+	<!-- don't remove the form -->
+ 	<form id="inputSliders">
+	 	<div style="position: relative; padding: 200px;">
+	 		<input type="text" id="nEnergyDemand" value=".1" name="nEnergyDemand" />
+			<br>
+			<input type="submit" value="Calculate..."/><span id="result">    </span>
+	 	</div>
+	</form>
+
+	<script type="text/javascript">
+		// set up the slider
+	    $(function(){
+	        $("#nEnergyDemand").ionRangeSlider({
+	            hide_min_max: true,
+	            min: 0.0,
+	            max: 1.0,
+	            from: 1000,
+	            step: 0.1,
+	            postfix: "%",
+	            grid: true,
+	            prettify_separator: ",",
+	        });
+
+	    });
+	</script>
+
+	
+
+	<script data-cfasync="false" type="text/javascript">
+
+	/*
+		This is a very clean method, From this link:
+		https://mashe.hawksey.info/2014/07/google-sheets-as-a-database-insert-with-apps-script-using-postget-methods-with-ajax-example
+	*/
+	
+	jQuery( document ).ready(function( $ ) {
+
+		// variable to hold request
+		var request;
+		// bind to the submit event of our form
+		$("#inputSliders").submit(function(event){
+			// abort any pending request
+			if (request) {
+				request.abort();
+			}
+			// setup some local variables
+			var $form = $(this);
+			
+			// let's select and cache all the fields
+			var $inputs = $form.find("input, select, button, textarea");
+			
+			// serialize the data in the form
+			var serializedData = $form.serialize();
+		
+			// let's disable the inputs for the duration of the ajax request
+			// Note: we disable elements AFTER the form data has been serialized.
+			// Disabled form elements will not be serialized.
+			$inputs.prop("disabled", true);
+			$('#result').text('    Sending data...');
+		
+			// fire off the request to /form.php
+			request = $.ajax({
+				url: "https://script.google.com/macros/s/AKfycbwyagcjP_5UD0emBo-MYepMLG3OEGZm815JpurpddezCd-VlWYT/exec",
+				type: "post",
+				data: serializedData
+			});
+		
+			// callback handler that will be called on success
+			request.done(function (response, textStatus, jqXHR){
+				// log a message to the console
+				$('#result').text(" Done! Cell AO is set to " + 
+					response.newValues[0][0]);
+				console.log(response);
+			});
+		
+			// callback handler that will be called on failure
+			request.fail(function (jqXHR, textStatus, errorThrown){
+				// log the error to the console
+				console.error(
+					"The following error occured: "+
+					textStatus, errorThrown
+				);
+			});
+		
+			// callback handler that will be called regardless
+			// if the request failed or succeeded
+			request.always(function () {
+				// reenable the inputs
+				$inputs.prop("disabled", false);
+			});
+		
+			// prevent default posting of form
+			event.preventDefault();
+		});
+	});
+
+	</script>
+
+	</body>
+</html>
