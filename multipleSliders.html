@@ -1,0 +1,107 @@
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author: Mostapha Roudsari" content="">
+
+	<title>Multiple Sliders</title>
+	
+	<script src="./js/d3.v3.min.js" charset="utf-8"></script> <!-- D3 -->
+    
+	<script type="text/javascript" src="https://ajax.cloudflare.com/cdn-cgi/nexp/dok3v=919620257c/cloudflare.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<script src="./rangeslider_files/js/ion.rangeSlider.js"></script>
+	
+	<link rel="stylesheet" href="./rangeslider_files/css/normalize.css" />
+    <link rel="stylesheet" href="./rangeslider_files/css/ion.rangeSlider.css" />
+	<link rel="stylesheet" href="./rangeslider_files/css/ion.rangeSlider.skinNice.css"/>
+
+	<script src = "./js/pace.min.js"></script>
+	<style src = "./css/pace.css"></style>
+
+	<!-- Bootstrap Core CSS -->
+    <link href="base_bootstrap/css/bootstrap.min.css" rel="stylesheet"></style>
+	<link href="base_bootstrap/css/bootstrap-responsive.css" rel="stylesheet"></style>
+
+</head>
+
+<body>
+		<!--
+		<div style="position: relative; padding: 200px;">
+	 		<input id="nSmile" name="nSmile" />
+	 	</div>
+	 	<div style="position: relative; padding: 200px;">
+	 		<input id="nHappiness" name="nHappiness" />
+	 	</div>
+	 	-->
+
+	<!-- don't remove the form -->
+ 	<div class="col-xs-2 inputSliders" id="inputSliders">
+ 		<form class="sliders">
+ 		</form>
+	</div>
+	<div class="col-xs-12" id="currentCombination" style="margin-top:1em; font-size:2em">
+	<div>
+	
+	<script type="text/javascript">
+		var sliderIds = ['slider1', 'slider2', 'slider3', 'slider4'];
+		var currentValues = [.45, 1.75, .65, 1.35];
+		var tickValues = [	
+							[0, .45, .65],
+							[1.1, 1.35, 1.75, 3.4],
+							[0, .45, .65], 
+							[1.1, 1.35, 1.75, 3.4]
+						];
+
+		var sliderValues = {};
+		
+		// inser divs for sliders
+		d3.selectAll("#inputSliders")
+			.selectAll("div")
+			.data(sliderIds).enter()
+				.append("div")
+	  			.attr("class", "inputSlider col-xs-12") // full width
+	  			.append("input")
+	      		.attr("id", function(d){return d})
+	      		.attr("name", function(d){return d});
+
+		// set up slider properties
+		sliderIds.forEach(function(name, i){
+		    
+		    // stor current values so I can keep track of them
+			sliderValues[name] = currentValues[i];
+
+	        $("#" + name).ionRangeSlider({
+	            grid: true,
+	            from: tickValues[i].indexOf(currentValues[i]),
+	            prettify_separator: ",",
+	            values:tickValues[i],
+	            onChange: function (data) {
+    					getSlidersUpdatedValues(data.input[0].name, data.from_value);
+				}
+     	   });
+
+    	});
+		
+		getSlidersUpdatedValues();
+
+		// bind slider values
+		function getSlidersUpdatedValues(changedSliderName, newValue){
+			// update the value for the new slider
+			if (!isNaN(newValue)) sliderValues[changedSliderName] = newValue;
+
+			var currentCase = ""
+			d3.keys(sliderValues).forEach(function(sliderName){
+				currentCase += sliderName + ": " +  sliderValues[sliderName] + " | "
+			});
+
+			d3.select("#currentCombination").text(currentCase);
+		}
+
+	</script>
+
+</body>
