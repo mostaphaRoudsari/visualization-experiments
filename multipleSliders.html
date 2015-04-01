@@ -57,7 +57,7 @@
 							[1.1, 1.35, 1.75, 3.4]
 						];
 
-		var sliderValues = {};
+		var sliderValues = {}; // collector for values 
 		
 		// inser divs for sliders
 		d3.selectAll("#inputSliders")
@@ -87,7 +87,7 @@
 
     	});
 		
-		getSlidersUpdatedValues();
+		getSlidersUpdatedValues(); // inititae the values for the first time
 
 		// bind slider values
 		function getSlidersUpdatedValues(changedSliderName, newValue){
