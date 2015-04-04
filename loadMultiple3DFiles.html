@@ -1,0 +1,133 @@
+<html lang="en">
+
+
+<head>
+	<title>Toggle between 2D and 3D</title>
+
+
+	 <!-- Various libraries that vA3C depends upon -->
+    <script type="text/javascript" src="va3c_source_files/js/libs/jquery-1.9.0.js"></script>
+    <script type="text/javascript" src="va3c_source_files/js/libs/dat.gui.js"></script>
+    <link rel="stylesheet" type="text/css" href="va3c_source_files/css/datgui_styleOverride.css">
+    <script type="text/javascript" src="va3c_source_files/js/libs/three.js"></script>
+    <script type="text/javascript" src="va3c_source_files/js/libs/OrbitControls.js"></script>
+    <script type="text/javascript" src="va3c_source_files/js/libs/Projector.js"></script>
+    <script type="text/javascript" src="va3c_source_files/js/libs/stats.js"></script>
+    <script type="text/javascript" src="va3c_source_files/js/libs/jquery-ui.js"></script>
+	<script src="d3/d3.v3.min.js"></script>
+
+	<!-- Application Files -->
+	<link rel='stylesheet' type='text/css' href='https://rawgit.com/tt-acm/vA3C_viewer/gh-pages/css/vA3C_stylesheet.css'/>  <!-- the vA3C stylesheet -->
+    <script type="text/javascript" src="https://rawgit.com/tt-acm/vA3C_viewer/gh-pages/js/VA3C_APP.js"></script>  <!-- the vA3C library -->
+
+    <!-- Pace for loading bar-->
+    <link rel='stylesheet' type='text/css' href='pace/pace.css'/>
+	<script type="text/javascript" src="pace/pace.min.js"></script>
+
+	<style type="text/css">
+		.hidden {
+			display: none;
+		}
+		
+		img {
+			height: 100%;
+			width: 100%;
+		}
+
+	</style>
+
+</head>
+
+<body>
+
+<div id="slidename"></div>
+
+<div style="font-size:10">
+	<form>
+	  <label><input type="radio" name="visMode" value="2D" checked> 2D</label> <!-- show 2D image on load-->
+	  <label><input type="radio" name="visMode" value="3D"> 3D</label>
+	</form>
+	Based on this <a href="http://tt-acm.github.io/vA3C_viewer/examples/embeddedViewer001"> example</a>.	
+</div>
+
+<div id = "viewer" style="width:100%; height:90%" class="hidden">
+	<!-- place holder for the viewer -->
+</div>
+<div id = "image" style="width:100%; height:90%">
+	<!-- place holder for the image -->
+	<img src="./img/2D.PNG">
+</div>
+
+<script type="text/javascript">
+
+	// 3D viewer
+	function initiate3DViewer(viewerId, jsonFileAddress){
+	    
+	    //load JSON file
+	    d3.json(jsonFileAddress, function( data ){
+
+	        //Initialize a VA3C viewer
+	        var viewer = new VA3C_CONSTRUCTOR($("#" + viewerId), data, function(app){
+	            //call the UI / functionality modules
+	            app.setBackgroundColor(0xFFFFFF);
+	            //app.userInterface();
+	            //app.openLocalFiles();
+	            //app.sceneUI();
+	            //app.lightingUI();
+	            //app.viewAndSelectionUI();
+	            //app.viewsUI();
+	            //app.layersUI();
+	        });
+
+	        return viewer;
+	    });
+	}
+
+
+	// initiate the viewer
+	var viewer = initiate3DViewer("viewer", "https://dl.dropboxusercontent.com/u/16228160/D3TestData/3d/test01.json");
+
+	
+	// change the model every
+	var i = 1;
+	function changeModels(){
+			
+			var modelName = "test0" + parseInt((i%6) + 1);
+			
+			// console.log(modelName);
+			d3.select("#slidename").text(modelName);
+			viewer.loadNewModel("https://dl.dropboxusercontent.com/u/16228160/D3TestData/3d/" + modelName + ".json");
+			
+			i++;
+			setTimeout( changeModels(), 5000);
+	}
+
+	// load new models
+	// changeModels();
+
+	// 2D image
+
+
+	// toggle between 2d and 3d
+	d3.selectAll("input")
+      .on("change", change)
+
+    function change() {
+
+	    var value = this.value;
+	    var onOff = {"2D": ["image", "viewer"], "3D": ["viewer", "image"]};
+	    
+	    d3.select("#" + onOff[value][0])
+	    	.attr("class", "")
+	    	.style("height", "90%");
+		
+		d3.select("#" + onOff[value][1])
+	    	.attr("class", "hidden")
+	    	.style("height", "0%");
+	  }
+
+</script>
+
+</body>
+
+</html>
