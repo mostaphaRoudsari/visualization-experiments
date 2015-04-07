@@ -60,14 +60,15 @@
 
 <script type="text/javascript">
 
+
 	// 3D viewer
 	function initiate3DViewer(viewerId, jsonFileAddress){
-	    
+	
 	    //load JSON file
 	    d3.json(jsonFileAddress, function( data ){
 
 	        //Initialize a VA3C viewer
-	        var viewer = new VA3C_CONSTRUCTOR($("#" + viewerId), data, function(app){
+	        va3cViewer = new VA3C_CONSTRUCTOR($("#" + viewerId), data, function(app){
 	            //call the UI / functionality modules
 	            app.setBackgroundColor(0xFFFFFF);
 	            //app.userInterface();
@@ -79,13 +80,13 @@
 	            //app.layersUI();
 	        });
 
-	        return viewer;
+	        //return va3cViewer;
 	    });
 	}
 
 
 	// initiate the viewer
-	var viewer = initiate3DViewer("viewer", "https://dl.dropboxusercontent.com/u/16228160/D3TestData/3d/test01.json");
+	initiate3DViewer("viewer", "https://dl.dropboxusercontent.com/u/16228160/D3TestData/3d/test01.json");
 
 	
 	// change the model every
@@ -96,10 +97,13 @@
 			
 			// console.log(modelName);
 			d3.select("#slidename").text(modelName);
-			viewer.loadNewModel("https://dl.dropboxusercontent.com/u/16228160/D3TestData/3d/" + modelName + ".json");
+
+			d3.json("https://dl.dropboxusercontent.com/u/16228160/D3TestData/3d/" + modelName + ".json", function (data){
+				va3cViewer.loadNewModel(data);
+			});
 			
 			i++;
-			setTimeout( changeModels(), 5000);
+			// setTimeout( changeModels(), 5000);
 	}
 
 	// load new models

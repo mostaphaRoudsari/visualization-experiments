@@ -28,16 +28,58 @@
 
 <body>
 
-    <div id="wrapper" class="toggled">
+    <!-- Navbar -->
+    <nav class="navbar navbar-default" style="margin-bottom:0">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#buttons-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-header">
+                <p class="navbar-brand navbar-text">DESIGN EXPLORER</p>
+            </div>
+        </div>
 
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="buttons-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <p class="navbar-text">
+                        <input type="file" id="csv-file" class="btn btn-default" name="files"/>
+                    </p>
+                </li>
+                <li>
+                    <div class="btn-group navbar-text" role="group" aria-label="selection">
+                            <button id="reset" class="btn btn-default">Reset</button>
+                            <button id="remove" class="btn btn-default">Exclude Selection</button>
+                            <button id="keep" class="btn btn-default">Zoom to Selection</button>
+                    </div>
+                </li>
+                <li>
+                    <div class="btn-group navbar-text" role="group" aria-label="selection">
+                        <button id="show-fav" class="btn btn-default">Show Favorites</button>
+                        <button id="clear-fav" class="btn btn-default">Clear Favorites</button>
+                        <button id="save-fav" class="btn btn-default">Save Favorites</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div id="wrapper" class="toggled">
+           
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        Sliders will be here!
-                    </a>
-                </li>
+                <div class="sidebar-brand">
+                    Input parameters sliders
+                </div>
                 <li>
                     <input id="slider1" type="range" name="slider1">
                 </li>
@@ -72,7 +114,7 @@
                             <div class="col-lg-9">
                                 
                                 <div class="row">
-                                  <div class="btn-group col-xs-12" style="margin-top:.2em">
+                                  <div class="btn-group col-xs-12">
                                     <button type="button" class="btn btn-default btn-xs" id="menu-toggle" title="Show sliders">
                                         <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
                                     </button>
