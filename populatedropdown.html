@@ -1,0 +1,47 @@
+<head>
+    <title>populate dropdown</title>
+    <!-- Based on this example -->
+    <!-- http://stackoverflow.com/questions/24588883/populate-dropdown-list-with-csv-file-d3 -->
+</head>
+<body>
+  <script src="http://d3js.org/d3.v3.js"></script>
+  <script>
+  d3.csv("https://dl.dropboxusercontent.com/u/16228160/D3TestData/valuesforDD.csv", function(error, data) {
+    
+    data.forEach(function(d){d.tt = +d.tt});
+
+    var select = d3.select("body")
+      .append("div")
+      .append("select")
+
+    select
+      .on("change", function(d) {
+          var value = d3.select(this).property("value");
+          data.sort(function(x, y){
+            return d3.ascending(x.tt, y.tt);
+          })
+
+          console.log(data);
+     });
+
+    select.selectAll("option")
+      .data(data) // in my case data will be input and output items
+      .enter()
+        .append("option")
+        .attr("value", function (d) { return d.value; })
+        .text(function (d) { return d.label; });
+  });
+
+  // good example for sorting items
+  
+  /*
+  data.sort(function(x, y){
+    return d3.ascending(x.index, y.index);
+  })
+  */
+  
+  // http://stackoverflow.com/questions/25168086/sorting-objects-based-on-property-value-in-d3
+
+  </script>
+</body>
+</html>
