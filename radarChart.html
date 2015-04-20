@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<link rel="stylesheet" href="./radar_chart_files/radar-chart.css">
+
+<style>
+body {
+  padding: 20px;
+}
+</style>
+
+<style>
+.radar-chart .area {
+  fill-opacity: 0.01;
+  stroke: grey;
+  stroke-width: .5px;
+}
+
+.overlay {
+  fill-opacity: 1;
+  stroke: grey;
+  stroke-width: .5px;
+}
+
+</style>
+
+<script src="http://d3js.org/d3.v3.js"></script>
+<script src="https://rawgit.com/tpreusse/radar-chart-d3/master/src/radar-chart.js"></script>
+
+<script>
+RadarChart.defaultConfig.color = function() {};
+RadarChart.defaultConfig.circles = false;
+RadarChart.defaultConfig.w = 600;
+RadarChart.defaultConfig.h = 600;
+RadarChart.defaultConfig.maxValue = 0;
+</script>
+
+<span></span>
+
+
+<script type="text/javascript">
+  outputData = [{"Total SF":"48000","Total Steel Tonnage":"340.698151","Total EE":"8733.75","Amount Glazed":"4"},{"Total SF":"54240","Total Steel Tonnage":"581.788205","Total EE":"13198.19322","Amount Glazed":"0"},{"Total SF":"53760","Total Steel Tonnage":"573.412552","Total EE":"13124.44196","Amount Glazed":"0.16"},{"Total SF":"51072","Total Steel Tonnage":"343.176502","Total EE":"8268.131266","Amount Glazed":"3.55"},{"Total SF":"57696","Total Steel Tonnage":"727.828177","Total EE":"15522.39323","Amount Glazed":"2.33"},{"Total SF":"70912","Total Steel Tonnage":"535.868687","Total EE":"9298.426218","Amount Glazed":"0.79"},{"Total SF":"66624","Total Steel Tonnage":"801.835735","Total EE":"14809.22791","Amount Glazed":"0.85"},{"Total SF":"78048","Total Steel Tonnage":"779.063873","Total EE":"12282.44157","Amount Glazed":"0.43"},{"Total SF":"77568","Total Steel Tonnage":"453.131042","Total EE":"7188.144596","Amount Glazed":"9"},{"Total SF":"52736","Total Steel Tonnage":"372.130642","Total EE":"8682.87318","Amount Glazed":"0.16"},{"Total SF":"59968","Total Steel Tonnage":"733.848862","Total EE":"15057.69744","Amount Glazed":"1.63"},{"Total SF":"65504","Total Steel Tonnage":"455.612924","Total EE":"8558.561309","Amount Glazed":"1.38"},{"Total SF":"64160","Total Steel Tonnage":"546.140773","Total EE":"10473.97132","Amount Glazed":"0.02"},{"Total SF":"70272","Total Steel Tonnage":"562.892845","Total EE":"9856.415073","Amount Glazed":"0.72"},{"Total SF":"79136","Total Steel Tonnage":"910.191271","Total EE":"14152.85079","Amount Glazed":"2.85"},{"Total SF":"84896","Total Steel Tonnage":"1022.142283","Total EE":"14814.59668","Amount Glazed":"0.47"},{"Total SF":"45952","Total Steel Tonnage":"525.268854","Total EE":"14065.54666","Amount Glazed":"6.14"},{"Total SF":"49216","Total Steel Tonnage":"541.236787","Total EE":"13531.77828","Amount Glazed":"0.14"},{"Total SF":"54592","Total Steel Tonnage":"353.752127","Total EE":"7973.329426","Amount Glazed":"0.47"},{"Total SF":"53056","Total Steel Tonnage":"569.427884","Total EE":"13206.03513","Amount Glazed":"0.16"},{"Total SF":"54112","Total Steel Tonnage":"589.036207","Total EE":"13394.25636","Amount Glazed":"1.78"},{"Total SF":"53632","Total Steel Tonnage":"553.464481","Total EE":"12698.20257","Amount Glazed":"3.55"},{"Total SF":"60736","Total Steel Tonnage":"450.936626","Total EE":"9135.767914","Amount Glazed":"2.85"},{"Total SF":"60896","Total Steel Tonnage":"356.451768","Total EE":"7202.607725","Amount Glazed":"0.67"},{"Total SF":"60896","Total Steel Tonnage":"372.318779","Total EE":"7523.15423","Amount Glazed":"1.27"},{"Total SF":"58784","Total Steel Tonnage":"737.655136","Total EE":"15440.76619","Amount Glazed":"0.79"},{"Total SF":"62752","Total Steel Tonnage":"385.794123","Total EE":"7564.858491","Amount Glazed":"1.94"},{"Total SF":"58432","Total Steel Tonnage":"663.253018","Total EE":"13967.17552","Amount Glazed":"4.56"},{"Total SF":"67840","Total Steel Tonnage":"827.055826","Total EE":"15001.47406","Amount Glazed":"0.79"},{"Total SF":"68800","Total Steel Tonnage":"840.936098","Total EE":"15040.69767","Amount Glazed":"24"},{"Total SF":"67360","Total Steel Tonnage":"423.078303","Total EE":"7728.473872","Amount Glazed":"2.85"},{"Total SF":"71392","Total Steel Tonnage":"948.698301","Total EE":"16351.97221","Amount Glazed":"4"},{"Total SF":"66048","Total Steel Tonnage":"379.888642","Total EE":"7077.428537","Amount Glazed":"0.25"},{"Total SF":"45696","Total Steel Tonnage":"327.673256","Total EE":"8823.529412","Amount Glazed":"0.11"},{"Total SF":"54528","Total Steel Tonnage":"423.600832","Total EE":"9559.125587","Amount Glazed":"9"},{"Total SF":"58944","Total Steel Tonnage":"607.920247","Total EE":"12690.45874","Amount Glazed":"0.06"},{"Total SF":"64832","Total Steel Tonnage":"405.073405","Total EE":"7688.178677","Amount Glazed":"0.67"},{"Total SF":"58752","Total Steel Tonnage":"790.133121","Total EE":"16548.20261","Amount Glazed":"0.02"},{"Total SF":"66144","Total Steel Tonnage":"682.996697","Total EE":"12705.76318","Amount Glazed":"0.92"},{"Total SF":"62144","Total Steel Tonnage":"649.743679","Total EE":"12865.28064","Amount Glazed":"11.5"},{"Total SF":"50048","Total Steel Tonnage":"399.139044","Total EE":"9813.179348","Amount Glazed":"1.94"},{"Total SF":"54592","Total Steel Tonnage":"670.840455","Total EE":"15120.37661","Amount Glazed":"0.79"},{"Total SF":"59264","Total Steel Tonnage":"757.273637","Total EE":"15723.03591","Amount Glazed":"1.38"},{"Total SF":"62240","Total Steel Tonnage":"735.439375","Total EE":"14539.52442","Amount Glazed":"0.25"},{"Total SF":"55424","Total Steel Tonnage":"518.330729","Total EE":"11507.46969","Amount Glazed":"2.33"},{"Total SF":"57408","Total Steel Tonnage":"534.613985","Total EE":"11458.85591","Amount Glazed":"0.32"},{"Total SF":"70976","Total Steel Tonnage":"863.958253","Total EE":"14978.30252","Amount Glazed":"1.5"},{"Total SF":"64352","Total Steel Tonnage":"808.600245","Total EE":"15461.05793","Amount Glazed":"0.09"},{"Total SF":"65792","Total Steel Tonnage":"674.171525","Total EE":"12608.67583","Amount Glazed":"0.67"},{"Total SF":"58080","Total Steel Tonnage":"613.609428","Total EE":"12999.82782","Amount Glazed":"0.14"},{"Total SF":"61664","Total Steel Tonnage":"603.848939","Total EE":"12049.41619","Amount Glazed":"0.67"},{"Total SF":"65728","Total Steel Tonnage":"671.275418","Total EE":"12566.79041","Amount Glazed":"0.16"},{"Total SF":"58368","Total Steel Tonnage":"462.395351","Total EE":"9747.978344","Amount Glazed":"1"},{"Total SF":"58368","Total Steel Tonnage":"462.395351","Total EE":"9747.978344","Amount Glazed":"0.92"},{"Total SF":"57024","Total Steel Tonnage":"739.625821","Total EE":"15959.94669","Amount Glazed":"0.25"},{"Total SF":"55808","Total Steel Tonnage":"680.646004","Total EE":"15006.98825","Amount Glazed":"0.06"},{"Total SF":"54080","Total Steel Tonnage":"351.021258","Total EE":"7986.871302","Amount Glazed":"0.09"},{"Total SF":"57696","Total Steel Tonnage":"682.765978","Total EE":"14561.49473","Amount Glazed":"0.47"},{"Total SF":"58944","Total Steel Tonnage":"666.213969","Total EE":"13907.43757","Amount Glazed":"0.52"},{"Total SF":"55872","Total Steel Tonnage":"363.645521","Total EE":"8008.662658","Amount Glazed":"4"},{"Total SF":"60192","Total Steel Tonnage":"769.805628","Total EE":"15736.80888","Amount Glazed":"9"},{"Total SF":"62720","Total Steel Tonnage":"684.810725","Total EE":"13435.10842","Amount Glazed":"0.25"},{"Total SF":"65984","Total Steel Tonnage":"369.895367","Total EE":"6897.884336","Amount Glazed":"0.67"},{"Total SF":"65984","Total Steel Tonnage":"375.033785","Total EE":"6993.665131","Amount Glazed":"0.72"},{"Total SF":"60192","Total Steel Tonnage":"375.542596","Total EE":"7677.099947","Amount Glazed":"0.32"},{"Total SF":"65472","Total Steel Tonnage":"902.013359","Total EE":"16952.28495","Amount Glazed":"15.67"},{"Total SF":"67520","Total Steel Tonnage":"706.78898","Total EE":"12880.33175","Amount Glazed":"4"},{"Total SF":"56064","Total Steel Tonnage":"572.758954","Total EE":"12570.63356","Amount Glazed":"1"},{"Total SF":"60288","Total Steel Tonnage":"382.265307","Total EE":"7802.050159","Amount Glazed":"1.78"},{"Total SF":"47456","Total Steel Tonnage":"327.527237","Total EE":"8492.287593","Amount Glazed":"0.14"},{"Total SF":"49120","Total Steel Tonnage":"335.512931","Total EE":"8404.723127","Amount Glazed":"0.09"},{"Total SF":"56928","Total Steel Tonnage":"337.788636","Total EE":"7301.152333","Amount Glazed":"0.11"},{"Total SF":"57920","Total Steel Tonnage":"624.259633","Total EE":"13262.08564","Amount Glazed":"1.27"},{"Total SF":"57376","Total Steel Tonnage":"575.972328","Total EE":"12352.3773","Amount Glazed":"4"},{"Total SF":"53312","Total Steel Tonnage":"337.860763","Total EE":"7798.056723","Amount Glazed":"0.52"},{"Total SF":"65088","Total Steel Tonnage":"804.093757","Total EE":"15201.41962","Amount Glazed":"1.78"},{"Total SF":"63744","Total Steel Tonnage":"424.72273","Total EE":"8198.575552","Amount Glazed":"3.17"},{"Total SF":"77536","Total Steel Tonnage":"743.383754","Total EE":"11797.22967","Amount Glazed":"15.67"},{"Total SF":"55296","Total Steel Tonnage":"336.74015","Total EE":"7493.308738","Amount Glazed":"0.35"},{"Total SF":"52608","Total Steel Tonnage":"552.549243","Total EE":"12923.8899","Amount Glazed":"0.25"},{"Total SF":"54528","Total Steel Tonnage":"357.780577","Total EE":"8073.650235","Amount Glazed":"0.79"},{"Total SF":"50432","Total Steel Tonnage":"401.13395","Total EE":"9787.238261","Amount Glazed":"0.04"},{"Total SF":"50432","Total Steel Tonnage":"406.926956","Total EE":"9928.616751","Amount Glazed":"0.04"},{"Total SF":"51328","Total Steel Tonnage":"555.455897","Total EE":"13315.77696","Amount Glazed":"4"},{"Total SF":"61280","Total Steel Tonnage":"670.309526","Total EE":"13459.69321","Amount Glazed":"9"},{"Total SF":"55520","Total Steel Tonnage":"659.36677","Total EE":"14613.41499","Amount Glazed":"0.56"},{"Total SF":"65984","Total Steel Tonnage":"680.350247","Total EE":"12687.01503","Amount Glazed":"5.25"},{"Total SF":"64000","Total Steel Tonnage":"541.883558","Total EE":"10418.4375","Amount Glazed":"1.38"},{"Total SF":"66048","Total Steel Tonnage":"576.307901","Total EE":"10736.58551","Amount Glazed":"0.56"},{"Total SF":"50912","Total Steel Tonnage":"364.85339","Total EE":"8817.960402","Amount Glazed":"1.78"},{"Total SF":"58048","Total Steel Tonnage":"367.075857","Total EE":"7781.146637","Amount Glazed":"1.5"},{"Total SF":"52576","Total Steel Tonnage":"361.224445","Total EE":"8454.047474","Amount Glazed":"2.33"},{"Total SF":"61056","Total Steel Tonnage":"659.834505","Total EE":"13297.79219","Amount Glazed":"2.85"},{"Total SF":"61728","Total Steel Tonnage":"627.48371","Total EE":"12508.10005","Amount Glazed":"0.06"},{"Total SF":"61440","Total Steel Tonnage":"626.631511","Total EE":"12549.80469","Amount Glazed":"11.5"},{"Total SF":"70368","Total Steel Tonnage":"446.419691","Total EE":"7806.247158","Amount Glazed":"0.04"},{"Total SF":"62976","Total Steel Tonnage":"688.057415","Total EE":"13443.69284","Amount Glazed":"1.63"},{"Total SF":"68864","Total Steel Tonnage":"935.160096","Total EE":"16709.74675","Amount Glazed":"0.35"},{"Total SF":"45024","Total Steel Tonnage":"520.356662","Total EE":"14221.08209","Amount Glazed":"0.47"},{"Total SF":"54528","Total Steel Tonnage":"390.197309","Total EE":"8805.200998","Amount Glazed":"2.57"},{"Total SF":"62304","Total Steel Tonnage":"516.545687","Total EE":"10201.59219","Amount Glazed":"1.78"},{"Total SF":"62912","Total Steel Tonnage":"412.189987","Total EE":"8061.895982","Amount Glazed":"1.08"},{"Total SF":"74208","Total Steel Tonnage":"754.47908","Total EE":"12510.37624","Amount Glazed":"0.43"},{"Total SF":"77888","Total Steel Tonnage":"788.782708","Total EE":"12461.09799","Amount Glazed":"2.57"},{"Total SF":"60896","Total Steel Tonnage":"603.848939","Total EE":"12201.3794","Amount Glazed":"0.67"},{"Total SF":"60704","Total Steel Tonnage":"611.082419","Total EE":"12386.66315","Amount Glazed":"2.85"},{"Total SF":"74304","Total Steel Tonnage":"551.938412","Total EE":"9140.153962","Amount Glazed":"0.14"},{"Total SF":"64512","Total Steel Tonnage":"474.325632","Total EE":"9047.154018","Amount Glazed":"4"},{"Total SF":"58944","Total Steel Tonnage":"683.475328","Total EE":"14267.94924","Amount Glazed":"3.55"},{"Total SF":"75264","Total Steel Tonnage":"890.541527","Total EE":"14559.41752","Amount Glazed":"1.27"},{"Total SF":"72544","Total Steel Tonnage":"974.022447","Total EE":"16521.00794","Amount Glazed":"0.61"},{"Total SF":"56032","Total Steel Tonnage":"591.312203","Total EE":"12985.25842","Amount Glazed":"3.55"},{"Total SF":"62656","Total Steel Tonnage":"520.122519","Total EE":"10214.5046","Amount Glazed":"1.63"},{"Total SF":"59808","Total Steel Tonnage":"614.553525","Total EE":"12643.79347","Amount Glazed":"9"},{"Total SF":"63584","Total Steel Tonnage":"634.13495","Total EE":"12271.64066","Amount Glazed":"0.25"},{"Total SF":"68576","Total Steel Tonnage":"705.143003","Total EE":"12652.5315","Amount Glazed":"49"},{"Total SF":"66080","Total Steel Tonnage":"715.153735","Total EE":"13316.88862","Amount Glazed":"11.5"},{"Total SF":"56128","Total Steel Tonnage":"471.800763","Total EE":"10343.14424","Amount Glazed":"0.56"},{"Total SF":"74368","Total Steel Tonnage":"628.925506","Total EE":"10406.08864","Amount Glazed":"1.5"},{"Total SF":"75040","Total Steel Tonnage":"892.857257","Total EE":"14640.1919","Amount Glazed":"5.25"},{"Total SF":"60192","Total Steel Tonnage":"790.271384","Total EE":"16155.30303","Amount Glazed":"3.17"},{"Total SF":"64512","Total Steel Tonnage":"406.528825","Total EE":"7753.90625","Amount Glazed":"1.38"},{"Total SF":"51488","Total Steel Tonnage":"560.622501","Total EE":"13397.87912","Amount Glazed":"0.09"},{"Total SF":"49280","Total Steel Tonnage":"421.026964","Total EE":"10512.58117","Amount Glazed":"6.14"},{"Total SF":"51072","Total Steel Tonnage":"439.939838","Total EE":"10599.34994","Amount Glazed":"11.5"},{"Total SF":"59456","Total Steel Tonnage":"370.501351","Total EE":"7667.687029","Amount Glazed":"0.79"},{"Total SF":"51968","Total Steel Tonnage":"376.201891","Total EE":"8907.596983","Amount Glazed":"0.25"},{"Total SF":"62016","Total Steel Tonnage":"693.960626","Total EE":"13769.1886","Amount Glazed":"0"},{"Total SF":"64896","Total Steel Tonnage":"524.124662","Total EE":"9937.900641","Amount Glazed":"2.13"},{"Total SF":"63168","Total Steel Tonnage":"498.136918","Total EE":"9703.489108","Amount Glazed":"0"},{"Total SF":"53312","Total Steel Tonnage":"458.78223","Total EE":"10588.98559","Amount Glazed":"0.19"},{"Total SF":"58016","Total Steel Tonnage":"789.920982","Total EE":"16753.65416","Amount Glazed":"0.85"},{"Total SF":"70112","Total Steel Tonnage":"871.631407","Total EE":"15296.95345","Amount Glazed":"1"},{"Total SF":"70112","Total Steel Tonnage":"884.97343","Total EE":"15532.29119","Amount Glazed":"9"},{"Total SF":"72128","Total Steel Tonnage":"902.961788","Total EE":"15404.55856","Amount Glazed":"7.33"},{"Total SF":"65408","Total Steel Tonnage":"706.120206","Total EE":"13283.5433","Amount Glazed":"2.57"},{"Total SF":"54336","Total Steel Tonnage":"394.237032","Total EE":"8927.782686","Amount Glazed":"0.09"},{"Total SF":"60512","Total Steel Tonnage":"679.570909","Total EE":"13818.58144","Amount Glazed":"1.08"},{"Total SF":"51712","Total Steel Tonnage":"555.455897","Total EE":"13216.99412","Amount Glazed":"6.14"},{"Total SF":"50976","Total Steel Tonnage":"362.973945","Total EE":"8761.574074","Amount Glazed":"24"},{"Total SF":"47488","Total Steel Tonnage":"395.109356","Total EE":"10237.74427","Amount Glazed":"1.08"},{"Total SF":"47488","Total Steel Tonnage":"395.109356","Total EE":"10237.74427","Amount Glazed":"0.32"},{"Total SF":"45568","Total Steel Tonnage":"524.088322","Total EE":"14152.25597","Amount Glazed":"3.17"},{"Total SF":"56160","Total Steel Tonnage":"593.706334","Total EE":"13008.36895","Amount Glazed":"0.14"},{"Total SF":"56896","Total Steel Tonnage":"406.140427","Total EE":"8783.570022","Amount Glazed":"0.32"},{"Total SF":"62784","Total Steel Tonnage":"635.98875","Total EE":"12464.4814","Amount Glazed":"2.12"},{"Total SF":"52000","Total Steel Tonnage":"372.489373","Total EE":"8814.230769","Amount Glazed":"4.56"},{"Total SF":"72544","Total Steel Tonnage":"439.288444","Total EE":"7451.202029","Amount Glazed":"1.17"},{"Total SF":"68352","Total Steel Tonnage":"454.858123","Total EE":"8188.348549","Amount Glazed":"2.33"}]
+
+</script>
+
+
+
+<script>
+/*
+var data = [
+  {
+    className: 'germany', // optional can be used for styling
+    axes: [
+      {axis: "strength", value: 103}, 
+      {axis: "intelligence", value: 6}, 
+      {axis: "charisma", value: 5},  
+      {axis: "dexterity", value: 9},  
+      {axis: "luck", value: 2}
+    ]
+  }
+];
+*/
+
+var radarData = [];
+
+function map_range(value, low1, high1, low2, high2) {
+    return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+}
+
+function prepareDataForRadarChart(outputData) {
+  
+  // find minimum and max values
+  var margins = {};
+  var keys = d3.keys(outputData[0]);
+  
+  keys.forEach(function(key){ margins[key] = {min:Number.POSITIVE_INFINITY, max:Number.NEGATIVE_INFINITY}; });
+  
+  outputData.forEach(function(d){
+    keys.forEach(function(key){
+      var value = parseFloat(d[key]);
+      if(value < margins[key].min){
+        margins[key].min = value;
+      }else if(value > margins[key].max){
+        margins[key].max = value;
+      }
+    })
+  });
+  
+
+  outputData.forEach( function(d){
+    
+    var axesData = [];
+    
+    keys.forEach( function(key){
+
+      var mappedValue = map_range(parseFloat(d[key]), margins[key].min, margins[key].max, 0, 100);
+
+      axesData.push({axis: key, value: mappedValue});
+    })
+
+    radarData.push({axes: axesData});
+  })
+
+  return radarData;
+  }
+
+</script>
+
+<script>
+var chart = RadarChart.chart();
+
+var cfg = chart.config(); // retrieve default config
+
+var svg = d3.select('body').append('svg')
+  .attr('width', cfg.w)
+  .attr('height', cfg.h);
+
+svg.append('g')
+  .classed('single', 1)
+  .datum(prepareDataForRadarChart(outputData))
+  .call(chart);
+
+// many radars
+chart.config({axis: false, axisText: false, levels: 0, circles: false});
+cfg = chart.config();
+
+var ov = svg.append('g')
+  .attr('class', 'overlay')
+  .datum(prepareDataForRadarChart([outputData[0][0]]))
+  .call(chart);
+
+</script>
