@@ -7,8 +7,8 @@
 
 <body>
 
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="http://d3js.org/topojson.v0.min.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/topojson.v0.min.js"></script>
     <script src="./map_source_data/js/pace.min.js" ></script>
 
     <div id = "header"><br></div>
@@ -419,8 +419,8 @@
     */
 
     // draw world map first
-    d3.json("https://dl.dropboxusercontent.com/u/16228160/world-110m2.json", function(error, topology) {
-    //d3.json("./map_source_data/data/world-110m2.json", function(error, topology) {
+    // d3.json("https://dl.dropboxusercontent.com/u/16228160/world-110m2.json", function(error, topology) {
+    d3.json("./map_source_data/data/world-110m2.json", function(error, topology) {
               mapgroup.selectAll("path")
                     .data(topojson.object(topology, topology.objects.countries).geometries)
                     .enter()
@@ -432,8 +432,8 @@
 
     // draw the graphs and also add circles
 
-    d3.json("https://dl.dropboxusercontent.com/u/16228160/ttx_data.json", function(error, data) {
-    //d3.json("./map_source_data/data/ttx_data.json", function(error, data) {
+    // d3.json("https://dl.dropboxusercontent.com/u/16228160/ttx_data.json", function(error, data) {
+    d3.json("./map_source_data/data/ttx_data.json", function(error, data) {
                 
                 // iterate over data and parse date data to d3 format
                 data.forEach(function(d) {
