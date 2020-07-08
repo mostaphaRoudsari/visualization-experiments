@@ -1,6 +1,6 @@
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author supereggbert / http://www.paulbrunt.co.uk/
+ * @author mrdoob / https://mrdoob.com/
+ * @author supereggbert / https://www.paulbrunt.co.uk/
  * @author julianwa / https://github.com/julianwa
  */
 

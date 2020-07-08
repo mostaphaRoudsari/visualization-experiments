@@ -1,5 +1,5 @@
 /*! jQuery UI - v1.11.2 - 2015-01-04
-* http://jqueryui.com
+* https://jqueryui.com
 * Includes: core.js, widget.js, mouse.js, position.js, draggable.js, droppable.js, resizable.js, selectable.js, sortable.js, accordion.js, autocomplete.js, button.js, datepicker.js, dialog.js, menu.js, progressbar.js, selectmenu.js, slider.js, spinner.js, tabs.js, tooltip.js, effect.js, effect-blind.js, effect-bounce.js, effect-clip.js, effect-drop.js, effect-explode.js, effect-fade.js, effect-fold.js, effect-highlight.js, effect-puff.js, effect-pulsate.js, effect-scale.js, effect-shake.js, effect-size.js, effect-slide.js, effect-transfer.js
 * Copyright 2015 jQuery Foundation and other contributors; Licensed MIT */
 
@@ -16,13 +16,13 @@
 }(function( $ ) {
 /*!
  * jQuery UI Core 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/category/ui-core/
+ * https://api.jqueryui.com/category/ui-core/
  */
 
 
@@ -198,7 +198,7 @@ if ( !$.fn.addBack ) {
 	};
 }
 
-// support: jQuery 1.6.1, 1.6.2 (http://bugs.jquery.com/ticket/9413)
+// support: jQuery 1.6.1, 1.6.2 (https://bugs.jquery.com/ticket/9413)
 if ( $( "<a>" ).data( "a-b", "a" ).removeData( "a-b" ).data( "a-b" ) ) {
 	$.fn.removeData = (function( removeData ) {
 		return function( key ) {
@@ -310,13 +310,13 @@ $.ui.plugin = {
 
 /*!
  * jQuery UI Widget 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/jQuery.widget/
+ * https://api.jqueryui.com/jQuery.widget/
  */
 
 
@@ -335,7 +335,7 @@ $.cleanData = (function( orig ) {
 					$( elem ).triggerHandler( "remove" );
 				}
 
-			// http://bugs.jquery.com/ticket/8235
+			// https://bugs.jquery.com/ticket/8235
 			} catch ( e ) {}
 		}
 		orig( elems );
@@ -598,7 +598,7 @@ $.Widget.prototype = {
 			.unbind( this.eventNamespace )
 			.removeData( this.widgetFullName )
 			// support: jquery <1.6.3
-			// http://bugs.jquery.com/ticket/9413
+			// https://bugs.jquery.com/ticket/9413
 			.removeData( $.camelCase( this.widgetFullName ) );
 		this.widget()
 			.unbind( this.eventNamespace )
@@ -857,13 +857,13 @@ var widget = $.widget;
 
 /*!
  * jQuery UI Mouse 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/mouse/
+ * https://api.jqueryui.com/mouse/
  */
 
 
@@ -1043,13 +1043,13 @@ var mouse = $.widget("ui.mouse", {
 
 /*!
  * jQuery UI Position 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/position/
+ * https://api.jqueryui.com/position/
  */
 
 (function() {
@@ -1550,13 +1550,13 @@ var position = $.ui.position;
 
 /*!
  * jQuery UI Draggable 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/draggable/
+ * https://api.jqueryui.com/draggable/
  */
 
 
@@ -1902,7 +1902,7 @@ $.widget("ui.draggable", $.ui.mouse, {
 			helper.appendTo((o.appendTo === "parent" ? this.element[0].parentNode : o.appendTo));
 		}
 
-		// http://bugs.jqueryui.com/ticket/9446
+		// https://bugs.jqueryui.com/ticket/9446
 		// a helper function can return the original element
 		// which wouldn't have been set to relative in _create
 		if ( helperIsFunction && helper[ 0 ] === this.element[ 0 ] ) {
@@ -2663,13 +2663,13 @@ var draggable = $.ui.draggable;
 
 /*!
  * jQuery UI Droppable 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/droppable/
+ * https://api.jqueryui.com/droppable/
  */
 
 
@@ -3060,13 +3060,13 @@ var droppable = $.ui.droppable;
 
 /*!
  * jQuery UI Resizable 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/resizable/
+ * https://api.jqueryui.com/resizable/
  */
 
 
@@ -4224,13 +4224,13 @@ var resizable = $.ui.resizable;
 
 /*!
  * jQuery UI Selectable 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/selectable/
+ * https://api.jqueryui.com/selectable/
  */
 
 
@@ -4496,13 +4496,13 @@ var selectable = $.widget("ui.selectable", $.ui.mouse, {
 
 /*!
  * jQuery UI Sortable 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/sortable/
+ * https://api.jqueryui.com/sortable/
  */
 
 
@@ -5785,13 +5785,13 @@ var sortable = $.widget("ui.sortable", $.ui.mouse, {
 
 /*!
  * jQuery UI Accordion 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/accordion/
+ * https://api.jqueryui.com/accordion/
  */
 
 
@@ -6355,13 +6355,13 @@ var accordion = $.widget( "ui.accordion", {
 
 /*!
  * jQuery UI Menu 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/menu/
+ * https://api.jqueryui.com/menu/
  */
 
 
@@ -6986,13 +6986,13 @@ var menu = $.widget( "ui.menu", {
 
 /*!
  * jQuery UI Autocomplete 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/autocomplete/
+ * https://api.jqueryui.com/autocomplete/
  */
 
 
@@ -7598,13 +7598,13 @@ var autocomplete = $.ui.autocomplete;
 
 /*!
  * jQuery UI Button 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/button/
+ * https://api.jqueryui.com/button/
  */
 
 
@@ -7995,13 +7995,13 @@ var button = $.ui.button;
 
 /*!
  * jQuery UI Datepicker 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/datepicker/
+ * https://api.jqueryui.com/datepicker/
  */
 
 
@@ -8290,7 +8290,7 @@ $.extend(Datepicker.prototype, {
 			this._disableDatepicker( target );
 		}
 		// Set display:block in place of inst.dpDiv.show() which won't work on disconnected elements
-		// http://bugs.jqueryui.com/ticket/7552 - A Datepicker created on a detached div has zero height
+		// https://bugs.jqueryui.com/ticket/7552 - A Datepicker created on a detached div has zero height
 		inst.dpDiv.css( "display", "block" );
 	},
 
@@ -10062,13 +10062,13 @@ var datepicker = $.datepicker;
 
 /*!
  * jQuery UI Dialog 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/dialog/
+ * https://api.jqueryui.com/dialog/
  */
 
 
@@ -10918,13 +10918,13 @@ var dialog = $.widget( "ui.dialog", {
 
 /*!
  * jQuery UI Progressbar 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/progressbar/
+ * https://api.jqueryui.com/progressbar/
  */
 
 
@@ -11063,13 +11063,13 @@ var progressbar = $.widget( "ui.progressbar", {
 
 /*!
  * jQuery UI Selectmenu 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/selectmenu
+ * https://api.jqueryui.com/selectmenu
  */
 
 
@@ -11663,13 +11663,13 @@ var selectmenu = $.widget( "ui.selectmenu", {
 
 /*!
  * jQuery UI Slider 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/slider/
+ * https://api.jqueryui.com/slider/
  */
 
 
@@ -12347,13 +12347,13 @@ var slider = $.widget( "ui.slider", $.ui.mouse, {
 
 /*!
  * jQuery UI Spinner 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/spinner/
+ * https://api.jqueryui.com/spinner/
  */
 
 
@@ -12846,13 +12846,13 @@ var spinner = $.widget( "ui.spinner", {
 
 /*!
  * jQuery UI Tabs 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/tabs/
+ * https://api.jqueryui.com/tabs/
  */
 
 
@@ -13667,7 +13667,7 @@ var tabs = $.widget( "ui.tabs", {
 			this.xhr
 				.success(function( response ) {
 					// support: jQuery <1.8
-					// http://bugs.jquery.com/ticket/11778
+					// https://bugs.jquery.com/ticket/11778
 					setTimeout(function() {
 						panel.html( response );
 						that._trigger( "load", event, eventData );
@@ -13675,7 +13675,7 @@ var tabs = $.widget( "ui.tabs", {
 				})
 				.complete(function( jqXHR, status ) {
 					// support: jQuery <1.8
-					// http://bugs.jquery.com/ticket/11778
+					// https://bugs.jquery.com/ticket/11778
 					setTimeout(function() {
 						if ( status === "abort" ) {
 							that.panels.stop( false, true );
@@ -13712,13 +13712,13 @@ var tabs = $.widget( "ui.tabs", {
 
 /*!
  * jQuery UI Tooltip 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/tooltip/
+ * https://api.jqueryui.com/tooltip/
  */
 
 
@@ -14158,13 +14158,13 @@ var tooltip = $.widget( "ui.tooltip", {
 
 /*!
  * jQuery UI Effects 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/category/effects-core/
+ * https://api.jqueryui.com/category/effects-core/
  */
 
 
@@ -14184,7 +14184,7 @@ $.effects = {
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
  * Date: Wed Jan 16 08:47:09 2013 -0600
  */
@@ -15070,7 +15070,7 @@ $.extend( $.effects, {
 			if ( set[ i ] !== null ) {
 				val = element.data( dataSpace + set[ i ] );
 				// support: jQuery 1.6.2
-				// http://bugs.jquery.com/ticket/9917
+				// https://bugs.jquery.com/ticket/9917
 				// jQuery 1.6.2 incorrectly returns undefined for any falsy value.
 				// We can't differentiate between "" and 0 here, so we just assume
 				// empty string since it's likely to be a more common value...
@@ -15397,7 +15397,7 @@ $.fn.extend({
 
 (function() {
 
-// based on easing equations from Robert Penner (http://www.robertpenner.com/easing)
+// based on easing equations from Robert Penner (https://www.robertpenner.com/easing)
 
 var baseEasings = {};
 
@@ -15449,13 +15449,13 @@ var effect = $.effects;
 
 /*!
  * jQuery UI Effects Blind 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/blind-effect/
+ * https://api.jqueryui.com/blind-effect/
  */
 
 
@@ -15526,13 +15526,13 @@ var effectBlind = $.effects.effect.blind = function( o, done ) {
 
 /*!
  * jQuery UI Effects Bounce 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/bounce-effect/
+ * https://api.jqueryui.com/bounce-effect/
  */
 
 
@@ -15636,13 +15636,13 @@ var effectBounce = $.effects.effect.bounce = function( o, done ) {
 
 /*!
  * jQuery UI Effects Clip 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/clip-effect/
+ * https://api.jqueryui.com/clip-effect/
  */
 
 
@@ -15700,13 +15700,13 @@ var effectClip = $.effects.effect.clip = function( o, done ) {
 
 /*!
  * jQuery UI Effects Drop 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/drop-effect/
+ * https://api.jqueryui.com/drop-effect/
  */
 
 
@@ -15762,13 +15762,13 @@ var effectDrop = $.effects.effect.drop = function( o, done ) {
 
 /*!
  * jQuery UI Effects Explode 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/explode-effect/
+ * https://api.jqueryui.com/explode-effect/
  */
 
 
@@ -15856,13 +15856,13 @@ var effectExplode = $.effects.effect.explode = function( o, done ) {
 
 /*!
  * jQuery UI Effects Fade 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/fade-effect/
+ * https://api.jqueryui.com/fade-effect/
  */
 
 
@@ -15883,13 +15883,13 @@ var effectFade = $.effects.effect.fade = function( o, done ) {
 
 /*!
  * jQuery UI Effects Fold 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/fold-effect/
+ * https://api.jqueryui.com/fold-effect/
  */
 
 
@@ -15956,13 +15956,13 @@ var effectFold = $.effects.effect.fold = function( o, done ) {
 
 /*!
  * jQuery UI Effects Highlight 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/highlight-effect/
+ * https://api.jqueryui.com/highlight-effect/
  */
 
 
@@ -16003,13 +16003,13 @@ var effectHighlight = $.effects.effect.highlight = function( o, done ) {
 
 /*!
  * jQuery UI Effects Size 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/size-effect/
+ * https://api.jqueryui.com/size-effect/
  */
 
 
@@ -16223,13 +16223,13 @@ var effectSize = $.effects.effect.size = function( o, done ) {
 
 /*!
  * jQuery UI Effects Scale 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/scale-effect/
+ * https://api.jqueryui.com/scale-effect/
  */
 
 
@@ -16298,13 +16298,13 @@ var effectScale = $.effects.effect.scale = function( o, done ) {
 
 /*!
  * jQuery UI Effects Puff 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/puff-effect/
+ * https://api.jqueryui.com/puff-effect/
  */
 
 
@@ -16344,13 +16344,13 @@ var effectPuff = $.effects.effect.puff = function( o, done ) {
 
 /*!
  * jQuery UI Effects Pulsate 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/pulsate-effect/
+ * https://api.jqueryui.com/pulsate-effect/
  */
 
 
@@ -16404,13 +16404,13 @@ var effectPulsate = $.effects.effect.pulsate = function( o, done ) {
 
 /*!
  * jQuery UI Effects Shake 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/shake-effect/
+ * https://api.jqueryui.com/shake-effect/
  */
 
 
@@ -16475,13 +16475,13 @@ var effectShake = $.effects.effect.shake = function( o, done ) {
 
 /*!
  * jQuery UI Effects Slide 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/slide-effect/
+ * https://api.jqueryui.com/slide-effect/
  */
 
 
@@ -16536,13 +16536,13 @@ var effectSlide = $.effects.effect.slide = function( o, done ) {
 
 /*!
  * jQuery UI Effects Transfer 1.11.2
- * http://jqueryui.com
+ * https://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/transfer-effect/
+ * https://api.jqueryui.com/transfer-effect/
  */
 
 

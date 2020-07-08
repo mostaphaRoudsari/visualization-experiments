@@ -1,7 +1,7 @@
 // File:src/Three.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 var THREE = { REVISION: '70' };
@@ -228,7 +228,7 @@ THREE.CanvasRenderer = function () {
 // File:src/math/Color.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.Color = function ( color ) {
@@ -637,10 +637,10 @@ THREE.ColorKeywords = { 'aliceblue': 0xF0F8FF, 'antiquewhite': 0xFAEBD7, 'aqua':
 // File:src/math/Quaternion.js
 
 /**
- * @author mikael emtinger / http://gomo.se/
- * @author alteredq / http://alteredqualia.com/
- * @author WestLangley / http://github.com/WestLangley
- * @author bhouston / http://exocortex.com
+ * @author mikael emtinger / https://gomo.se/
+ * @author alteredq / https://alteredqualia.com/
+ * @author WestLangley / https://github.com/WestLangley
+ * @author bhouston / https://exocortex.com
  */
 
 THREE.Quaternion = function ( x, y, z, w ) {
@@ -743,7 +743,7 @@ THREE.Quaternion.prototype = {
 			throw new Error( 'THREE.Quaternion: .setFromEuler() now expects a Euler rotation rather than a Vector3 and order.' );
 		}
 
-		// http://www.mathworks.com/matlabcentral/fileexchange/
+		// https://www.mathworks.com/matlabcentral/fileexchange/
 		// 	20696-function-to-convert-between-dcm-euler-angles-quaternions-and-euler-vectors/
 		//	content/SpinCalc.m
 
@@ -806,7 +806,7 @@ THREE.Quaternion.prototype = {
 
 	setFromAxisAngle: function ( axis, angle ) {
 
-		// http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm
+		// https://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm
 
 		// assumes axis is normalized
 
@@ -825,7 +825,7 @@ THREE.Quaternion.prototype = {
 
 	setFromRotationMatrix: function ( m ) {
 
-		// http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
+		// https://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
 
 		// assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
 
@@ -884,7 +884,7 @@ THREE.Quaternion.prototype = {
 
 	setFromUnitVectors: function () {
 
-		// http://lolengine.net/blog/2014/02/24/quaternion-from-two-vectors-final
+		// https://lolengine.net/blog/2014/02/24/quaternion-from-two-vectors-final
 
 		// assumes direction vectors vFrom and vTo are normalized
 
@@ -1012,7 +1012,7 @@ THREE.Quaternion.prototype = {
 
 	multiplyQuaternions: function ( a, b ) {
 
-		// from http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm
+		// from https://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm
 
 		var qax = a._x, qay = a._y, qaz = a._z, qaw = a._w;
 		var qbx = b._x, qby = b._y, qbz = b._z, qbw = b._w;
@@ -1042,7 +1042,7 @@ THREE.Quaternion.prototype = {
 
 		var x = this._x, y = this._y, z = this._z, w = this._w;
 
-		// http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/
+		// https://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/
 
 		var cosHalfTheta = w * qb._w + x * qb._x + y * qb._y + z * qb._z;
 
@@ -1162,10 +1162,10 @@ THREE.Quaternion.slerp = function ( qa, qb, qm, t ) {
 // File:src/math/Vector2.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author philogb / http://blog.thejit.org/
- * @author egraether / http://egraether.com/
- * @author zz85 / http://www.lab4games.net/zz85/blog
+ * @author mrdoob / https://mrdoob.com/
+ * @author philogb / https://blog.thejit.org/
+ * @author egraether / https://egraether.com/
+ * @author zz85 / https://www.lab4games.net/zz85/blog
  */
 
 THREE.Vector2 = function ( x, y ) {
@@ -1585,12 +1585,12 @@ THREE.Vector2.prototype = {
 // File:src/math/Vector3.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author *kile / http://kile.stravaganza.org/
- * @author philogb / http://blog.thejit.org/
- * @author mikael emtinger / http://gomo.se/
- * @author egraether / http://egraether.com/
- * @author WestLangley / http://github.com/WestLangley
+ * @author mrdoob / https://mrdoob.com/
+ * @author *kile / https://kile.stravaganza.org/
+ * @author philogb / https://blog.thejit.org/
+ * @author mikael emtinger / https://gomo.se/
+ * @author egraether / https://egraether.com/
+ * @author WestLangley / https://github.com/WestLangley
  */
 
 THREE.Vector3 = function ( x, y, z ) {
@@ -2420,11 +2420,11 @@ THREE.Vector3.prototype = {
 // File:src/math/Vector4.js
 
 /**
- * @author supereggbert / http://www.paulbrunt.co.uk/
- * @author philogb / http://blog.thejit.org/
- * @author mikael emtinger / http://gomo.se/
- * @author egraether / http://egraether.com/
- * @author WestLangley / http://github.com/WestLangley
+ * @author supereggbert / https://www.paulbrunt.co.uk/
+ * @author philogb / https://blog.thejit.org/
+ * @author mikael emtinger / https://gomo.se/
+ * @author egraether / https://egraether.com/
+ * @author WestLangley / https://github.com/WestLangley
  */
 
 THREE.Vector4 = function ( x, y, z, w ) {
@@ -2646,7 +2646,7 @@ THREE.Vector4.prototype = {
 
 	setAxisAngleFromQuaternion: function ( q ) {
 
-		// http://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToAngle/index.htm
+		// https://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToAngle/index.htm
 
 		// q is assumed to be normalized
 
@@ -2674,7 +2674,7 @@ THREE.Vector4.prototype = {
 
 	setAxisAngleFromRotationMatrix: function ( m ) {
 
-		// http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToAngle/index.htm
+		// https://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToAngle/index.htm
 
 		// assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
 
@@ -3095,9 +3095,9 @@ THREE.Vector4.prototype = {
 // File:src/math/Euler.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author WestLangley / http://github.com/WestLangley
- * @author bhouston / http://exocortex.com
+ * @author mrdoob / https://mrdoob.com/
+ * @author WestLangley / https://github.com/WestLangley
+ * @author bhouston / https://exocortex.com
  */
 
 THREE.Euler = function ( x, y, z, order ) {
@@ -3417,7 +3417,7 @@ THREE.Euler.prototype = {
 // File:src/math/Line3.js
 
 /**
- * @author bhouston / http://exocortex.com
+ * @author bhouston / https://exocortex.com
  */
 
 THREE.Line3 = function ( start, end ) {
@@ -3546,7 +3546,7 @@ THREE.Line3.prototype = {
 // File:src/math/Box2.js
 
 /**
- * @author bhouston / http://exocortex.com
+ * @author bhouston / https://exocortex.com
  */
 
 THREE.Box2 = function ( min, max ) {
@@ -3782,8 +3782,8 @@ THREE.Box2.prototype = {
 // File:src/math/Box3.js
 
 /**
- * @author bhouston / http://exocortex.com
- * @author WestLangley / http://github.com/WestLangley
+ * @author bhouston / https://exocortex.com
+ * @author WestLangley / https://github.com/WestLangley
  */
 
 THREE.Box3 = function ( min, max ) {
@@ -4139,9 +4139,9 @@ THREE.Box3.prototype = {
 // File:src/math/Matrix3.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
- * @author WestLangley / http://github.com/WestLangley
- * @author bhouston / http://exocortex.com
+ * @author alteredq / https://alteredqualia.com/
+ * @author WestLangley / https://github.com/WestLangley
+ * @author bhouston / https://exocortex.com
  */
 
 THREE.Matrix3 = function () {
@@ -4278,7 +4278,7 @@ THREE.Matrix3.prototype = {
 	getInverse: function ( matrix, throwOnInvertible ) {
 
 		// input: THREE.Matrix4
-		// ( based on http://code.google.com/p/webgl-mjs/ )
+		// ( based on https://code.google.com/p/webgl-mjs/ )
 
 		var me = matrix.elements;
 		var te = this.elements;
@@ -4414,16 +4414,16 @@ THREE.Matrix3.prototype = {
 // File:src/math/Matrix4.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author supereggbert / http://www.paulbrunt.co.uk/
- * @author philogb / http://blog.thejit.org/
- * @author jordi_ros / http://plattsoft.com
- * @author D1plo1d / http://github.com/D1plo1d
- * @author alteredq / http://alteredqualia.com/
- * @author mikael emtinger / http://gomo.se/
- * @author timknip / http://www.floorplanner.com/
- * @author bhouston / http://exocortex.com
- * @author WestLangley / http://github.com/WestLangley
+ * @author mrdoob / https://mrdoob.com/
+ * @author supereggbert / https://www.paulbrunt.co.uk/
+ * @author philogb / https://blog.thejit.org/
+ * @author jordi_ros / https://plattsoft.com
+ * @author D1plo1d / https://github.com/D1plo1d
+ * @author alteredq / https://alteredqualia.com/
+ * @author mikael emtinger / https://gomo.se/
+ * @author timknip / https://www.floorplanner.com/
+ * @author bhouston / https://exocortex.com
+ * @author WestLangley / https://github.com/WestLangley
  */
 
 THREE.Matrix4 = function () {
@@ -4930,7 +4930,7 @@ THREE.Matrix4.prototype = {
 		var n41 = te[ 3 ], n42 = te[ 7 ], n43 = te[ 11 ], n44 = te[ 15 ];
 
 		//TODO: make this more efficient
-		//( based on http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm )
+		//( based on https://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm )
 
 		return (
 			n41 * (
@@ -5044,7 +5044,7 @@ THREE.Matrix4.prototype = {
 
 	getInverse: function ( m, throwOnInvertible ) {
 
-		// based on http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm
+		// based on https://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm
 		var te = this.elements;
 		var me = m.elements;
 
@@ -5221,7 +5221,7 @@ THREE.Matrix4.prototype = {
 
 	makeRotationAxis: function ( axis, angle ) {
 
-		// Based on http://www.gamedev.net/reference/articles/article1199.asp
+		// Based on https://www.gamedev.net/reference/articles/article1199.asp
 
 		var c = Math.cos( angle );
 		var s = Math.sin( angle );
@@ -5405,7 +5405,7 @@ THREE.Matrix4.prototype = {
 // File:src/math/Ray.js
 
 /**
- * @author bhouston / http://exocortex.com
+ * @author bhouston / https://exocortex.com
  */
 
 THREE.Ray = function ( origin, direction ) {
@@ -5507,7 +5507,7 @@ THREE.Ray.prototype = {
 
 		return function ( v0, v1, optionalPointOnRay, optionalPointOnSegment ) {
 
-			// from http://www.geometrictools.com/LibMathematics/Distance/Wm5DistRay3Segment3.cpp
+			// from https://www.geometrictools.com/LibMathematics/Distance/Wm5DistRay3Segment3.cpp
 			// It returns the min distance between the ray and the segment
 			// defined by v0 and v1
 			// It can also set two optional targets :
@@ -5635,7 +5635,7 @@ THREE.Ray.prototype = {
 
 	intersectSphere: function () {
 
-		// from http://www.scratchapixel.com/lessons/3d-basic-lessons/lesson-7-intersecting-simple-shapes/ray-sphere-intersection/
+		// from https://www.scratchapixel.com/lessons/3d-basic-lessons/lesson-7-intersecting-simple-shapes/ray-sphere-intersection/
 
 		var v1 = new THREE.Vector3();
 
@@ -5753,7 +5753,7 @@ THREE.Ray.prototype = {
 
 	intersectBox: function ( box , optionalTarget ) {
 
-		// http://www.scratchapixel.com/lessons/3d-basic-lessons/lesson-7-intersecting-simple-shapes/ray-box-intersection/
+		// https://www.scratchapixel.com/lessons/3d-basic-lessons/lesson-7-intersecting-simple-shapes/ray-box-intersection/
 
 		var tmin,tmax,tymin,tymax,tzmin,tzmax;
 
@@ -5829,7 +5829,7 @@ THREE.Ray.prototype = {
 
 		return function ( a, b, c, backfaceCulling, optionalTarget ) {
 
-			// from http://www.geometrictools.com/LibMathematics/Intersection/Wm5IntrRay3Triangle3.cpp
+			// from https://www.geometrictools.com/LibMathematics/Intersection/Wm5IntrRay3Triangle3.cpp
 
 			edge1.subVectors( b, a );
 			edge2.subVectors( c, a );
@@ -5929,8 +5929,8 @@ THREE.Ray.prototype = {
 // File:src/math/Sphere.js
 
 /**
- * @author bhouston / http://exocortex.com
- * @author mrdoob / http://mrdoob.com/
+ * @author bhouston / https://exocortex.com
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.Sphere = function ( center, radius ) {
@@ -6084,9 +6084,9 @@ THREE.Sphere.prototype = {
 // File:src/math/Frustum.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
- * @author bhouston / http://exocortex.com
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
+ * @author bhouston / https://exocortex.com
  */
 
 THREE.Frustum = function ( p0, p1, p2, p3, p4, p5 ) {
@@ -6265,7 +6265,7 @@ THREE.Frustum.prototype = {
 // File:src/math/Plane.js
 
 /**
- * @author bhouston / http://exocortex.com
+ * @author bhouston / https://exocortex.com
  */
 
 THREE.Plane = function ( normal, constant ) {
@@ -6451,7 +6451,7 @@ THREE.Plane.prototype = {
 		return function ( matrix, optionalNormalMatrix ) {
 
 			// compute new normal based on theory here:
-			// http://www.songho.ca/opengl/gl_normaltransform.html
+			// https://www.songho.ca/opengl/gl_normaltransform.html
 			var normalMatrix = optionalNormalMatrix || m1.getNormalMatrix( matrix );
 			var newNormal = v1.copy( this.normal ).applyMatrix3( normalMatrix );
 
@@ -6491,15 +6491,15 @@ THREE.Plane.prototype = {
 // File:src/math/Math.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
- * @author mrdoob / http://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.Math = {
 
 	generateUUID: function () {
 
-		// http://www.broofa.com/Tools/Math.uuid.htm
+		// https://www.broofa.com/Tools/Math.uuid.htm
 
 		var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split( '' );
 		var uuid = new Array( 36 );
@@ -6557,7 +6557,7 @@ THREE.Math = {
 
 	},
 
-	// http://en.wikipedia.org/wiki/Smoothstep
+	// https://en.wikipedia.org/wiki/Smoothstep
 
 	smoothstep: function ( x, min, max ) {
 
@@ -6650,10 +6650,10 @@ THREE.Math = {
 
 /**
  * Spline from Tween.js, slightly optimized (and trashed)
- * http://sole.github.com/tween.js/examples/05_spline.html
+ * https://sole.github.com/tween.js/examples/05_spline.html
  *
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.Spline = function ( points ) {
@@ -6828,8 +6828,8 @@ THREE.Spline = function ( points ) {
 // File:src/math/Triangle.js
 
 /**
- * @author bhouston / http://exocortex.com
- * @author mrdoob / http://mrdoob.com/
+ * @author bhouston / https://exocortex.com
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.Triangle = function ( a, b, c ) {
@@ -6866,7 +6866,7 @@ THREE.Triangle.normal = function () {
 }();
 
 // static/instance method to calculate barycoordinates
-// based on: http://www.blackpawn.com/texts/pointinpoly/default.html
+// based on: https://www.blackpawn.com/texts/pointinpoly/default.html
 THREE.Triangle.barycoordFromPoint = function () {
 
 	var v0 = new THREE.Vector3();
@@ -7021,7 +7021,7 @@ THREE.Triangle.prototype = {
 // File:src/core/Clock.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.Clock = function ( autoStart ) {
@@ -7206,9 +7206,9 @@ THREE.EventDispatcher.prototype = {
 // File:src/core/Raycaster.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author bhouston / http://exocortex.com/
- * @author stephomi / http://stephaneginier.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author bhouston / https://exocortex.com/
+ * @author stephomi / https://stephaneginier.com/
  */
 
 ( function ( THREE ) {
@@ -7336,10 +7336,10 @@ THREE.EventDispatcher.prototype = {
 // File:src/core/Object3D.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author mikael emtinger / http://gomo.se/
- * @author alteredq / http://alteredqualia.com/
- * @author WestLangley / http://github.com/WestLangley
+ * @author mrdoob / https://mrdoob.com/
+ * @author mikael emtinger / https://gomo.se/
+ * @author alteredq / https://alteredqualia.com/
+ * @author WestLangley / https://github.com/WestLangley
  */
 
 THREE.Object3D = function () {
@@ -8122,8 +8122,8 @@ THREE.Object3DIdCount = 0;
 // File:src/core/Face3.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.Face3 = function ( a, b, c, normal, color, materialIndex ) {
@@ -8184,7 +8184,7 @@ THREE.Face3.prototype = {
 // File:src/core/Face4.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.Face4 = function ( a, b, c, d, normal, color, materialIndex ) {
@@ -8197,7 +8197,7 @@ THREE.Face4 = function ( a, b, c, d, normal, color, materialIndex ) {
 // File:src/core/BufferAttribute.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.BufferAttribute = function ( array, itemSize ) {
@@ -8377,8 +8377,8 @@ THREE.Float64Attribute = function ( data, itemSize ) {
 // File:src/core/BufferGeometry.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
- * @author mrdoob / http://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.BufferGeometry = function () {
@@ -8846,7 +8846,7 @@ THREE.BufferGeometry.prototype = {
 
 	computeTangents: function () {
 
-		// based on http://www.terathon.com/code/tangent.html
+		// based on https://www.terathon.com/code/tangent.html
 		// (per vertex tangents)
 
 		if ( this.attributes.index === undefined ||
@@ -9339,12 +9339,12 @@ THREE.EventDispatcher.prototype.apply( THREE.BufferGeometry.prototype );
 // File:src/core/Geometry.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author kile / http://kile.stravaganza.org/
- * @author alteredq / http://alteredqualia.com/
- * @author mikael emtinger / http://gomo.se/
- * @author zz85 / http://www.lab4games.net/zz85/blog
- * @author bhouston / http://exocortex.com
+ * @author mrdoob / https://mrdoob.com/
+ * @author kile / https://kile.stravaganza.org/
+ * @author alteredq / https://alteredqualia.com/
+ * @author mikael emtinger / https://gomo.se/
+ * @author zz85 / https://www.lab4games.net/zz85/blog
+ * @author bhouston / https://exocortex.com
  */
 
 THREE.Geometry = function () {
@@ -9580,7 +9580,7 @@ THREE.Geometry.prototype = {
 		if ( areaWeighted ) {
 
 			// vertex normals weighted by triangle areas
-			// http://www.iquilezles.org/www/articles/normals/normals.htm
+			// https://www.iquilezles.org/www/articles/normals/normals.htm
 
 			var vA, vB, vC, vD;
 			var cb = new THREE.Vector3(), ab = new THREE.Vector3(),
@@ -9755,7 +9755,7 @@ THREE.Geometry.prototype = {
 
 	computeTangents: function () {
 
-		// based on http://www.terathon.com/code/tangent.html
+		// based on https://www.terathon.com/code/tangent.html
 		// tangents go to vertices
 
 		var f, fl, v, vl, i, il, vertexIndex,
@@ -10383,9 +10383,9 @@ THREE.GeometryIdCount = 0;
 // File:src/cameras/Camera.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author mikael emtinger / http://gomo.se/
- * @author WestLangley / http://github.com/WestLangley
+ * @author mrdoob / https://mrdoob.com/
+ * @author mikael emtinger / https://gomo.se/
+ * @author WestLangley / https://github.com/WestLangley
 */
 
 THREE.Camera = function () {
@@ -10452,7 +10452,7 @@ THREE.Camera.prototype.clone = function ( camera ) {
  * Camera for rendering cube maps
  *	- renders scene into axis-aligned cube
  *
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.CubeCamera = function ( near, far, cubeResolution ) {
@@ -10532,7 +10532,7 @@ THREE.CubeCamera.prototype.constructor = THREE.CubeCamera;
 // File:src/cameras/OrthographicCamera.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.OrthographicCamera = function ( left, right, top, bottom, near, far ) {
@@ -10593,9 +10593,9 @@ THREE.OrthographicCamera.prototype.clone = function () {
 // File:src/cameras/PerspectiveCamera.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author greggman / http://games.greggman.com/
- * @author zz85 / http://www.lab4games.net/zz85/blog
+ * @author mrdoob / https://mrdoob.com/
+ * @author greggman / https://games.greggman.com/
+ * @author zz85 / https://www.lab4games.net/zz85/blog
  */
 
 THREE.PerspectiveCamera = function ( fov, aspect, near, far ) {
@@ -10622,7 +10622,7 @@ THREE.PerspectiveCamera.prototype.constructor = THREE.PerspectiveCamera;
 /**
  * Uses Focal Length (in mm) to estimate and set FOV
  * 35mm (fullframe) camera is used if frame size is not specified;
- * Formula based on http://www.bobatkins.com/photography/technical/field_of_view.html
+ * Formula based on https://www.bobatkins.com/photography/technical/field_of_view.html
  */
 
 THREE.PerspectiveCamera.prototype.setLens = function ( focalLength, frameHeight ) {
@@ -10738,8 +10738,8 @@ THREE.PerspectiveCamera.prototype.clone = function () {
 // File:src/lights/Light.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.Light = function ( color ) {
@@ -10770,7 +10770,7 @@ THREE.Light.prototype.clone = function ( light ) {
 // File:src/lights/AmbientLight.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.AmbientLight = function ( color ) {
@@ -10797,8 +10797,8 @@ THREE.AmbientLight.prototype.clone = function () {
 // File:src/lights/AreaLight.js
 
 /**
- * @author MPanknin / http://www.redplant.de/
- * @author alteredq / http://alteredqualia.com/
+ * @author MPanknin / https://www.redplant.de/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.AreaLight = function ( color, intensity ) {
@@ -10828,8 +10828,8 @@ THREE.AreaLight.prototype.constructor = THREE.AreaLight;
 // File:src/lights/DirectionalLight.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.DirectionalLight = function ( color, intensity ) {
@@ -10944,7 +10944,7 @@ THREE.DirectionalLight.prototype.clone = function () {
 // File:src/lights/HemisphereLight.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.HemisphereLight = function ( skyColor, groundColor, intensity ) {
@@ -10979,7 +10979,7 @@ THREE.HemisphereLight.prototype.clone = function () {
 // File:src/lights/PointLight.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.PointLight = function ( color, intensity, distance ) {
@@ -11012,7 +11012,7 @@ THREE.PointLight.prototype.clone = function () {
 // File:src/lights/SpotLight.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.SpotLight = function ( color, intensity, distance, angle, exponent ) {
@@ -11095,7 +11095,7 @@ THREE.SpotLight.prototype.clone = function () {
 // File:src/loaders/Cache.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.Cache = function () {
@@ -11141,7 +11141,7 @@ THREE.Cache.prototype = {
 // File:src/loaders/Loader.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.Loader = function ( showStatus ) {
@@ -11564,7 +11564,7 @@ THREE.Loader.Handlers = {
 // File:src/loaders/XHRLoader.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.XHRLoader = function ( manager ) {
@@ -11650,7 +11650,7 @@ THREE.XHRLoader.prototype = {
 // File:src/loaders/ImageLoader.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.ImageLoader = function ( manager ) {
@@ -11733,8 +11733,8 @@ THREE.ImageLoader.prototype = {
 // File:src/loaders/JSONLoader.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.JSONLoader = function ( showStatus ) {
@@ -12281,7 +12281,7 @@ THREE.JSONLoader.prototype.parse = function ( json, texturePath ) {
 // File:src/loaders/LoadingManager.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.LoadingManager = function ( onLoad, onProgress, onError ) {
@@ -12325,7 +12325,7 @@ THREE.DefaultLoadingManager = new THREE.LoadingManager();
 // File:src/loaders/BufferGeometryLoader.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.BufferGeometryLoader = function ( manager ) {
@@ -12406,7 +12406,7 @@ THREE.BufferGeometryLoader.prototype = {
 // File:src/loaders/MaterialLoader.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.MaterialLoader = function ( manager ) {
@@ -12478,7 +12478,7 @@ THREE.MaterialLoader.prototype = {
 // File:src/loaders/ObjectLoader.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.ObjectLoader = function ( manager ) {
@@ -12854,7 +12854,7 @@ THREE.ObjectLoader.prototype = {
 // File:src/loaders/TextureLoader.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.TextureLoader = function ( manager ) {
@@ -12989,7 +12989,7 @@ THREE.BinaryTextureLoader.prototype = {
 // File:src/loaders/CompressedTextureLoader.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  *
  * Abstract Base class to block based textures loader (dds, pvr, ...)
  */
@@ -13118,8 +13118,8 @@ THREE.CompressedTextureLoader.prototype = {
 // File:src/materials/Material.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.Material = function () {
@@ -13328,8 +13328,8 @@ THREE.MaterialIdCount = 0;
 // File:src/materials/LineBasicMaterial.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
  *
  * parameters = {
  *  color: <hex>,
@@ -13395,7 +13395,7 @@ THREE.LineBasicMaterial.prototype.clone = function () {
 // File:src/materials/LineDashedMaterial.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  *
  * parameters = {
  *  color: <hex>,
@@ -13467,8 +13467,8 @@ THREE.LineDashedMaterial.prototype.clone = function () {
 // File:src/materials/MeshBasicMaterial.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
  *
  * parameters = {
  *  color: <hex>,
@@ -13587,8 +13587,8 @@ THREE.MeshBasicMaterial.prototype.clone = function () {
 // File:src/materials/MeshLambertMaterial.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
  *
  * parameters = {
  *  color: <hex>,
@@ -13723,8 +13723,8 @@ THREE.MeshLambertMaterial.prototype.clone = function () {
 // File:src/materials/MeshPhongMaterial.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
  *
  * parameters = {
  *  color: <hex>,
@@ -13887,8 +13887,8 @@ THREE.MeshPhongMaterial.prototype.clone = function () {
 // File:src/materials/MeshDepthMaterial.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
  *
  * parameters = {
  *  opacity: <float>,
@@ -13935,7 +13935,7 @@ THREE.MeshDepthMaterial.prototype.clone = function () {
 // File:src/materials/MeshNormalMaterial.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  *
  * parameters = {
  *  opacity: <float>,
@@ -13988,7 +13988,7 @@ THREE.MeshNormalMaterial.prototype.clone = function () {
 // File:src/materials/MeshFaceMaterial.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.MeshFaceMaterial = function ( materials ) {
@@ -14047,8 +14047,8 @@ THREE.MeshFaceMaterial.prototype = {
 // File:src/materials/PointCloudMaterial.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
  *
  * parameters = {
  *  color: <hex>,
@@ -14132,7 +14132,7 @@ THREE.ParticleSystemMaterial = function ( parameters ) {
 // File:src/materials/ShaderMaterial.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  *
  * parameters = {
  *  defines: { "label" : "value" },
@@ -14246,7 +14246,7 @@ THREE.ShaderMaterial.prototype.clone = function () {
 // File:src/materials/RawShaderMaterial.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.RawShaderMaterial = function ( parameters ) {
@@ -14273,7 +14273,7 @@ THREE.RawShaderMaterial.prototype.clone = function () {
 // File:src/materials/SpriteMaterial.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  *
  * parameters = {
  *  color: <hex>,
@@ -14333,8 +14333,8 @@ THREE.SpriteMaterial.prototype.clone = function () {
 // File:src/textures/Texture.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
  * @author szimek / https://github.com/szimek/
  */
 
@@ -14368,7 +14368,7 @@ THREE.Texture = function ( image, mapping, wrapS, wrapT, magFilter, minFilter, f
 	this.generateMipmaps = true;
 	this.premultiplyAlpha = false;
 	this.flipY = true;
-	this.unpackAlignment = 4; // valid values: 1, 2, 4, 8 (see http://www.khronos.org/opengles/sdk/docs/man/xhtml/glPixelStorei.xml)
+	this.unpackAlignment = 4; // valid values: 1, 2, 4, 8 (see https://www.khronos.org/opengles/sdk/docs/man/xhtml/glPixelStorei.xml)
 
 	this._needsUpdate = false;
 	this.onUpdate = null;
@@ -14449,7 +14449,7 @@ THREE.TextureIdCount = 0;
 // File:src/textures/CubeTexture.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.CubeTexture = function ( images, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy ) {
@@ -14480,7 +14480,7 @@ THREE.CubeTexture.clone = function ( texture ) {
 // File:src/textures/CompressedTexture.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.CompressedTexture = function ( mipmaps, width, height, format, type, mapping, wrapS, wrapT, magFilter, minFilter, anisotropy ) {
@@ -14518,7 +14518,7 @@ THREE.CompressedTexture.prototype.clone = function () {
 // File:src/textures/DataTexture.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.DataTexture = function ( data, width, height, format, type, mapping, wrapS, wrapT, magFilter, minFilter, anisotropy ) {
@@ -14545,7 +14545,7 @@ THREE.DataTexture.prototype.clone = function () {
 // File:src/textures/VideoTexture.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.VideoTexture = function ( video, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy ) {
@@ -14578,7 +14578,7 @@ THREE.VideoTexture.prototype.constructor = THREE.VideoTexture;
 // File:src/objects/Group.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.Group = function () {
@@ -14595,7 +14595,7 @@ THREE.Group.prototype.constructor = THREE.Group;
 // File:src/objects/PointCloud.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.PointCloud = function ( geometry, material ) {
@@ -14761,7 +14761,7 @@ THREE.ParticleSystem = function ( geometry, material ) {
 // File:src/objects/Line.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.Line = function ( geometry, material, mode ) {
@@ -14953,10 +14953,10 @@ THREE.Line.prototype.clone = function ( object ) {
 // File:src/objects/Mesh.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
- * @author mikael emtinger / http://gomo.se/
- * @author jonobr1 / http://jonobr1.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
+ * @author mikael emtinger / https://gomo.se/
+ * @author jonobr1 / https://jonobr1.com/
  */
 
 THREE.Mesh = function ( geometry, material ) {
@@ -15281,9 +15281,9 @@ THREE.Mesh.prototype.clone = function ( object, recursive ) {
 // File:src/objects/Bone.js
 
 /**
- * @author mikael emtinger / http://gomo.se/
- * @author alteredq / http://alteredqualia.com/
- * @author ikerr / http://verold.com
+ * @author mikael emtinger / https://gomo.se/
+ * @author alteredq / https://alteredqualia.com/
+ * @author ikerr / https://verold.com
  */
 
 THREE.Bone = function ( belongsToSkin ) {
@@ -15301,10 +15301,10 @@ THREE.Bone.prototype.constructor = THREE.Bone;
 // File:src/objects/Skeleton.js
 
 /**
- * @author mikael emtinger / http://gomo.se/
- * @author alteredq / http://alteredqualia.com/
- * @author michael guerrero / http://realitymeltdown.com
- * @author ikerr / http://verold.com
+ * @author mikael emtinger / https://gomo.se/
+ * @author alteredq / https://alteredqualia.com/
+ * @author michael guerrero / https://realitymeltdown.com
+ * @author ikerr / https://verold.com
  */
 
 THREE.Skeleton = function ( bones, boneInverses, useVertexTexture ) {
@@ -15485,9 +15485,9 @@ THREE.Skeleton.prototype.update = ( function () {
 // File:src/objects/SkinnedMesh.js
 
 /**
- * @author mikael emtinger / http://gomo.se/
- * @author alteredq / http://alteredqualia.com/
- * @author ikerr / http://verold.com
+ * @author mikael emtinger / https://gomo.se/
+ * @author alteredq / https://alteredqualia.com/
+ * @author ikerr / https://verold.com
  */
 
 THREE.SkinnedMesh = function ( geometry, material, useVertexTexture ) {
@@ -15658,7 +15658,7 @@ THREE.SkinnedMesh.prototype.clone = function( object ) {
 // File:src/objects/MorphAnimMesh.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.MorphAnimMesh = function ( geometry, material ) {
@@ -15875,9 +15875,9 @@ THREE.MorphAnimMesh.prototype.clone = function ( object ) {
 // File:src/objects/LOD.js
 
 /**
- * @author mikael emtinger / http://gomo.se/
- * @author alteredq / http://alteredqualia.com/
- * @author mrdoob / http://mrdoob.com/
+ * @author mikael emtinger / https://gomo.se/
+ * @author alteredq / https://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.LOD = function () {
@@ -16007,8 +16007,8 @@ THREE.LOD.prototype.clone = function ( object ) {
 // File:src/objects/Sprite.js
 
 /**
- * @author mikael emtinger / http://gomo.se/
- * @author alteredq / http://alteredqualia.com/
+ * @author mikael emtinger / https://gomo.se/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.Sprite = ( function () {
@@ -16084,8 +16084,8 @@ THREE.Particle = THREE.Sprite;
 // File:src/objects/LensFlare.js
 
 /**
- * @author mikael emtinger / http://gomo.se/
- * @author alteredq / http://alteredqualia.com/
+ * @author mikael emtinger / https://gomo.se/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.LensFlare = function ( texture, size, distance, blending, color ) {
@@ -16167,7 +16167,7 @@ THREE.LensFlare.prototype.updateLensFlares = function () {
 // File:src/scenes/Scene.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.Scene = function () {
@@ -16205,8 +16205,8 @@ THREE.Scene.prototype.clone = function ( object ) {
 // File:src/scenes/Fog.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.Fog = function ( color, near, far ) {
@@ -16229,8 +16229,8 @@ THREE.Fog.prototype.clone = function () {
 // File:src/scenes/FogExp2.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.FogExp2 = function ( color, density ) {
@@ -16306,7 +16306,7 @@ THREE.ShaderChunk[ 'logdepthbuf_fragment'] = "#if defined(USE_LOGDEPTHBUF) && de
 
 // File:src/renderers/shaders/ShaderChunk/normalmap_pars_fragment.glsl
 
-THREE.ShaderChunk[ 'normalmap_pars_fragment'] = "#ifdef USE_NORMALMAP\n\n	uniform sampler2D normalMap;\n	uniform vec2 normalScale;\n\n			// Per-Pixel Tangent Space Normal Mapping\n			// http://hacksoflife.blogspot.ch/2009/11/per-pixel-tangent-space-normal-mapping.html\n\n	vec3 perturbNormal2Arb( vec3 eye_pos, vec3 surf_norm ) {\n\n		vec3 q0 = dFdx( eye_pos.xyz );\n		vec3 q1 = dFdy( eye_pos.xyz );\n		vec2 st0 = dFdx( vUv.st );\n		vec2 st1 = dFdy( vUv.st );\n\n		vec3 S = normalize( q0 * st1.t - q1 * st0.t );\n		vec3 T = normalize( -q0 * st1.s + q1 * st0.s );\n		vec3 N = normalize( surf_norm );\n\n		vec3 mapN = texture2D( normalMap, vUv ).xyz * 2.0 - 1.0;\n		mapN.xy = normalScale * mapN.xy;\n		mat3 tsn = mat3( S, T, N );\n		return normalize( tsn * mapN );\n\n	}\n\n#endif\n";
+THREE.ShaderChunk[ 'normalmap_pars_fragment'] = "#ifdef USE_NORMALMAP\n\n	uniform sampler2D normalMap;\n	uniform vec2 normalScale;\n\n			// Per-Pixel Tangent Space Normal Mapping\n			// https://hacksoflife.blogspot.ch/2009/11/per-pixel-tangent-space-normal-mapping.html\n\n	vec3 perturbNormal2Arb( vec3 eye_pos, vec3 surf_norm ) {\n\n		vec3 q0 = dFdx( eye_pos.xyz );\n		vec3 q1 = dFdy( eye_pos.xyz );\n		vec2 st0 = dFdx( vUv.st );\n		vec2 st1 = dFdy( vUv.st );\n\n		vec3 S = normalize( q0 * st1.t - q1 * st0.t );\n		vec3 T = normalize( -q0 * st1.s + q1 * st0.s );\n		vec3 N = normalize( surf_norm );\n\n		vec3 mapN = texture2D( normalMap, vUv ).xyz * 2.0 - 1.0;\n		mapN.xy = normalScale * mapN.xy;\n		mat3 tsn = mat3( S, T, N );\n		return normalize( tsn * mapN );\n\n	}\n\n#endif\n";
 
 // File:src/renderers/shaders/ShaderChunk/lights_phong_pars_vertex.glsl
 
@@ -16370,7 +16370,7 @@ THREE.ShaderChunk[ 'map_pars_vertex'] = "#if defined( USE_MAP ) || defined( USE_
 
 // File:src/renderers/shaders/ShaderChunk/envmap_fragment.glsl
 
-THREE.ShaderChunk[ 'envmap_fragment'] = "#ifdef USE_ENVMAP\n\n	#if defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( PHONG )\n\n		vec3 cameraToVertex = normalize( vWorldPosition - cameraPosition );\n\n		// http://en.wikibooks.org/wiki/GLSL_Programming/Applying_Matrix_Transformations\n		// Transforming Normal Vectors with the Inverse Transformation\n\n		vec3 worldNormal = normalize( vec3( vec4( normal, 0.0 ) * viewMatrix ) );\n\n		#ifdef ENVMAP_MODE_REFLECTION\n\n			vec3 reflectVec = reflect( cameraToVertex, worldNormal );\n\n		#else\n\n			vec3 reflectVec = refract( cameraToVertex, worldNormal, refractionRatio );\n\n		#endif\n\n	#else\n\n		vec3 reflectVec = vReflect;\n\n	#endif\n\n	#ifdef DOUBLE_SIDED\n		float flipNormal = ( -1.0 + 2.0 * float( gl_FrontFacing ) );\n	#else\n		float flipNormal = 1.0;\n	#endif\n\n	#ifdef ENVMAP_TYPE_CUBE\n		vec4 envColor = textureCube( envMap, flipNormal * vec3( flipEnvMap * reflectVec.x, reflectVec.yz ) );\n\n	#elif defined( ENVMAP_TYPE_EQUIREC )\n		vec2 sampleUV;\n		sampleUV.y = clamp( flipNormal * reflectVec.y * 0.5 + 0.5, 0.0, 1.0);\n		sampleUV.x = atan( flipNormal * reflectVec.z, flipNormal * reflectVec.x ) * 0.15915494309189533576888376337251 + 0.5; // reciprocal( 2 PI ) + 0.5\n		vec4 envColor = texture2D( envMap, sampleUV );\n		\n	#elif defined( ENVMAP_TYPE_SPHERE )\n		vec3 reflectView = flipNormal * normalize((viewMatrix * vec4( reflectVec, 0.0 )).xyz + vec3(0.0,0.0,1.0));\n		vec4 envColor = texture2D( envMap, reflectView.xy * 0.5 + 0.5 );\n	#endif\n\n	#ifdef GAMMA_INPUT\n\n		envColor.xyz *= envColor.xyz;\n\n	#endif\n\n	#ifdef ENVMAP_BLENDING_MULTIPLY\n\n		gl_FragColor.xyz = mix( gl_FragColor.xyz, gl_FragColor.xyz * envColor.xyz, specularStrength * reflectivity );\n\n	#elif defined( ENVMAP_BLENDING_MIX )\n\n		gl_FragColor.xyz = mix( gl_FragColor.xyz, envColor.xyz, specularStrength * reflectivity );\n\n	#elif defined( ENVMAP_BLENDING_ADD )\n\n		gl_FragColor.xyz += envColor.xyz * specularStrength * reflectivity;\n\n	#endif\n\n#endif\n";
+THREE.ShaderChunk[ 'envmap_fragment'] = "#ifdef USE_ENVMAP\n\n	#if defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( PHONG )\n\n		vec3 cameraToVertex = normalize( vWorldPosition - cameraPosition );\n\n		// https://en.wikibooks.org/wiki/GLSL_Programming/Applying_Matrix_Transformations\n		// Transforming Normal Vectors with the Inverse Transformation\n\n		vec3 worldNormal = normalize( vec3( vec4( normal, 0.0 ) * viewMatrix ) );\n\n		#ifdef ENVMAP_MODE_REFLECTION\n\n			vec3 reflectVec = reflect( cameraToVertex, worldNormal );\n\n		#else\n\n			vec3 reflectVec = refract( cameraToVertex, worldNormal, refractionRatio );\n\n		#endif\n\n	#else\n\n		vec3 reflectVec = vReflect;\n\n	#endif\n\n	#ifdef DOUBLE_SIDED\n		float flipNormal = ( -1.0 + 2.0 * float( gl_FrontFacing ) );\n	#else\n		float flipNormal = 1.0;\n	#endif\n\n	#ifdef ENVMAP_TYPE_CUBE\n		vec4 envColor = textureCube( envMap, flipNormal * vec3( flipEnvMap * reflectVec.x, reflectVec.yz ) );\n\n	#elif defined( ENVMAP_TYPE_EQUIREC )\n		vec2 sampleUV;\n		sampleUV.y = clamp( flipNormal * reflectVec.y * 0.5 + 0.5, 0.0, 1.0);\n		sampleUV.x = atan( flipNormal * reflectVec.z, flipNormal * reflectVec.x ) * 0.15915494309189533576888376337251 + 0.5; // reciprocal( 2 PI ) + 0.5\n		vec4 envColor = texture2D( envMap, sampleUV );\n		\n	#elif defined( ENVMAP_TYPE_SPHERE )\n		vec3 reflectView = flipNormal * normalize((viewMatrix * vec4( reflectVec, 0.0 )).xyz + vec3(0.0,0.0,1.0));\n		vec4 envColor = texture2D( envMap, reflectView.xy * 0.5 + 0.5 );\n	#endif\n\n	#ifdef GAMMA_INPUT\n\n		envColor.xyz *= envColor.xyz;\n\n	#endif\n\n	#ifdef ENVMAP_BLENDING_MULTIPLY\n\n		gl_FragColor.xyz = mix( gl_FragColor.xyz, gl_FragColor.xyz * envColor.xyz, specularStrength * reflectivity );\n\n	#elif defined( ENVMAP_BLENDING_MIX )\n\n		gl_FragColor.xyz = mix( gl_FragColor.xyz, envColor.xyz, specularStrength * reflectivity );\n\n	#elif defined( ENVMAP_BLENDING_ADD )\n\n		gl_FragColor.xyz += envColor.xyz * specularStrength * reflectivity;\n\n	#endif\n\n#endif\n";
 
 // File:src/renderers/shaders/ShaderChunk/specularmap_pars_fragment.glsl
 
@@ -16394,7 +16394,7 @@ THREE.ShaderChunk[ 'fog_fragment'] = "#ifdef USE_FOG\n\n	#ifdef USE_LOGDEPTHBUF_
 
 // File:src/renderers/shaders/ShaderChunk/bumpmap_pars_fragment.glsl
 
-THREE.ShaderChunk[ 'bumpmap_pars_fragment'] = "#ifdef USE_BUMPMAP\n\n	uniform sampler2D bumpMap;\n	uniform float bumpScale;\n\n			// Derivative maps - bump mapping unparametrized surfaces by Morten Mikkelsen\n			//	http://mmikkelsen3d.blogspot.sk/2011/07/derivative-maps.html\n\n			// Evaluate the derivative of the height w.r.t. screen-space using forward differencing (listing 2)\n\n	vec2 dHdxy_fwd() {\n\n		vec2 dSTdx = dFdx( vUv );\n		vec2 dSTdy = dFdy( vUv );\n\n		float Hll = bumpScale * texture2D( bumpMap, vUv ).x;\n		float dBx = bumpScale * texture2D( bumpMap, vUv + dSTdx ).x - Hll;\n		float dBy = bumpScale * texture2D( bumpMap, vUv + dSTdy ).x - Hll;\n\n		return vec2( dBx, dBy );\n\n	}\n\n	vec3 perturbNormalArb( vec3 surf_pos, vec3 surf_norm, vec2 dHdxy ) {\n\n		vec3 vSigmaX = dFdx( surf_pos );\n		vec3 vSigmaY = dFdy( surf_pos );\n		vec3 vN = surf_norm;		// normalized\n\n		vec3 R1 = cross( vSigmaY, vN );\n		vec3 R2 = cross( vN, vSigmaX );\n\n		float fDet = dot( vSigmaX, R1 );\n\n		vec3 vGrad = sign( fDet ) * ( dHdxy.x * R1 + dHdxy.y * R2 );\n		return normalize( abs( fDet ) * surf_norm - vGrad );\n\n	}\n\n#endif";
+THREE.ShaderChunk[ 'bumpmap_pars_fragment'] = "#ifdef USE_BUMPMAP\n\n	uniform sampler2D bumpMap;\n	uniform float bumpScale;\n\n			// Derivative maps - bump mapping unparametrized surfaces by Morten Mikkelsen\n			//	https://mmikkelsen3d.blogspot.sk/2011/07/derivative-maps.html\n\n			// Evaluate the derivative of the height w.r.t. screen-space using forward differencing (listing 2)\n\n	vec2 dHdxy_fwd() {\n\n		vec2 dSTdx = dFdx( vUv );\n		vec2 dSTdy = dFdy( vUv );\n\n		float Hll = bumpScale * texture2D( bumpMap, vUv ).x;\n		float dBx = bumpScale * texture2D( bumpMap, vUv + dSTdx ).x - Hll;\n		float dBy = bumpScale * texture2D( bumpMap, vUv + dSTdy ).x - Hll;\n\n		return vec2( dBx, dBy );\n\n	}\n\n	vec3 perturbNormalArb( vec3 surf_pos, vec3 surf_norm, vec2 dHdxy ) {\n\n		vec3 vSigmaX = dFdx( surf_pos );\n		vec3 vSigmaY = dFdy( surf_pos );\n		vec3 vN = surf_norm;		// normalized\n\n		vec3 R1 = cross( vSigmaY, vN );\n		vec3 R2 = cross( vN, vSigmaX );\n\n		float fDet = dot( vSigmaX, R1 );\n\n		vec3 vGrad = sign( fDet ) * ( dHdxy.x * R1 + dHdxy.y * R2 );\n		return normalize( abs( fDet ) * surf_norm - vGrad );\n\n	}\n\n#endif";
 
 // File:src/renderers/shaders/ShaderChunk/defaultnormal_vertex.glsl
 
@@ -16434,7 +16434,7 @@ THREE.ShaderChunk[ 'envmap_vertex'] = "#if defined( USE_ENVMAP ) && ! defined( U
 
 // File:src/renderers/shaders/ShaderChunk/shadowmap_fragment.glsl
 
-THREE.ShaderChunk[ 'shadowmap_fragment'] = "#ifdef USE_SHADOWMAP\n\n	#ifdef SHADOWMAP_DEBUG\n\n		vec3 frustumColors[3];\n		frustumColors[0] = vec3( 1.0, 0.5, 0.0 );\n		frustumColors[1] = vec3( 0.0, 1.0, 0.8 );\n		frustumColors[2] = vec3( 0.0, 0.5, 1.0 );\n\n	#endif\n\n	#ifdef SHADOWMAP_CASCADE\n\n		int inFrustumCount = 0;\n\n	#endif\n\n	float fDepth;\n	vec3 shadowColor = vec3( 1.0 );\n\n	for( int i = 0; i < MAX_SHADOWS; i ++ ) {\n\n		vec3 shadowCoord = vShadowCoord[ i ].xyz / vShadowCoord[ i ].w;\n\n				// if ( something && something ) breaks ATI OpenGL shader compiler\n				// if ( all( something, something ) ) using this instead\n\n		bvec4 inFrustumVec = bvec4 ( shadowCoord.x >= 0.0, shadowCoord.x <= 1.0, shadowCoord.y >= 0.0, shadowCoord.y <= 1.0 );\n		bool inFrustum = all( inFrustumVec );\n\n				// don't shadow pixels outside of light frustum\n				// use just first frustum (for cascades)\n				// don't shadow pixels behind far plane of light frustum\n\n		#ifdef SHADOWMAP_CASCADE\n\n			inFrustumCount += int( inFrustum );\n			bvec3 frustumTestVec = bvec3( inFrustum, inFrustumCount == 1, shadowCoord.z <= 1.0 );\n\n		#else\n\n			bvec2 frustumTestVec = bvec2( inFrustum, shadowCoord.z <= 1.0 );\n\n		#endif\n\n		bool frustumTest = all( frustumTestVec );\n\n		if ( frustumTest ) {\n\n			shadowCoord.z += shadowBias[ i ];\n\n			#if defined( SHADOWMAP_TYPE_PCF )\n\n						// Percentage-close filtering\n						// (9 pixel kernel)\n						// http://fabiensanglard.net/shadowmappingPCF/\n\n				float shadow = 0.0;\n\n		/*\n						// nested loops breaks shader compiler / validator on some ATI cards when using OpenGL\n						// must enroll loop manually\n\n				for ( float y = -1.25; y <= 1.25; y += 1.25 )\n					for ( float x = -1.25; x <= 1.25; x += 1.25 ) {\n\n						vec4 rgbaDepth = texture2D( shadowMap[ i ], vec2( x * xPixelOffset, y * yPixelOffset ) + shadowCoord.xy );\n\n								// doesn't seem to produce any noticeable visual difference compared to simple texture2D lookup\n								//vec4 rgbaDepth = texture2DProj( shadowMap[ i ], vec4( vShadowCoord[ i ].w * ( vec2( x * xPixelOffset, y * yPixelOffset ) + shadowCoord.xy ), 0.05, vShadowCoord[ i ].w ) );\n\n						float fDepth = unpackDepth( rgbaDepth );\n\n						if ( fDepth < shadowCoord.z )\n							shadow += 1.0;\n\n				}\n\n				shadow /= 9.0;\n\n		*/\n\n				const float shadowDelta = 1.0 / 9.0;\n\n				float xPixelOffset = 1.0 / shadowMapSize[ i ].x;\n				float yPixelOffset = 1.0 / shadowMapSize[ i ].y;\n\n				float dx0 = -1.25 * xPixelOffset;\n				float dy0 = -1.25 * yPixelOffset;\n				float dx1 = 1.25 * xPixelOffset;\n				float dy1 = 1.25 * yPixelOffset;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, dy0 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += shadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( 0.0, dy0 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += shadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, dy0 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += shadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, 0.0 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += shadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy ) );\n				if ( fDepth < shadowCoord.z ) shadow += shadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, 0.0 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += shadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, dy1 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += shadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( 0.0, dy1 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += shadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, dy1 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += shadowDelta;\n\n				shadowColor = shadowColor * vec3( ( 1.0 - shadowDarkness[ i ] * shadow ) );\n\n			#elif defined( SHADOWMAP_TYPE_PCF_SOFT )\n\n						// Percentage-close filtering\n						// (9 pixel kernel)\n						// http://fabiensanglard.net/shadowmappingPCF/\n\n				float shadow = 0.0;\n\n				float xPixelOffset = 1.0 / shadowMapSize[ i ].x;\n				float yPixelOffset = 1.0 / shadowMapSize[ i ].y;\n\n				float dx0 = -1.0 * xPixelOffset;\n				float dy0 = -1.0 * yPixelOffset;\n				float dx1 = 1.0 * xPixelOffset;\n				float dy1 = 1.0 * yPixelOffset;\n\n				mat3 shadowKernel;\n				mat3 depthKernel;\n\n				depthKernel[0][0] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, dy0 ) ) );\n				depthKernel[0][1] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, 0.0 ) ) );\n				depthKernel[0][2] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, dy1 ) ) );\n				depthKernel[1][0] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( 0.0, dy0 ) ) );\n				depthKernel[1][1] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy ) );\n				depthKernel[1][2] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( 0.0, dy1 ) ) );\n				depthKernel[2][0] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, dy0 ) ) );\n				depthKernel[2][1] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, 0.0 ) ) );\n				depthKernel[2][2] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, dy1 ) ) );\n\n				vec3 shadowZ = vec3( shadowCoord.z );\n				shadowKernel[0] = vec3(lessThan(depthKernel[0], shadowZ ));\n				shadowKernel[0] *= vec3(0.25);\n\n				shadowKernel[1] = vec3(lessThan(depthKernel[1], shadowZ ));\n				shadowKernel[1] *= vec3(0.25);\n\n				shadowKernel[2] = vec3(lessThan(depthKernel[2], shadowZ ));\n				shadowKernel[2] *= vec3(0.25);\n\n				vec2 fractionalCoord = 1.0 - fract( shadowCoord.xy * shadowMapSize[i].xy );\n\n				shadowKernel[0] = mix( shadowKernel[1], shadowKernel[0], fractionalCoord.x );\n				shadowKernel[1] = mix( shadowKernel[2], shadowKernel[1], fractionalCoord.x );\n\n				vec4 shadowValues;\n				shadowValues.x = mix( shadowKernel[0][1], shadowKernel[0][0], fractionalCoord.y );\n				shadowValues.y = mix( shadowKernel[0][2], shadowKernel[0][1], fractionalCoord.y );\n				shadowValues.z = mix( shadowKernel[1][1], shadowKernel[1][0], fractionalCoord.y );\n				shadowValues.w = mix( shadowKernel[1][2], shadowKernel[1][1], fractionalCoord.y );\n\n				shadow = dot( shadowValues, vec4( 1.0 ) );\n\n				shadowColor = shadowColor * vec3( ( 1.0 - shadowDarkness[ i ] * shadow ) );\n\n			#else\n\n				vec4 rgbaDepth = texture2D( shadowMap[ i ], shadowCoord.xy );\n				float fDepth = unpackDepth( rgbaDepth );\n\n				if ( fDepth < shadowCoord.z )\n\n		// spot with multiple shadows is darker\n\n					shadowColor = shadowColor * vec3( 1.0 - shadowDarkness[ i ] );\n\n		// spot with multiple shadows has the same color as single shadow spot\n\n		// 					shadowColor = min( shadowColor, vec3( shadowDarkness[ i ] ) );\n\n			#endif\n\n		}\n\n\n		#ifdef SHADOWMAP_DEBUG\n\n			#ifdef SHADOWMAP_CASCADE\n\n				if ( inFrustum && inFrustumCount == 1 ) gl_FragColor.xyz *= frustumColors[ i ];\n\n			#else\n\n				if ( inFrustum ) gl_FragColor.xyz *= frustumColors[ i ];\n\n			#endif\n\n		#endif\n\n	}\n\n	#ifdef GAMMA_OUTPUT\n\n		shadowColor *= shadowColor;\n\n	#endif\n\n	gl_FragColor.xyz = gl_FragColor.xyz * shadowColor;\n\n#endif\n";
+THREE.ShaderChunk[ 'shadowmap_fragment'] = "#ifdef USE_SHADOWMAP\n\n	#ifdef SHADOWMAP_DEBUG\n\n		vec3 frustumColors[3];\n		frustumColors[0] = vec3( 1.0, 0.5, 0.0 );\n		frustumColors[1] = vec3( 0.0, 1.0, 0.8 );\n		frustumColors[2] = vec3( 0.0, 0.5, 1.0 );\n\n	#endif\n\n	#ifdef SHADOWMAP_CASCADE\n\n		int inFrustumCount = 0;\n\n	#endif\n\n	float fDepth;\n	vec3 shadowColor = vec3( 1.0 );\n\n	for( int i = 0; i < MAX_SHADOWS; i ++ ) {\n\n		vec3 shadowCoord = vShadowCoord[ i ].xyz / vShadowCoord[ i ].w;\n\n				// if ( something && something ) breaks ATI OpenGL shader compiler\n				// if ( all( something, something ) ) using this instead\n\n		bvec4 inFrustumVec = bvec4 ( shadowCoord.x >= 0.0, shadowCoord.x <= 1.0, shadowCoord.y >= 0.0, shadowCoord.y <= 1.0 );\n		bool inFrustum = all( inFrustumVec );\n\n				// don't shadow pixels outside of light frustum\n				// use just first frustum (for cascades)\n				// don't shadow pixels behind far plane of light frustum\n\n		#ifdef SHADOWMAP_CASCADE\n\n			inFrustumCount += int( inFrustum );\n			bvec3 frustumTestVec = bvec3( inFrustum, inFrustumCount == 1, shadowCoord.z <= 1.0 );\n\n		#else\n\n			bvec2 frustumTestVec = bvec2( inFrustum, shadowCoord.z <= 1.0 );\n\n		#endif\n\n		bool frustumTest = all( frustumTestVec );\n\n		if ( frustumTest ) {\n\n			shadowCoord.z += shadowBias[ i ];\n\n			#if defined( SHADOWMAP_TYPE_PCF )\n\n						// Percentage-close filtering\n						// (9 pixel kernel)\n						// https://fabiensanglard.net/shadowmappingPCF/\n\n				float shadow = 0.0;\n\n		/*\n						// nested loops breaks shader compiler / validator on some ATI cards when using OpenGL\n						// must enroll loop manually\n\n				for ( float y = -1.25; y <= 1.25; y += 1.25 )\n					for ( float x = -1.25; x <= 1.25; x += 1.25 ) {\n\n						vec4 rgbaDepth = texture2D( shadowMap[ i ], vec2( x * xPixelOffset, y * yPixelOffset ) + shadowCoord.xy );\n\n								// doesn't seem to produce any noticeable visual difference compared to simple texture2D lookup\n								//vec4 rgbaDepth = texture2DProj( shadowMap[ i ], vec4( vShadowCoord[ i ].w * ( vec2( x * xPixelOffset, y * yPixelOffset ) + shadowCoord.xy ), 0.05, vShadowCoord[ i ].w ) );\n\n						float fDepth = unpackDepth( rgbaDepth );\n\n						if ( fDepth < shadowCoord.z )\n							shadow += 1.0;\n\n				}\n\n				shadow /= 9.0;\n\n		*/\n\n				const float shadowDelta = 1.0 / 9.0;\n\n				float xPixelOffset = 1.0 / shadowMapSize[ i ].x;\n				float yPixelOffset = 1.0 / shadowMapSize[ i ].y;\n\n				float dx0 = -1.25 * xPixelOffset;\n				float dy0 = -1.25 * yPixelOffset;\n				float dx1 = 1.25 * xPixelOffset;\n				float dy1 = 1.25 * yPixelOffset;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, dy0 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += shadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( 0.0, dy0 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += shadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, dy0 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += shadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, 0.0 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += shadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy ) );\n				if ( fDepth < shadowCoord.z ) shadow += shadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, 0.0 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += shadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, dy1 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += shadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( 0.0, dy1 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += shadowDelta;\n\n				fDepth = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, dy1 ) ) );\n				if ( fDepth < shadowCoord.z ) shadow += shadowDelta;\n\n				shadowColor = shadowColor * vec3( ( 1.0 - shadowDarkness[ i ] * shadow ) );\n\n			#elif defined( SHADOWMAP_TYPE_PCF_SOFT )\n\n						// Percentage-close filtering\n						// (9 pixel kernel)\n						// https://fabiensanglard.net/shadowmappingPCF/\n\n				float shadow = 0.0;\n\n				float xPixelOffset = 1.0 / shadowMapSize[ i ].x;\n				float yPixelOffset = 1.0 / shadowMapSize[ i ].y;\n\n				float dx0 = -1.0 * xPixelOffset;\n				float dy0 = -1.0 * yPixelOffset;\n				float dx1 = 1.0 * xPixelOffset;\n				float dy1 = 1.0 * yPixelOffset;\n\n				mat3 shadowKernel;\n				mat3 depthKernel;\n\n				depthKernel[0][0] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, dy0 ) ) );\n				depthKernel[0][1] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, 0.0 ) ) );\n				depthKernel[0][2] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, dy1 ) ) );\n				depthKernel[1][0] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( 0.0, dy0 ) ) );\n				depthKernel[1][1] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy ) );\n				depthKernel[1][2] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( 0.0, dy1 ) ) );\n				depthKernel[2][0] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, dy0 ) ) );\n				depthKernel[2][1] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, 0.0 ) ) );\n				depthKernel[2][2] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, dy1 ) ) );\n\n				vec3 shadowZ = vec3( shadowCoord.z );\n				shadowKernel[0] = vec3(lessThan(depthKernel[0], shadowZ ));\n				shadowKernel[0] *= vec3(0.25);\n\n				shadowKernel[1] = vec3(lessThan(depthKernel[1], shadowZ ));\n				shadowKernel[1] *= vec3(0.25);\n\n				shadowKernel[2] = vec3(lessThan(depthKernel[2], shadowZ ));\n				shadowKernel[2] *= vec3(0.25);\n\n				vec2 fractionalCoord = 1.0 - fract( shadowCoord.xy * shadowMapSize[i].xy );\n\n				shadowKernel[0] = mix( shadowKernel[1], shadowKernel[0], fractionalCoord.x );\n				shadowKernel[1] = mix( shadowKernel[2], shadowKernel[1], fractionalCoord.x );\n\n				vec4 shadowValues;\n				shadowValues.x = mix( shadowKernel[0][1], shadowKernel[0][0], fractionalCoord.y );\n				shadowValues.y = mix( shadowKernel[0][2], shadowKernel[0][1], fractionalCoord.y );\n				shadowValues.z = mix( shadowKernel[1][1], shadowKernel[1][0], fractionalCoord.y );\n				shadowValues.w = mix( shadowKernel[1][2], shadowKernel[1][1], fractionalCoord.y );\n\n				shadow = dot( shadowValues, vec4( 1.0 ) );\n\n				shadowColor = shadowColor * vec3( ( 1.0 - shadowDarkness[ i ] * shadow ) );\n\n			#else\n\n				vec4 rgbaDepth = texture2D( shadowMap[ i ], shadowCoord.xy );\n				float fDepth = unpackDepth( rgbaDepth );\n\n				if ( fDepth < shadowCoord.z )\n\n		// spot with multiple shadows is darker\n\n					shadowColor = shadowColor * vec3( 1.0 - shadowDarkness[ i ] );\n\n		// spot with multiple shadows has the same color as single shadow spot\n\n		// 					shadowColor = min( shadowColor, vec3( shadowDarkness[ i ] ) );\n\n			#endif\n\n		}\n\n\n		#ifdef SHADOWMAP_DEBUG\n\n			#ifdef SHADOWMAP_CASCADE\n\n				if ( inFrustum && inFrustumCount == 1 ) gl_FragColor.xyz *= frustumColors[ i ];\n\n			#else\n\n				if ( inFrustum ) gl_FragColor.xyz *= frustumColors[ i ];\n\n			#endif\n\n		#endif\n\n	}\n\n	#ifdef GAMMA_OUTPUT\n\n		shadowColor *= shadowColor;\n\n	#endif\n\n	gl_FragColor.xyz = gl_FragColor.xyz * shadowColor;\n\n#endif\n";
 
 // File:src/renderers/shaders/ShaderChunk/worldpos_vertex.glsl
 
@@ -16638,9 +16638,9 @@ THREE.UniformsLib = {
 /**
  * Webgl Shader Library for three.js
  *
- * @author alteredq / http://alteredqualia.com/
- * @author mrdoob / http://mrdoob.com/
- * @author mikael emtinger / http://gomo.se/
+ * @author alteredq / https://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author mikael emtinger / https://gomo.se/
  */
 
 
@@ -17330,13 +17330,13 @@ THREE.ShaderLib = {
 	/* Depth encoding into RGBA texture
 	 *
 	 * based on SpiderGL shadow map example
-	 * http://spidergl.org/example.php?id=6
+	 * https://spidergl.org/example.php?id=6
 	 *
 	 * originally from
-	 * http://www.gamedev.net/topic/442138-packing-a-float-into-a-a8r8g8b8-texture-shader/page__whichpage__1%25EF%25BF%25BD
+	 * https://www.gamedev.net/topic/442138-packing-a-float-into-a-a8r8g8b8-texture-shader/page__whichpage__1%25EF%25BF%25BD
 	 *
 	 * see also
-	 * http://aras-p.info/blog/2009/07/30/encoding-floats-to-rgba-the-final/
+	 * https://aras-p.info/blog/2009/07/30/encoding-floats-to-rgba-the-final/
 	 */
 
 	'depthRGBA': {
@@ -17405,9 +17405,9 @@ THREE.ShaderLib = {
 // File:src/renderers/WebGLRenderer.js
 
 /**
- * @author supereggbert / http://www.paulbrunt.co.uk/
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
+ * @author supereggbert / https://www.paulbrunt.co.uk/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
  * @author szimek / https://github.com/szimek/
  */
 
@@ -23818,7 +23818,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 /**
  * @author szimek / https://github.com/szimek/
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.WebGLRenderTarget = function ( width, height, options ) {
@@ -23904,7 +23904,7 @@ THREE.EventDispatcher.prototype.apply( THREE.WebGLRenderTarget.prototype );
 // File:src/renderers/WebGLRenderTargetCube.js
 
 /**
- * @author alteredq / http://alteredqualia.com
+ * @author alteredq / https://alteredqualia.com
  */
 
 THREE.WebGLRenderTargetCube = function ( width, height, options ) {
@@ -23921,7 +23921,7 @@ THREE.WebGLRenderTargetCube.prototype.constructor = THREE.WebGLRenderTargetCube;
 // File:src/renderers/webgl/WebGLExtensions.js
 
 /**
-* @author mrdoob / http://mrdoob.com/
+* @author mrdoob / https://mrdoob.com/
 */
 
 THREE.WebGLExtensions = function ( gl ) {
@@ -24475,8 +24475,8 @@ THREE.WebGLShader = ( function () {
 // File:src/renderers/webgl/plugins/LensFlarePlugin.js
 
 /**
- * @author mikael emtinger / http://gomo.se/
- * @author alteredq / http://alteredqualia.com/
+ * @author mikael emtinger / https://gomo.se/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.LensFlarePlugin = function ( renderer, flares ) {
@@ -24947,7 +24947,7 @@ THREE.LensFlarePlugin = function ( renderer, flares ) {
 // File:src/renderers/webgl/plugins/ShadowMapPlugin.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.ShadowMapPlugin = function ( _renderer, _lights, _webglObjects, _webglObjectsImmediate ) {
@@ -25472,8 +25472,8 @@ THREE.ShadowMapPlugin = function ( _renderer, _lights, _webglObjects, _webglObje
 // File:src/renderers/webgl/plugins/SpritePlugin.js
 
 /**
- * @author mikael emtinger / http://gomo.se/
- * @author alteredq / http://alteredqualia.com/
+ * @author mikael emtinger / https://gomo.se/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.SpritePlugin = function ( renderer, sprites ) {
@@ -25839,7 +25839,7 @@ THREE.SpritePlugin = function ( renderer, sprites ) {
 // File:src/extras/GeometryUtils.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.GeometryUtils = {
@@ -25875,8 +25875,8 @@ THREE.GeometryUtils = {
 // File:src/extras/ImageUtils.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
- * @author mrdoob / http://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
  * @author Daosheng Mu / https://github.com/DaoshengMu/
  */
 
@@ -25969,7 +25969,7 @@ THREE.ImageUtils = {
 
 	getNormalMap: function ( image, depth ) {
 
-		// Adapted from http://www.paulbrunt.co.uk/lab/heightnormal/
+		// Adapted from https://www.paulbrunt.co.uk/lab/heightnormal/
 
 		var cross = function ( a, b ) {
 
@@ -26099,7 +26099,7 @@ THREE.ImageUtils = {
 // File:src/extras/SceneUtils.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.SceneUtils = {
@@ -26142,8 +26142,8 @@ THREE.SceneUtils = {
 // File:src/extras/FontUtils.js
 
 /**
- * @author zz85 / http://www.lab4games.net/zz85/blog
- * @author alteredq / http://alteredqualia.com/
+ * @author zz85 / https://www.lab4games.net/zz85/blog
+ * @author alteredq / https://alteredqualia.com/
  *
  * For Text operations in three.js (See TextGeometry)
  *
@@ -26151,14 +26151,14 @@ THREE.SceneUtils = {
  *
  * 	typeface.js and canvastext
  * 		For converting fonts and rendering with javascript
- *		http://typeface.neocracy.org
+ *		https://typeface.neocracy.org
  *
  *	Triangulation ported from AS3
  *		Simple Polygon Triangulation
- *		http://actionsnippet.com/?p=1462
+ *		https://actionsnippet.com/?p=1462
  *
  * 	A Method to triangulate shapes with holes
- *		http://www.sakri.net/blog/2009/06/12/an-approach-to-triangulating-polygons-with-holes/
+ *		https://www.sakri.net/blog/2009/06/12/an-approach-to-triangulating-polygons-with-holes/
  *
  */
 
@@ -26418,13 +26418,13 @@ THREE.FontUtils.generateShapes = function ( text, parameters ) {
  * This code is a quick port of code written in C++ which was submitted to
  * flipcode.com by John W. Ratcliff  // July 22, 2000
  * See original code and more information here:
- * http://www.flipcode.com/archives/Efficient_Polygon_Triangulation.shtml
+ * https://www.flipcode.com/archives/Efficient_Polygon_Triangulation.shtml
  *
  * ported to actionscript by Zevan Rosser
  * www.actionsnippet.com
  *
  * ported to javascript by Joshua Koo
- * http://www.lab4games.net/zz85/blog
+ * https://www.lab4games.net/zz85/blog
  *
  */
 
@@ -26615,7 +26615,7 @@ THREE.typeface_js = self._typeface_js;
 // File:src/extras/audio/Audio.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.Audio = function ( listener ) {
@@ -26699,7 +26699,7 @@ THREE.Audio.prototype.updateMatrixWorld = ( function () {
 // File:src/extras/audio/AudioListener.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.AudioListener = function () {
@@ -26751,7 +26751,7 @@ THREE.AudioListener.prototype.updateMatrixWorld = ( function () {
 // File:src/extras/core/Curve.js
 
 /**
- * @author zz85 / http://www.lab4games.net/zz85/blog
+ * @author zz85 / https://www.lab4games.net/zz85/blog
  * Extensible curve object
  *
  * Some common of Curve methods
@@ -27090,7 +27090,7 @@ THREE.Curve.create = function ( constructor, getPointFunc ) {
 // File:src/extras/core/CurvePath.js
 
 /**
- * @author zz85 / http://www.lab4games.net/zz85/blog
+ * @author zz85 / https://www.lab4games.net/zz85/blog
  *
  **/
 
@@ -27378,7 +27378,7 @@ THREE.CurvePath.prototype.getTransformedSpacedPoints = function( segments, bends
 };
 
 // This returns getPoints() bend/wrapped around the contour of a path.
-// Read http://www.planetclegg.com/projects/WarpingTextToSplines.html
+// Read https://www.planetclegg.com/projects/WarpingTextToSplines.html
 
 THREE.CurvePath.prototype.getWrapPoints = function ( oldPts, path ) {
 
@@ -27419,7 +27419,7 @@ THREE.CurvePath.prototype.getWrapPoints = function ( oldPts, path ) {
 // File:src/extras/core/Gyroscope.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.Gyroscope = function () {
@@ -27487,7 +27487,7 @@ THREE.Gyroscope.prototype.updateMatrixWorld = ( function () {
 // File:src/extras/core/Path.js
 
 /**
- * @author zz85 / http://www.lab4games.net/zz85/blog
+ * @author zz85 / https://www.lab4games.net/zz85/blog
  * Creates free form 2d path using series of points, lines or curves.
  *
  **/
@@ -28166,7 +28166,7 @@ THREE.Path.prototype.toShapes = function( isCCW, noHoles ) {
 // File:src/extras/core/Shape.js
 
 /**
- * @author zz85 / http://www.lab4games.net/zz85/blog
+ * @author zz85 / https://www.lab4games.net/zz85/blog
  * Defines a 2d shape plane using paths.
  **/
 
@@ -28676,7 +28676,7 @@ THREE.Shape.Utils = {
 	},
 
 	// Bezier Curves formulas obtained from
-	// http://en.wikipedia.org/wiki/B%C3%A9zier_curve
+	// https://en.wikipedia.org/wiki/B%C3%A9zier_curve
 
 	// Quad Bezier Functions
 
@@ -29149,7 +29149,7 @@ THREE.ClosedSplineCurve3 = THREE.Curve.create(
 // File:src/extras/animation/AnimationHandler.js
 
 /**
- * @author mikael emtinger / http://gomo.se/
+ * @author mikael emtinger / https://gomo.se/
  */
 
 THREE.AnimationHandler = {
@@ -29360,9 +29360,9 @@ THREE.AnimationHandler = {
 // File:src/extras/animation/Animation.js
 
 /**
- * @author mikael emtinger / http://gomo.se/
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
+ * @author mikael emtinger / https://gomo.se/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.Animation = function ( root, data ) {
@@ -29766,9 +29766,9 @@ THREE.Animation.prototype.getPrevKeyWith = function ( type, h, key ) {
 // File:src/extras/animation/KeyFrameAnimation.js
 
 /**
- * @author mikael emtinger / http://gomo.se/
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
+ * @author mikael emtinger / https://gomo.se/
+ * @author mrdoob / https://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
  * @author khang duong
  * @author erik kitson
  */
@@ -30013,8 +30013,8 @@ THREE.KeyFrameAnimation.prototype.getPrevKeyWith = function( sid, h, key ) {
 // File:src/extras/animation/MorphAnimation.js
 
 /**
- * @author mrdoob / http://mrdoob.com
- * @author willy-vvu / http://willy-vvu.github.io
+ * @author mrdoob / https://mrdoob.com
+ * @author willy-vvu / https://willy-vvu.github.io
  */
 
 THREE.MorphAnimation = function ( mesh ) {
@@ -30085,8 +30085,8 @@ THREE.MorphAnimation.prototype = {
 // File:src/extras/geometries/BoxGeometry.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * based on http://papervision3d.googlecode.com/svn/trunk/as3/trunk/src/org/papervision3d/objects/primitives/Cube.as
+ * @author mrdoob / https://mrdoob.com/
+ * based on https://papervision3d.googlecode.com/svn/trunk/as3/trunk/src/org/papervision3d/objects/primitives/Cube.as
  */
 
 THREE.BoxGeometry = function ( width, height, depth, widthSegments, heightSegments, depthSegments ) {
@@ -30277,7 +30277,7 @@ THREE.CircleGeometry.prototype.constructor = THREE.CircleGeometry;
 // File:src/extras/geometries/CubeGeometry.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 
@@ -30291,7 +30291,7 @@ THREE.CubeGeometry = function ( width, height, depth, widthSegments, heightSegme
 // File:src/extras/geometries/CylinderGeometry.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.CylinderGeometry = function ( radiusTop, radiusBottom, height, radialSegments, heightSegments, openEnded, thetaStart, thetaLength ) {
@@ -30466,7 +30466,7 @@ THREE.CylinderGeometry.prototype.constructor = THREE.CylinderGeometry;
 // File:src/extras/geometries/ExtrudeGeometry.js
 
 /**
- * @author zz85 / http://www.lab4games.net/zz85/blog
+ * @author zz85 / https://www.lab4games.net/zz85/blog
  *
  * Creates extruded geometry from a path shape.
  *
@@ -30672,7 +30672,7 @@ THREE.ExtrudeGeometry.prototype.addShape = function ( shape, options ) {
 		var v_trans_x, v_trans_y, shrink_by = 1;		// resulting translation vector for inPt
 
 		// good reading for geometry algorithms (here: line-line intersection)
-		// http://geomalgorithms.com/a05-_intersect-1.html
+		// https://geomalgorithms.com/a05-_intersect-1.html
 
 		var v_prev_x = inPt.x - inPrev.x, v_prev_y = inPt.y - inPrev.y;
 		var v_next_x = inNext.x - inPt.x, v_next_y = inNext.y - inPt.y;
@@ -31143,7 +31143,7 @@ THREE.ExtrudeGeometry.WorldUVGenerator = {
 // File:src/extras/geometries/ShapeGeometry.js
 
 /**
- * @author jonobr1 / http://jonobr1.com
+ * @author jonobr1 / https://jonobr1.com
  *
  * Creates a one-sided polygonal geometry from a path shape. Similar to
  * ExtrudeGeometry.
@@ -31280,9 +31280,9 @@ THREE.ShapeGeometry.prototype.addShape = function ( shape, options ) {
 // File:src/extras/geometries/LatheGeometry.js
 
 /**
- * @author astrodud / http://astrodud.isgreat.org/
+ * @author astrodud / https://astrodud.isgreat.org/
  * @author zz85 / https://github.com/zz85
- * @author bhouston / http://exocortex.com
+ * @author bhouston / https://exocortex.com
  */
 
 // points - to create a closed torus, one must use a set of points 
@@ -31389,8 +31389,8 @@ THREE.LatheGeometry.prototype.constructor = THREE.LatheGeometry;
 // File:src/extras/geometries/PlaneGeometry.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * based on http://papervision3d.googlecode.com/svn/trunk/as3/trunk/src/org/papervision3d/objects/primitives/Plane.as
+ * @author mrdoob / https://mrdoob.com/
+ * based on https://papervision3d.googlecode.com/svn/trunk/as3/trunk/src/org/papervision3d/objects/primitives/Plane.as
  */
 
 THREE.PlaneGeometry = function ( width, height, widthSegments, heightSegments ) {
@@ -31418,8 +31418,8 @@ THREE.PlaneGeometry.prototype.constructor = THREE.PlaneGeometry;
 // File:src/extras/geometries/PlaneBufferGeometry.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * based on http://papervision3d.googlecode.com/svn/trunk/as3/trunk/src/org/papervision3d/objects/primitives/Plane.as
+ * @author mrdoob / https://mrdoob.com/
+ * based on https://papervision3d.googlecode.com/svn/trunk/as3/trunk/src/org/papervision3d/objects/primitives/Plane.as
  */
 
 THREE.PlaneBufferGeometry = function ( width, height, widthSegments, heightSegments ) {
@@ -31603,7 +31603,7 @@ THREE.RingGeometry.prototype.constructor = THREE.RingGeometry;
 // File:src/extras/geometries/SphereGeometry.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.SphereGeometry = function ( radius, widthSegments, heightSegments, phiStart, phiLength, thetaStart, thetaLength ) {
@@ -31719,8 +31719,8 @@ THREE.SphereGeometry.prototype.constructor = THREE.SphereGeometry;
 // File:src/extras/geometries/TextGeometry.js
 
 /**
- * @author zz85 / http://www.lab4games.net/zz85/blog
- * @author alteredq / http://alteredqualia.com/
+ * @author zz85 / https://www.lab4games.net/zz85/blog
+ * @author alteredq / https://alteredqualia.com/
  *
  * For creating 3D text geometry in three.js
  *
@@ -31785,8 +31785,8 @@ THREE.TextGeometry.prototype.constructor = THREE.TextGeometry;
 
 /**
  * @author oosmoxiecode
- * @author mrdoob / http://mrdoob.com/
- * based on http://code.google.com/p/away3d/source/browse/trunk/fp10/Away3DLite/src/away3dlite/primitives/Torus.as?r=2888
+ * @author mrdoob / https://mrdoob.com/
+ * based on https://code.google.com/p/away3d/source/browse/trunk/fp10/Away3DLite/src/away3dlite/primitives/Torus.as?r=2888
  */
 
 THREE.TorusGeometry = function ( radius, tube, radialSegments, tubularSegments, arc ) {
@@ -31867,7 +31867,7 @@ THREE.TorusGeometry.prototype.constructor = THREE.TorusGeometry;
 
 /**
  * @author oosmoxiecode
- * based on http://code.google.com/p/away3d/source/browse/trunk/fp10/Away3D/src/away3d/primitives/TorusKnot.as?spec=svn2473&r=2473
+ * based on https://code.google.com/p/away3d/source/browse/trunk/fp10/Away3D/src/away3d/primitives/TorusKnot.as?spec=svn2473&r=2473
  */
 
 THREE.TorusKnotGeometry = function ( radius, tube, radialSegments, tubularSegments, p, q, heightScale ) {
@@ -31992,7 +31992,7 @@ THREE.TorusKnotGeometry.prototype.constructor = THREE.TorusKnotGeometry;
  * Creates a tube which extrudes along a 3d spline
  *
  * Uses parallel transport frames as described in
- * http://www.cs.indiana.edu/pub/techreports/TR425.pdf
+ * https://www.cs.indiana.edu/pub/techreports/TR425.pdf
  */
 
 THREE.TubeGeometry = function ( path, segments, radius, radialSegments, closed, taper ) {
@@ -32285,7 +32285,7 @@ THREE.TubeGeometry.FrenetFrames = function ( path, segments, closed ) {
 /**
  * @author clockworkgeek / https://github.com/clockworkgeek
  * @author timothypratley / https://github.com/timothypratley
- * @author WestLangley / http://github.com/WestLangley
+ * @author WestLangley / https://github.com/WestLangley
 */
 
 THREE.PolyhedronGeometry = function ( vertices, indices, radius, detail ) {
@@ -32683,7 +32683,7 @@ THREE.TetrahedronGeometry.prototype.constructor = THREE.TetrahedronGeometry;
 /**
  * @author zz85 / https://github.com/zz85
  * Parametric Surfaces Geometry
- * based on the brilliant article by @prideout http://prideout.net/blog/?p=44
+ * based on the brilliant article by @prideout https://prideout.net/blog/?p=44
  *
  * new THREE.ParametricGeometry( parametricFunction, uSegments, ySegements );
  *
@@ -32769,8 +32769,8 @@ THREE.ParametricGeometry.prototype.constructor = THREE.ParametricGeometry;
 // File:src/extras/helpers/AxisHelper.js
 
 /**
- * @author sroucheray / http://sroucheray.org/
- * @author mrdoob / http://mrdoob.com/
+ * @author sroucheray / https://sroucheray.org/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.AxisHelper = function ( size ) {
@@ -32805,9 +32805,9 @@ THREE.AxisHelper.prototype.constructor = THREE.AxisHelper;
 // File:src/extras/helpers/ArrowHelper.js
 
 /**
- * @author WestLangley / http://github.com/WestLangley
- * @author zz85 / http://github.com/zz85
- * @author bhouston / http://exocortex.com
+ * @author WestLangley / https://github.com/WestLangley
+ * @author zz85 / https://github.com/zz85
+ * @author bhouston / https://exocortex.com
  *
  * Creates an arrow for visualizing directions
  *
@@ -32914,7 +32914,7 @@ THREE.ArrowHelper.prototype.setColor = function ( color ) {
 // File:src/extras/helpers/BoxHelper.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.BoxHelper = function ( object ) {
@@ -33018,7 +33018,7 @@ THREE.BoxHelper.prototype.update = function ( object ) {
 // File:src/extras/helpers/BoundingBoxHelper.js
 
 /**
- * @author WestLangley / http://github.com/WestLangley
+ * @author WestLangley / https://github.com/WestLangley
  */
 
 // a helper to show the world-axis-aligned bounding box for an object
@@ -33051,12 +33051,12 @@ THREE.BoundingBoxHelper.prototype.update = function () {
 // File:src/extras/helpers/CameraHelper.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  *
  *	- shows frustum, line of sight and up of the camera
  *	- suitable for fast updates
  * 	- based on frustum visualization in lightgl.js shadowmap example
- *		http://evanw.github.com/lightgl.js/tests/shadowmap.html
+ *		https://evanw.github.com/lightgl.js/tests/shadowmap.html
  */
 
 THREE.CameraHelper = function ( camera ) {
@@ -33241,9 +33241,9 @@ THREE.CameraHelper.prototype.update = function () {
 // File:src/extras/helpers/DirectionalLightHelper.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
- * @author mrdoob / http://mrdoob.com/
- * @author WestLangley / http://github.com/WestLangley
+ * @author alteredq / https://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author WestLangley / https://github.com/WestLangley
  */
 
 THREE.DirectionalLightHelper = function ( light, size ) {
@@ -33326,7 +33326,7 @@ THREE.DirectionalLightHelper.prototype.update = function () {
 // File:src/extras/helpers/EdgesHelper.js
 
 /**
- * @author WestLangley / http://github.com/WestLangley
+ * @author WestLangley / https://github.com/WestLangley
  */
 
 THREE.EdgesHelper = function ( object, hex ) {
@@ -33414,8 +33414,8 @@ THREE.EdgesHelper.prototype.constructor = THREE.EdgesHelper;
 // File:src/extras/helpers/FaceNormalsHelper.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author WestLangley / http://github.com/WestLangley
+ * @author mrdoob / https://mrdoob.com/
+ * @author WestLangley / https://github.com/WestLangley
 */
 
 THREE.FaceNormalsHelper = function ( object, size, hex, linewidth ) {
@@ -33492,7 +33492,7 @@ THREE.FaceNormalsHelper.prototype.update = function () {
 // File:src/extras/helpers/GridHelper.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.GridHelper = function ( size, step ) {
@@ -33535,8 +33535,8 @@ THREE.GridHelper.prototype.setColors = function( colorCenterLine, colorGrid ) {
 // File:src/extras/helpers/HemisphereLightHelper.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
- * @author mrdoob / http://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.HemisphereLightHelper = function ( light, sphereSize, arrowLength, domeSize ) {
@@ -33596,8 +33596,8 @@ THREE.HemisphereLightHelper.prototype.update = function () {
 // File:src/extras/helpers/PointLightHelper.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
- * @author mrdoob / http://mrdoob.com/
+ * @author alteredq / https://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.PointLightHelper = function ( light, sphereSize ) {
@@ -33671,10 +33671,10 @@ THREE.PointLightHelper.prototype.update = function () {
 // File:src/extras/helpers/SkeletonHelper.js
 
 /**
- * @author Sean Griffin / http://twitter.com/sgrif
- * @author Michael Guerrero / http://realitymeltdown.com
- * @author mrdoob / http://mrdoob.com/
- * @author ikerr / http://verold.com
+ * @author Sean Griffin / https://twitter.com/sgrif
+ * @author Michael Guerrero / https://realitymeltdown.com
+ * @author mrdoob / https://mrdoob.com/
+ * @author ikerr / https://verold.com
  */
 
 THREE.SkeletonHelper = function ( object ) {
@@ -33772,9 +33772,9 @@ THREE.SkeletonHelper.prototype.update = function () {
 // File:src/extras/helpers/SpotLightHelper.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
- * @author mrdoob / http://mrdoob.com/
- * @author WestLangley / http://github.com/WestLangley
+ * @author alteredq / https://alteredqualia.com/
+ * @author mrdoob / https://mrdoob.com/
+ * @author WestLangley / https://github.com/WestLangley
 */
 
 THREE.SpotLightHelper = function ( light ) {
@@ -33835,8 +33835,8 @@ THREE.SpotLightHelper.prototype.update = function () {
 // File:src/extras/helpers/VertexNormalsHelper.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author WestLangley / http://github.com/WestLangley
+ * @author mrdoob / https://mrdoob.com/
+ * @author WestLangley / https://github.com/WestLangley
 */
 
 THREE.VertexNormalsHelper = function ( object, size, hex, linewidth ) {
@@ -33938,8 +33938,8 @@ THREE.VertexNormalsHelper.prototype.update = ( function ( object ) {
 // File:src/extras/helpers/VertexTangentsHelper.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
- * @author WestLangley / http://github.com/WestLangley
+ * @author mrdoob / https://mrdoob.com/
+ * @author WestLangley / https://github.com/WestLangley
 */
 
 THREE.VertexTangentsHelper = function ( object, size, hex, linewidth ) {
@@ -34038,7 +34038,7 @@ THREE.VertexTangentsHelper.prototype.update = ( function ( object ) {
 // File:src/extras/helpers/WireframeHelper.js
 
 /**
- * @author mrdoob / http://mrdoob.com/
+ * @author mrdoob / https://mrdoob.com/
  */
 
 THREE.WireframeHelper = function ( object, hex ) {
@@ -34218,7 +34218,7 @@ THREE.WireframeHelper.prototype.constructor = THREE.WireframeHelper;
 // File:src/extras/objects/ImmediateRenderObject.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.ImmediateRenderObject = function () {
@@ -34235,7 +34235,7 @@ THREE.ImmediateRenderObject.prototype.constructor = THREE.ImmediateRenderObject;
 // File:src/extras/objects/MorphBlendMesh.js
 
 /**
- * @author alteredq / http://alteredqualia.com/
+ * @author alteredq / https://alteredqualia.com/
  */
 
 THREE.MorphBlendMesh = function( geometry, material ) {

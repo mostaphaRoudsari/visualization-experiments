@@ -1,6 +1,6 @@
 /**
  * dat-gui JavaScript Controller Library
- * http://code.google.com/p/dat-gui
+ * https://code.google.com/p/dat-gui
  *
  * Copyright 2011 Data Arts Team, Google Creative Lab
  *
@@ -8,7 +8,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  */
 
 /** @namespace */
@@ -58,7 +58,7 @@ dat.utils.common = (function () {
   /**
    * Band-aid methods for things that should be a lot easier in JavaScript.
    * Implementation and structure inspired by underscore.js
-   * http://documentcloud.github.com/underscore/
+   * https://documentcloud.github.com/underscore/
    */
 
   return { 
@@ -566,7 +566,7 @@ dat.dom.dom = (function (common) {
       return offset;
     },
 
-    // http://stackoverflow.com/posts/2684561/revisions
+    // https://stackoverflow.com/posts/2684561/revisions
     /**
      * 
      * @param elem
@@ -3541,7 +3541,7 @@ dat.utils.requestAnimationFrame = (function () {
 
   /**
    * requirejs version of Paul Irish's RequestAnimationFrame
-   * http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+   * https://paulirish.com/2011/requestanimationframe-for-smart-animating/
    */
 
   return window.webkitRequestAnimationFrame ||

@@ -2,10 +2,10 @@
 //     (c) 2012 Kai Chang
 //     Underscore.math is freely distributable under the MIT license.
 //     Portions of Underscore.math are inspired or borrowed from MooTools Array.Math,
-//     http://github.com/syntagmatic/underscore.math
+//     https://github.com/syntagmatic/underscore.math
 //     
 //     Requires Underscore.js
-//     http://underscorejs.org/
+//     https://underscorejs.org/
 
 (function() {
 

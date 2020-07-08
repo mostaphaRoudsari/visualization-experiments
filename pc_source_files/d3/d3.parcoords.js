@@ -272,7 +272,7 @@ pc.commonScale = function(global, type) {
   return this;
 };
 
-// a better "typeof" from this post: http://stackoverflow.com/questions/7390426/better-way-to-get-type-of-a-javascript-variable
+// a better "typeof" from this post: https://stackoverflow.com/questions/7390426/better-way-to-get-type-of-a-javascript-variable
 pc.toType = function(v) {
   return ({}).toString.call(v).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
 };
@@ -626,7 +626,7 @@ pc.updateAxes = function() {
   return this;
 };
 
-// Jason Davies, http://bl.ocks.org/1341281
+// Jason Davies, https://bl.ocks.org/1341281
 pc.reorderable = function() {
   if (!g) pc.createAxes();
 
